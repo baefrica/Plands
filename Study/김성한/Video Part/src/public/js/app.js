@@ -29,7 +29,7 @@ async function getCamers() {
       const option = document.createElement("option");
       option.value = camera.deviceId; // 디바이스 아이디
       option.innerText = camera.label; // 디바이스 이름
-      if (currentCamera.label == camera.label) {
+      if (currentCamera.label === camera.label) {
         option.selected = true;
       }
       cameraSelect.append(option);
