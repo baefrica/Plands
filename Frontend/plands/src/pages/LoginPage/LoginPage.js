@@ -18,6 +18,7 @@ function LoginPage() {
         </div>
         <div className={styles.loginBtnDiv}>
           <button>로그인</button>
+          {/*button으로 감싸서 잘못 클릿하면 submit 됨 해결해야함 */}
           <button>
             <Link to={"/register"}>회원가입</Link>
           </button>

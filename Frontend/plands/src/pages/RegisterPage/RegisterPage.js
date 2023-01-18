@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./css/RegisterPage.module.css";
+import { isEmail, isLength, isAlphanumeric } from "validator";
 
 function RegisterPage() {
   return (
@@ -35,7 +36,7 @@ function RegisterPage() {
               <option value="female">여성</option>
             </select>
           </div>
-          <h3>생일</h3>
+          <h3>생년월일</h3>
           <div class={styles.loginInputDiv}>
             <input type="date" required />
           </div>
@@ -49,6 +50,7 @@ function RegisterPage() {
           </div>
           <div className={styles.loginBtnDiv}>
             <button>회원가입</button>
+            {/*button으로 감싸서 잘못 클릿하면 submit 됨 해결해야함 */}
             <button>
               <Link to={"/login"}>취소</Link>
             </button>
