@@ -27,9 +27,8 @@ dependencies {
 	// log4j2 추가, 쿼리로그 추가
 	implementation 'org.springframework.boot:spring-boot-starter-log4j2'
 	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
-    testImplementation 'junit:junit:4.13.1'
 
-    // MySQL
+	// MySQL
 	runtimeOnly 'com.mysql:mysql-connector-j'
 
 	// Spring Data JPA
@@ -49,6 +48,11 @@ dependencies {
 
 	// Spring Boot Devtools
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	// Jwt
+	implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.2'
+	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.2'
+	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.2'
 }
 
 tasks.named('test') {
