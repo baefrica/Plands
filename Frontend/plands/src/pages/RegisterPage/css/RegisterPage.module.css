@@ -60,3 +60,12 @@ select {
   display: flex;
   justify-content: space-around;
 }
+.invalidInput {
+  color: rgb(241, 76, 76);
+  text-align: left;
+}
+
+.correctInput {
+  color: rgb(119, 231, 75);
+  text-align: left;
+}
