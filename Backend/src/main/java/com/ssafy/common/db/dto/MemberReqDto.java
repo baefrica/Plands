@@ -5,13 +5,13 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Data
+
 @Getter
 @Setter
 @AllArgsConstructor
 public class MemberReqDto {
 
     private String id;
-
     private String pwd;
+
 }

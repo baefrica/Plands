@@ -1,9 +1,16 @@
 package com.ssafy.api.service;
 
+import com.ssafy.common.db.dto.MemberDto;
 import com.ssafy.common.db.dto.MemberReqDto;
-import com.ssafy.common.db.entity.Member;
+
+import java.util.List;
 
 public interface MemberService {
 
-    Member login(MemberReqDto memberReq);
+    boolean login(MemberReqDto memberReqDto);
+    boolean regist(MemberDto memberDto);
+    MemberDto detail(String id);
+    List<MemberDto> findAll(int offset, int size);
+    void modify(MemberDto memberDto);
+    void delete(String id);
 }

@@ -27,9 +27,9 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo(){
         return new ApiInfoBuilder()
-                .title("API 문서 제목")
+                .title("Team Beakgu Swagger")
                 .description("API 상세소개 및 사용법")
-                .contact(new Contact("이름", "url", "email"))
+                // .contact(new Contact("이름", "url", "email"))
                 .version("1.0")
                 .build();
     }

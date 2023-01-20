@@ -1,32 +1,35 @@
 package com.ssafy.common.db.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
+@Builder
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Member {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", length = 16)
     private String id;
 
     @Column(name = "pwd", nullable = false, length = 16)
     private String pwd;
 
-    @Column(name = "name", nullable = false, length = 5)
+    @Column(name = "name", nullable = false, length = 6)
     private String name;
 
     @Column(name = "nickname", nullable = false, length = 10)
     private String nickname;
 
-    @Column(name = "gender", nullable = false, columnDefinition = "VARCHAR(10) CHECK (GENDER IN ('M', 'W'))")
+//    @Column(name = "gender", nullable = false, columnDefinition = "VARCHAR(10) CHECK (GENDER IN ('M', 'W'))")
+    @Column(name = "gender", nullable = false, length = 1)
     private char gender;
 
     @Column(name = "birth_day", nullable = false, length = 8)
@@ -39,12 +42,10 @@ public class Member {
     private String email;
 
     @CreationTimestamp
-    @Column(name = "regist_date", nullable = false)
+    @Column(name = "regist_date")
     private Timestamp registDate;
 
-    @OneToOne
-    @JoinColumn(name = "refresh_token_fk")
+    @OneToOne(mappedBy = "member")
     Token refreshToken;
-
 
 }
