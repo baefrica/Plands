@@ -310,6 +310,9 @@ function RegisterPage() {
               value={email}
               onChange={onChangeEmail}
             />
+            <div className={styles.emailConfirm}>
+              <button className={styles.confirmBtn}>인증하기</button>
+            </div>
             {!emailError && email && (
               <div className={styles.correctInput}>
                 🟢&nbsp;올바른 입력입니다.

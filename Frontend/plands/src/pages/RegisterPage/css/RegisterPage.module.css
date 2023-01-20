@@ -69,3 +69,25 @@ select {
   color: rgb(119, 231, 75);
   text-align: left;
 }
+
+.emailConfirm {
+  margin-top: 9px;
+  text-align: left;
+}
+
+.confirmBtn {
+  width: 100px;
+  height: 30px;
+  font-size: 15px;
+  font-weight: bold;
+  border: none;
+  background-color: white;
+  box-shadow: 2px 2px 5px 1px gray;
+  border-radius: 5px;
+}
+
+.confirmBtn:hover {
+  background-color: rgb(184, 184, 184);
+  color: white;
+  cursor: pointer;
+}
