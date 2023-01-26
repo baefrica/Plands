@@ -17,7 +17,7 @@ import javax.mail.internet.MimeMessage;
 @RequiredArgsConstructor
 public class EmailServiceImpl implements EmailService {
     private final JavaMailSender mailSender;
-    private static final String ADMIN_ADDRESS = "dltkdgkr_@naver.com";
+    private static final String ADMIN_ADDRESS = "ssafytest@naver.com";
 
     @Async
     public void findPwd(Member member) throws Exception {
@@ -26,7 +26,21 @@ public class EmailServiceImpl implements EmailService {
         message.addRecipients(Message.RecipientType.TO, member.getEmail());
         message.setSubject("플랜즈 비밀번호 찾기 안내");
 
-        String text = "[" + member.getId() + "]" + "님의 비밀번호는" + " [" + member.getPwd() + "]입니다.";
+        String text = "[" + member.getId() + "] " + " 님의 비밀번호는 " + "[" + member.getPwd() + "] 입니다.";
+        message.setText(text, "utf-8");
+        message.setFrom(new InternetAddress(ADMIN_ADDRESS, "플랜즈"));
+
+        mailSender.send(message);
+    }
+
+    @Async
+    public void sendEmail(String email, String code) throws Exception {
+
+        MimeMessage message = mailSender.createMimeMessage();
+        message.addRecipients(Message.RecipientType.TO, email);
+        message.setSubject("플랜즈 이메일 인증 안내");
+
+        String text = "인증번호는" + " [" + code + "] 입니다.";
         message.setText(text, "utf-8");
         message.setFrom(new InternetAddress(ADMIN_ADDRESS, "플랜즈"));
 

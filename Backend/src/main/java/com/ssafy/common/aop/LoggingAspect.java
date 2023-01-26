@@ -16,6 +16,6 @@ public class LoggingAspect {
 
     @Before(value="execution(* com.ssafy.webex..*.*(..))")
     public void logging(JoinPoint jp) {
-        log.debug("LoggingAspect => 메서드 선언부: {}, 전달 파라미터: {}", jp.getSignature(), Arrays.toString(jp.getArgs()));
+        log.info("LoggingAspect => 메서드 선언부: {}, 전달 파라미터: {}", jp.getSignature(), Arrays.toString(jp.getArgs()));
     }
 }

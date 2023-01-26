@@ -15,7 +15,6 @@ import java.sql.Timestamp;
 public class Member {
 
     @Id
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", length = 16)
     private String id;
 
@@ -48,4 +47,6 @@ public class Member {
     @OneToOne(mappedBy = "member")
     Token refreshToken;
 
+    @Column(name = "role", nullable = false, length = 10)
+    private String role;
 }

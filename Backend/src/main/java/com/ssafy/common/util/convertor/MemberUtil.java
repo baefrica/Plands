@@ -18,6 +18,7 @@ public class MemberUtil {
                 .birthDay(memberDto.getBirthDay())
                 .pNumber(memberDto.getPNumber())
                 .email(memberDto.getEmail())
+                .role(memberDto.getRole())
                 .build();
     }
 
@@ -25,6 +26,6 @@ public class MemberUtil {
 
         return new MemberDto(member.getId(), member.getPwd(), member.getName(),
                 member.getNickname(), member.getGender(), member.getBirthDay(),
-                member.getPNumber(), member.getEmail(), member.getRegistDate());
+                member.getPNumber(), member.getEmail(), member.getRegistDate(), member.getRole());
     }
 }

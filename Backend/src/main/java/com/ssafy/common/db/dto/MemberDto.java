@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Timestamp;
@@ -11,6 +12,7 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class MemberDto {
 
     @Schema(description = "아이디", maxLength = 16)
@@ -40,4 +42,7 @@ public class MemberDto {
     @Schema(description = "생일", pattern = "YYYY-MM-DD HH:MM:SS")
     @JsonIgnore
     private Timestamp registDate;
+
+    @Schema(description = "권한", maxLength = 10)
+    private String role;
 }
