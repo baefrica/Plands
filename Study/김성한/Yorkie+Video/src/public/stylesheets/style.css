@@ -1,0 +1,45 @@
+#collabo {
+  border: 1px solid black;
+}
+
+#welcome {
+  width: 100%;
+  text-align: center;
+}
+
+#welcome input {
+  width: 30%;
+  height: 50px;
+  font-size: 20px;
+}
+
+#welcome button {
+  margin-left: 20px;
+  width: 150px;
+  height: 50px;
+  font-size: 15px;
+  border: none;
+  border-radius: 10px;
+}
+
+#welcome button:hover {
+  background-color: gray;
+  cursor: pointer;
+}
+
+#myStream {
+  display: flex;
+  flex-direction: column;
+}
+
+#myStream button,
+select {
+  display: none;
+  width: 150px;
+  height: 30px;
+}
+
+#call {
+  display: flex;
+  justify-content: space-around;
+}

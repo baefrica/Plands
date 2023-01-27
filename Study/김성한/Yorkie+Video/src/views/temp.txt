@@ -1,0 +1,55 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Noom
+        link(rel="stylesheet", href="https://unpkg.com/mvp.css@1.12/mvp.css")
+    body 
+        header
+            h1 Noom
+
+        main
+            div#welcome
+                form
+                    input(placeholder="room name", required, type="text")
+                    button Enter Room
+            div#call
+                div#myStream
+                    video#myFace(autoplay,playsinline, width="400", height="400")
+                    // playsinline은 모바일 브라우저 환경에서 필요한 프로퍼티이다. 
+                    // 가끔 모바일 기기로 비디오를 재생할때 전체화면이 되어버려서 그 부분을 막기위해서 넣어준다.
+                    button#mute Mute
+                    button#camera Turn Camera Off
+                    select#cameras
+                video#peerFace(autoplay,playsinline, width="400", height="400")
+        script(src="/socket.io/socket.io.js")    
+        script(src="/public/js/app.js")doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Noom
+        link(rel="stylesheet", href="https://unpkg.com/mvp.css@1.12/mvp.css")
+    body 
+        header
+            h1 Noom
+
+        main
+            div#welcome
+                form
+                    input(placeholder="room name", required, type="text")
+                    button Enter Room
+            div#call
+                div#myStream
+                    video#myFace(autoplay,playsinline, width="400", height="400")
+                    // playsinline은 모바일 브라우저 환경에서 필요한 프로퍼티이다. 
+                    // 가끔 모바일 기기로 비디오를 재생할때 전체화면이 되어버려서 그 부분을 막기위해서 넣어준다.
+                    button#mute Mute
+                    button#camera Turn Camera Off
+                    select#cameras
+                video#peerFace(autoplay,playsinline, width="400", height="400")
+        script(src="/socket.io/socket.io.js")    
+        script(src="/public/js/app.js")
