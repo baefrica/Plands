@@ -1,10 +1,12 @@
 package com.ssafy.common.db.entity;
 
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Entity
+@ToString
 @NoArgsConstructor
 public class Token {
 

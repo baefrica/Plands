@@ -14,8 +14,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class LoggingAspect {
 
-    @Before(value="execution(* com.ssafy.webex..*.*(..))")
-    public void logging(JoinPoint jp) {
-        log.info("LoggingAspect => 메서드 선언부: {}, 전달 파라미터: {}", jp.getSignature(), Arrays.toString(jp.getArgs()));
-    }
+//    // com.ssafy.api 패키지밑 모든 클래스 (하위 클래스 포함)의 모든 인자 타입을 가진 모든 메서드 실행 전
+//    @Before(value="execution(* com.ssafy.api..*.*(..))")
+//    public void logging(JoinPoint jp) {
+//
+//        log.info("LoggingAspect => 메서드 선언부: {}", jp.getSignature());
+//        log.info("LoggingAspect => 전달 파라미터: {}", Arrays.toString(jp.getArgs()));
+//
+//    }
 }

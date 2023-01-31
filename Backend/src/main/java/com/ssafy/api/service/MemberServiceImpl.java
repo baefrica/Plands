@@ -1,13 +1,17 @@
 package com.ssafy.api.service;
 
-import com.ssafy.common.db.dto.MemberDto;
-import com.ssafy.common.db.dto.MemberReqDto;
+import com.ssafy.common.db.dto.response.MemberDto;
+import com.ssafy.common.db.dto.request.MemberLoginReqDto;
 import com.ssafy.common.db.entity.Member;
 import com.ssafy.common.db.repository.MemberRepository;
 import com.ssafy.common.util.convertor.MemberUtil;
+import com.ssafy.common.util.encorder.PwdEncoder;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,23 +21,31 @@ import java.util.Optional;
 
 @Log4j2
 @Service
-public class MemberServiceImpl implements MemberService {
+@RequiredArgsConstructor
+public class MemberServiceImpl implements MemberService, UserDetailsService {
 
-    @Autowired
-    MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
 
-    @Autowired
-    MemberUtil memberUtil;
+    private final MemberUtil memberUtil;
+
+    private final PwdEncoder pwdEncoder;
 
     @Override
     @Transactional
-    public boolean login(MemberReqDto memberReqDto) {
+    public boolean login(MemberLoginReqDto memberLoginReqDto) {
 
-        Optional<Member> optional = memberRepository.findById(memberReqDto.getId());
+        Optional<Member> optional = memberRepository.findById(memberLoginReqDto.getId());
 
         if(optional.isPresent()) {
             Member member = optional.get();
-            return memberReqDto.getId().equals(member.getId()) && memberReqDto.getPwd().equals(member.getPwd());
+
+            log.info("memberReqDto.getPwd(): {}", memberLoginReqDto.getPwd().toString());
+            log.info("member.getPassword(): {}", member.getPassword().toString());
+            log.info("Pwd Matched? : {}",
+                    pwdEncoder.passwordEncoder().matches(memberLoginReqDto.getPwd(), member.getPassword()));
+
+            return memberLoginReqDto.getId().equals(member.getId()) && pwdEncoder.passwordEncoder()
+                    .matches(memberLoginReqDto.getPwd(), member.getPassword());
         }
         return false;
     }
@@ -45,8 +57,15 @@ public class MemberServiceImpl implements MemberService {
         Optional<Member> optional = memberRepository.findByIdOrEmail(memberDto.getId(), memberDto.getEmail());
 
         if(!optional.isPresent()) {
-            memberDto.setRole("User");
-            memberRepository.save(memberUtil.memberDtoConv(memberDto));
+
+            String rawPwd = memberDto.getPwd();
+            String encodedPwd = pwdEncoder.passwordEncoder().encode(rawPwd);
+
+            log.info("rawPwd: {}", rawPwd);
+            log.info("encodedPwd : {}", encodedPwd);
+
+            memberDto.setPwd(encodedPwd);
+            memberRepository.save(memberUtil.convToMemberEntity(memberDto));
             return true;
         }
         return false;
@@ -56,7 +75,7 @@ public class MemberServiceImpl implements MemberService {
     @Transactional
     public MemberDto detail(String id) {
 
-        return memberUtil.memberEntityConv(memberRepository.findById(id).get());
+        return memberUtil.convToMemberDto(memberRepository.findById(id).get());
     }
 
     @Override
@@ -67,9 +86,26 @@ public class MemberServiceImpl implements MemberService {
         List<Member> memberList = memberRepository.findAllBy(PageRequest.of(offset, size)).toList();
 
         for(int i = 0; i < memberList.size(); i++) {
-            memberDtoList.add(memberUtil.memberEntityConv(memberList.get(i)));
+            memberDtoList.add(memberUtil.convToMemberDto(memberList.get(i)));
         }
         return memberDtoList;
+    }
+
+    @Override
+    @Transactional
+    public boolean findPwd(String email, String id, String newPwd) {
+
+        Optional<Member> optional = memberRepository.findByIdAndEmail(id, email);
+
+        if(optional.isPresent()) {
+
+            Member member = optional.get();
+            String encodedPwd = pwdEncoder.passwordEncoder().encode(newPwd);
+            member.setPwd(encodedPwd);
+            return true;
+        }
+
+        return false;
     }
 
     @Override
@@ -95,4 +131,11 @@ public class MemberServiceImpl implements MemberService {
     @Override
     @Transactional
     public void delete(String id) { memberRepository.deleteById(id); }
+
+    @Override
+    @Transactional
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        return memberRepository.getReferenceById(username);
+    }
 }
