@@ -1,10 +1,8 @@
-import logo from "./logo.svg";
-import "./App.css";
-
+import RegisterPage from "./pages/RegisterPage/RegisterPage";
 function App() {
   return (
     <div className="App">
-      <div>현재 개발중입니다.</div>
+      <RegisterPage />
     </div>
   );
 }
