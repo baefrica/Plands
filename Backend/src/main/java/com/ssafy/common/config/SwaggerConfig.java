@@ -14,6 +14,8 @@ import springfox.documentation.spring.web.plugins.Docket;
 @Configuration
 public class SwaggerConfig {
 
+    // Swagger3: http://localhost:9999/beakgu/swagger-ui/index.html
+
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.OAS_30)

@@ -1,73 +1,111 @@
 package com.ssafy.api.service;
 
-import com.ssafy.common.db.entity.Token;
 import io.jsonwebtoken.*;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Date;
-import java.util.Optional;
+import java.util.List;
 
 
 @Slf4j
 @Service
-public class JwtServiceImpl implements JwtService {
+@RequiredArgsConstructor
+public class JwtServiceImpl implements JwtService{
 
-    final static int EXPIRE_MINUTES = 1;
+    @Value("${beakgu.secretkey}")
+    private String secretKey;
 
-    final static String SECRET_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjOWYzYWI2NzY2Mjg2NDYy" +
-            "NDY0YTczNCIsIm5hbWUiOiJSYW5keSIsImF2YXRhciI6Ii8vd3d3LmdyYXZhdGFyLmNvbS9hdmF0YXIvMTNhN2MyYzdkOG" +
-            "VkNTNkMDc2MzRkOGNlZWVkZjM0NTE_cz0yMDAmcj1wZyZkPW1tIiwiaWF0IjoxNTU0NTIxNjk1LCJleHAiOjE1NTQ1MjUy" +
-            "OTV9._SxRurShXS-SI3SE11z6nme9EoaD29T_DBFr8Qwngkg";
+    private final UserDetailsService userDetailsService;
+
+    @PostConstruct
+    protected void init() {
+        log.info("변환 전 secretKey: {}", secretKey);
+        secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes(StandardCharsets.UTF_8));
+        log.info("변환 후 secretKey: {}", secretKey);
+    }
 
     @Override
-    public <T> String createToken(String key, T data, String subject) {
+    public String createToken(String id, String tokenType) {
+        log.info("createToken 실행 : {} ", tokenType);
 
-        try {
-            int time = 0;
-            if (subject == "access-token") {
-                time = 1000 * 60 * 30 * EXPIRE_MINUTES;
-            } else if (subject == "refresh-token") {
-                time = 1000 * 60 * 60 * 24 * 7 * 2 * EXPIRE_MINUTES;
-            } else {
-                log.info("another token!!!!!!!!!!");
-            }
+        Claims claims = Jwts.claims().setSubject(id);
 
-            String token = Jwts.builder()
-                    .setHeaderParam("typ", "JWT")
-                    .setHeaderParam("alg", "HS256")
-                    .claim(key, data)
-                    .setExpiration(new Date(System.currentTimeMillis() + time))
-                    .setSubject(subject)
-                    .signWith(SignatureAlgorithm.HS256, SECRET_KEY.getBytes("UTF-8")).compact();
+        int time;
 
-            log.info("발급된 {} 토큰: {}", subject, token);
-            return token;
-        } catch (Exception e) {
-            e.printStackTrace();
-            log.info("토큰 생성 실패!!!!!!!!!!!!!!!!!");
+        if(tokenType.equals("accessToken")) {
+            time = 1000 * 60 * 30;
+        }
+        else if(tokenType.equals("refreshToken")) {
+            time = 1000 * 60 * 60 * 24 * 7 * 2;
+        }
+        else {
             return null;
         }
 
+        String token = Jwts.builder()
+                .setClaims(claims)
+                .setExpiration(new Date(System.currentTimeMillis() + time))
+                .signWith(SignatureAlgorithm.HS256, secretKey)
+                .compact();
+
+        log.info("{}에게 {}분 동안 유효한 {} 토큰 발급 : {}", claims.getSubject(), time/60000, tokenType, token);
+
+        return token;
+    }
+
+    // 토큰을 받아 파싱하여 Subject로 지정된 유저 이름 반환
+    public String getUsername(String token) {
+        log.info("getUsername 실행");
+        return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
+    }
+
+    // HTTP 헤더에서 헤더명 X-AUTH-TOKEN인 토큰의 String 값 추출
+    public String resolveToken(HttpServletRequest request) {
+        log.info("resolveToken 실행");
+        return request.getHeader("X-AUTH-TOKEN");
+    }
+
+    @Transactional
+    // 인증 성공 시 SecurityContextHolder에 저장할 인증정보 생성
+    public Authentication getAuthentication(String token) {
+
+        UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUsername(token));
+
+        return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 
     // Jwt 토큰 유효성 검사
-    public static boolean validateToken(String token) {
+    public boolean validateToken(String token) {
+        log.info("validateToken 실행");
         try {
-            Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token);
+            // Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
+            Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
             return true;
-        } catch (SignatureException ex) {
-            log.error("Invalid JWT signature");
         } catch (MalformedJwtException ex) {
-            log.error("Invalid JWT token");
+            log.error("========== Invalid JWT token ==========");
         } catch (ExpiredJwtException ex) {
-            log.error("Expired JWT token");
+            log.error("========== Expired JWT token ==========");
         } catch (UnsupportedJwtException ex) {
-            log.error("Unsupported JWT token");
+            log.error("========== Unsupported JWT token ==========");
         } catch (IllegalArgumentException ex) {
-            log.error("JWT claims string is empty.");
+            log.error("========== JWT claims string is empty. ==========");
         }
+
         return false;
     }
 }

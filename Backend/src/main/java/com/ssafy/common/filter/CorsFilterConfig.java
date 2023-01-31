@@ -1,4 +1,4 @@
-package com.ssafy.common.config;
+package com.ssafy.common.filter;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -6,11 +6,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-import javax.servlet.*;
-import java.io.IOException;
-
 @Configuration
-public class CorsConfig {
+public class CorsFilterConfig {
 
     @Bean
     public CorsFilter corsFilter() {

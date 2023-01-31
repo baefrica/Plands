@@ -1,11 +1,8 @@
-package com.ssafy.common.db.dto;
+package com.ssafy.common.db.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.sql.Timestamp;
 
@@ -13,6 +10,7 @@ import java.sql.Timestamp;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class MemberDto {
 
     @Schema(description = "아이디", maxLength = 16)
@@ -39,10 +37,8 @@ public class MemberDto {
     @Schema(description = "이메일", example = "example@naver.com", maxLength = 100)
     private String email;
 
-    @Schema(description = "생일", pattern = "YYYY-MM-DD HH:MM:SS")
     @JsonIgnore
+    @Schema(description = "등록일", pattern = "YYYY-MM-DD HH:MM:SS")
     private Timestamp registDate;
 
-    @Schema(description = "권한", maxLength = 10)
-    private String role;
 }
