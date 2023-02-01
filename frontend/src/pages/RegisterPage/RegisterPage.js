@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./css/RegisterPage.module.css";
 import { isEmail, isLength, isAlphanumeric, isNumeric } from "validator";
+import Header from "../../components/header/Header";
+import Nav from "../../components/nav/Nav";
 
 function RegisterPage() {
   // 사용자 입력값
@@ -144,6 +146,8 @@ function RegisterPage() {
 
   return (
     <div>
+      <Header />
+      <Nav />
       <div className={styles.loginFormDiv}>
         <form method="POST">
           <h1>회원 가입</h1>
@@ -327,7 +331,9 @@ function RegisterPage() {
           <div className={styles.loginBtnDiv}>
             <button onClick={onSubmit}>회원가입</button>
             {/*button으로 감싸서 잘못 클릿하면 submit 됨 해결해야함 */}
-            <button>{/*<Link to={"/login"}>취소</Link>*/}</button>
+            <button>
+              <Link to={"/login"}>취소</Link>
+            </button>
           </div>
         </form>
       </div>
