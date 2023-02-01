@@ -15,10 +15,12 @@ export const BlackNav = styled.div`
 
 export const NavStyle = styled(NavLink)`
   color: #2c2c2c;
+  width: 150px;
+  text-align: center;
   padding: 20px;
   font-size: 20px;
   font-weight: bolder;
-
+  border-radius: 20px;
   margin-left: 20px;
   outline: invert;
   &:link {
