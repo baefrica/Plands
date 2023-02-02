@@ -3,14 +3,17 @@ import {
   PlanCardHeader,
   PlanCardBody,
   PlanCardFooter,
+  PlanTitle,
 } from "./PlanCard.style";
 
 function PlanCard() {
   return (
     <PlanWrapper>
-      <PlanCardHeader>여행 계획 카드</PlanCardHeader>
-      <PlanCardBody>여행계획바디</PlanCardBody>
-      <PlanCardFooter>여행 계획 푸터</PlanCardFooter>
+      <PlanCardHeader></PlanCardHeader>
+      <PlanCardBody></PlanCardBody>
+      <PlanCardFooter>
+        <PlanTitle>우주 여행</PlanTitle>
+      </PlanCardFooter>
     </PlanWrapper>
   );
 }
