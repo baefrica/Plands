@@ -1,6 +1,10 @@
-import { Container, Form, Label } from "./MyPageMain.style";
+import {
+  Container,
+  Form,
+  Label,
+} from "./UserInfoUpdateMain.style";
 
-function MyPageMain() {
+function UserInfoUpdateMain() {
   return (
     <Container>
       <Form>
@@ -10,23 +14,23 @@ function MyPageMain() {
         </Label>
         <Label>
           <label>이름</label>
-          <input type="text" value="손흥민" disabled />
+          <input type="text" value="손흥민" />
         </Label>
         <Label>
           <label>닉네임</label>
-          <input type="text" value="플랜즈" disabled />
+          <input type="text" value="플랜즈" />
         </Label>
         <Label>
           <label>성별</label>
-          <input type="text" value="남" disabled />
+          <input type="text" value="남" />
         </Label>
         <Label>
           <label>생년월일</label>
-          <input type="text" value="960320" disabled />
+          <input type="text" value="960320" />
         </Label>
         <Label>
           <label>전화번호</label>
-          <input type="text" value="01073297703" disabled />
+          <input type="text" value="01073297703" />
         </Label>
         <Label>
           <label>이메일</label>
@@ -36,9 +40,11 @@ function MyPageMain() {
             disabled
           />
         </Label>
+        <button>수정 완료</button>
+        <button>취소</button>
       </Form>
     </Container>
   );
 }
 
-export default MyPageMain;
+export default UserInfoUpdateMain;

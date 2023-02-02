@@ -1,6 +1,12 @@
 import styled from "styled-components";
 import { colors } from "styles/variables";
 
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const LoginBlock = styled.div`
   font-weight: bolder;
   min-height: 480px;
@@ -11,7 +17,6 @@ const LoginBlock = styled.div`
   border-radius: 10px;
   border: 5px solid ${colors.blackColor};
   margin-top: 5rem;
-  margin-left: 33%;
   margin-bottom: 5rem;
 `;
 const LoginHeader = styled.div`
@@ -173,6 +178,7 @@ const LoginContentRow = styled.div`
 `;
 
 export {
+  Container,
   LoginBlock,
   LoginHeader,
   LoginContent,

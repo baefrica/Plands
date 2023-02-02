@@ -23,14 +23,17 @@ export const NavStyle = styled(NavLink)`
   border-radius: 20px;
   margin-left: 20px;
   outline: invert;
+
   &:link {
     transition: 0.5s;
     text-decoration: none;
   }
+
   &:hover {
     color: white;
     background-color: #2c2c2c;
   }
+
   &.active {
     font-weight: bold;
     color: white;

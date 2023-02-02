@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  Container,
   LoginBlock,
   LoginHeader,
   LoginContent,
@@ -24,49 +25,53 @@ export default function LogInPage() {
     <div>
       <Header />
       <Nav />
-      <LoginBlock>
-        <LoginHeader>
-          <div id="title">LOGIN</div>
-          <div id="word">여행 계획을 세워보세요!</div>
-        </LoginHeader>
-        <LoginContent>
-          <LoginContentRow>
-            <input
-              id="id"
-              type="text"
-              placeholder="아이디를 입력해주세요."
-              onChange={(event) => {
-                setId(event.target.value);
-              }}
-            />
-          </LoginContentRow>
-          <LoginContentRow>
-            <input
-              type="password"
-              placeholder="비밀번호를 입력해주세요."
-              onChange={(event) => {
-                setPw(event.target.value);
-              }}
-            />
-          </LoginContentRow>
-          <LoginContentRow>
-            <button
-              id="logIn-btn"
-              onClick={() => LogInBtn()}
-            >
-              로그인
-            </button>
-          </LoginContentRow>
-          <LoginContentRow>
-            <div id="footer">
-              <p>아직 회원이 아니신가요?</p>
-              <button id="signIn-btn">회원가입</button>
-              <button id="findId-btn">아이디 찾기</button>
-              <button id="findPw-btn">비밀번호 찾기</button>
-            </div>
-          </LoginContentRow>
-        </LoginContent>
-      </LoginBlock>
+      <Container>
+        <LoginBlock>
+          <LoginHeader>
+            <div id="title">LOGIN</div>
+            <div id="word">여행 계획을 세워보세요!</div>
+          </LoginHeader>
+          <LoginContent>
+            <LoginContentRow>
+              <input
+                id="id"
+                type="text"
+                placeholder="아이디를 입력해주세요."
+                onChange={(event) => {
+                  setId(event.target.value);
+                }}
+              />
+            </LoginContentRow>
+            <LoginContentRow>
+              <input
+                type="password"
+                placeholder="비밀번호를 입력해주세요."
+                onChange={(event) => {
+                  setPw(event.target.value);
+                }}
+              />
+            </LoginContentRow>
+            <LoginContentRow>
+              <button
+                id="logIn-btn"
+                onClick={() => LogInBtn()}
+              >
+                로그인
+              </button>
+            </LoginContentRow>
+            <LoginContentRow>
+              <div id="footer">
+                <p>아직 회원이 아니신가요?</p>
+                <button id="signIn-btn">회원가입</button>
+                <button id="findId-btn">아이디 찾기</button>
+                <button id="findPw-btn">
+                  비밀번호 찾기
+                </button>
+              </div>
+            </LoginContentRow>
+          </LoginContent>
+        </LoginBlock>
+      </Container>
     </div>
   );
 }
