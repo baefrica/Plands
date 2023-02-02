@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./css/RegisterPage.module.css";
-import { isEmail, isLength, isAlphanumeric, isNumeric } from "validator";
+import {
+  isEmail,
+  isLength,
+  isAlphanumeric,
+  isNumeric,
+} from "validator";
 import Header from "../../components/header/Header";
 import Nav from "../../components/nav/Nav";
 
@@ -20,10 +25,13 @@ function RegisterPage() {
   // 입력값 에러 상태
   const [idErrorAlpha, setIdErrorAlpha] = useState(true);
   const [idErrorLength, setIdErrorLength] = useState(true);
-  const [pwdErrorSpecial, setPwdErrorSpecial] = useState(true);
-  const [pwdErrorLength, setPwdErrorLength] = useState(true);
+  const [pwdErrorSpecial, setPwdErrorSpecial] =
+    useState(true);
+  const [pwdErrorLength, setPwdErrorLength] =
+    useState(true);
   const [pwdValidError, setPwdValidError] = useState(true);
-  const [nameErrorKorean, setNameErrorKorean] = useState(true);
+  const [nameErrorKorean, setNameErrorKorean] =
+    useState(true);
   const [nicknameError, setNicknameError] = useState(true);
   const [pNumberError, setPNumberError] = useState(true);
   const [emailError, setEmailError] = useState(true);
@@ -79,7 +87,8 @@ function RegisterPage() {
 
   const onChangeNickname = (e) => {
     const cur = e.target.value;
-    const nicknameReg = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{1,10}$/;
+    const nicknameReg =
+      /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{1,10}$/;
 
     if (!nicknameReg.test(cur)) setNicknameError(true);
     else setNicknameError(false);
@@ -167,12 +176,14 @@ function RegisterPage() {
             )}
             {idErrorLength && id && (
               <div className={styles.invalidInput}>
-                ❌&nbsp;아이디는 4자 이상 16자 이하으로 되어있어야 합니다.
+                ❌&nbsp;아이디는 4자 이상 16자 이하으로
+                되어있어야 합니다.
               </div>
             )}
             {idErrorAlpha && id && (
               <div className={styles.invalidInput}>
-                ❌&nbsp;영문자 및 숫자로만 이루어져야 합니다.
+                ❌&nbsp;영문자 및 숫자로만 이루어져야
+                합니다.
               </div>
             )}
           </div>
@@ -192,13 +203,14 @@ function RegisterPage() {
             )}
             {pwdErrorLength && pwd && (
               <div className={styles.invalidInput}>
-                ❌&nbsp;비밀번호는 8자 이상 16자 이하으로 구성되어야 합니다.
+                ❌&nbsp;비밀번호는 8자 이상 16자 이하으로
+                구성되어야 합니다.
               </div>
             )}
             {pwdErrorSpecial && pwd && (
               <div className={styles.invalidInput}>
-                ❌&nbsp;하나 이상의 문자, 하나의 숫자 및 하나의 특수 문자를
-                포함해야합니다.
+                ❌&nbsp;하나 이상의 문자, 하나의 숫자 및
+                하나의 특수 문자를 포함해야합니다.
               </div>
             )}
           </div>
@@ -218,7 +230,8 @@ function RegisterPage() {
             )}
             {pwdValidError && pwdValid && (
               <div className={styles.invalidInput}>
-                ❌&nbsp;비밀번호와 일치하지 않습니다. 확인해주세요
+                ❌&nbsp;비밀번호와 일치하지 않습니다.
+                확인해주세요
               </div>
             )}
           </div>
@@ -238,7 +251,8 @@ function RegisterPage() {
             )}
             {nameErrorKorean && name && (
               <div className={styles.invalidInput}>
-                ❌&nbsp;이름은 한글로 1~5자까지 입력가능합니다.
+                ❌&nbsp;이름은 한글로 1~5자까지
+                입력가능합니다.
               </div>
             )}
           </div>
@@ -259,7 +273,8 @@ function RegisterPage() {
           )}
           {nicknameError && nickname && (
             <div className={styles.invalidInput}>
-              ❌&nbsp;닉네임은 한글,영어,숫자(최대10자) 이루어져야합니다.
+              ❌&nbsp;닉네임은 한글,영어,숫자(최대10자)
+              이루어져야합니다.
             </div>
           )}
           <h3>성별</h3>
@@ -315,7 +330,9 @@ function RegisterPage() {
               onChange={onChangeEmail}
             />
             <div className={styles.emailConfirm}>
-              <button className={styles.confirmBtn}>인증하기</button>
+              <button className={styles.confirmBtn}>
+                인증하기
+              </button>
             </div>
             {!emailError && email && (
               <div className={styles.correctInput}>

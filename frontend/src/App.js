@@ -4,6 +4,7 @@ import AboutPage from "./pages/AboutPage/AboutPage";
 import MainPage from "./pages/MainPage/MainPage";
 import ManagePlanPage from "./pages/ManagePlanPage/ManagePlanPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import MyPage from "./pages/MyPage/MyPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/regist" element={<RegisterPage />} />
         <Route path="/login" element={<LogInPage />} />
+        <Route path="/mypage" element={<MyPage />} />
         <Route
           // path 를 따로 정의하지 않으면 모든 상황에 렌더링됨
           render={({ location }) => (
