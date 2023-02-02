@@ -1,5 +1,3 @@
-import styled from "styled-components";
-
 // Colors
 export const colors = {
   pointColor: "#faff00",

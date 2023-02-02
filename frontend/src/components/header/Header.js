@@ -18,7 +18,9 @@ function Header() {
       <HeaderBtnColumDiv>
         <HeaderButtonDiv>
           <LoginBtnStyle to="/login">로그인</LoginBtnStyle>
-          <RegistBtnStyle to="/regist">회원가입</RegistBtnStyle>
+          <RegistBtnStyle to="/regist">
+            회원가입
+          </RegistBtnStyle>
         </HeaderButtonDiv>
       </HeaderBtnColumDiv>
     </HeaderDiv>
