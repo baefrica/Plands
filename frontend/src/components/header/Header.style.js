@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 export const HeaderDiv = styled.div`
   background: #2c2c2c;
   width: 100%;
+  height: 80px;
   display: flex;
   font-weight: 500;
   font-size: 20px;
@@ -19,6 +20,7 @@ export const HeaderBtnColumDiv = styled.div`
 export const HeaderButtonDiv = styled.div`
   display: flex;
   width: 300px;
+  height: 50px;
   justify-content: space-around;
 `;
 
@@ -26,7 +28,6 @@ export const LoginBtnStyle = styled(NavLink)`
   background-color: white;
   width: 40%;
   text-align: center;
-  padding: 10px;
   color: black;
   font-size: 20px;
   font-weight: bolder;
@@ -51,7 +52,6 @@ export const RegistBtnStyle = styled(NavLink)`
   background-color: white;
   width: 40%;
   text-align: center;
-  padding: 10px;
   color: black;
   font-size: 20px;
   font-weight: bolder;
@@ -77,7 +77,6 @@ export const LogoLink = styled(NavLink)`
 `;
 
 export const LogoImg = styled.img`
-  height: 90px;
-  margin: 15px;
+  height: 80px;
   object-fit: cover;
 `;
