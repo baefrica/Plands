@@ -4,8 +4,8 @@ import { NavLink } from "react-router-dom";
 export const BlackNav = styled.div`
   background: white;
   width: 100%;
+  height: 80px;
   display: flex;
-  padding: 20px;
   font-weight: 500;
   font-size: 20px;
   box-sizing: border-box;
@@ -17,10 +17,11 @@ export const NavStyle = styled(NavLink)`
   color: #2c2c2c;
   width: 150px;
   text-align: center;
+  margin: 2px 2px;
+  border-radius: 10px;
   padding: 20px;
   font-size: 20px;
   font-weight: bolder;
-  border-radius: 20px;
   margin-left: 20px;
   outline: invert;
 
@@ -39,6 +40,5 @@ export const NavStyle = styled(NavLink)`
     color: white;
     background-color: #2c2c2c;
     position: relative;
-    top: 2px;
   }
 `;
