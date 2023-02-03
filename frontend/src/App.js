@@ -5,21 +5,39 @@ import MainPage from "./pages/MainPage/MainPage";
 import ManagePlanPage from "./pages/ManagePlanPage/ManagePlanPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import MyPage from "./pages/MyPage/MyPage";
+import UserInfoUpdatePage from "./pages/UserInfoUpdatePage/UserInfoUpdatePage";
 
 function App() {
   return (
     <div className="App">
       <Routes>
+        <Route path="/" exact element={<MainPage />} />
         <Route
-          path="/"
-          exact={true}
-          element={<MainPage />}
+          path="/plans"
+          exact
+          element={<ManagePlanPage />}
         />
-        <Route path="/plans" element={<ManagePlanPage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/regist" element={<RegisterPage />} />
-        <Route path="/login" element={<LogInPage />} />
-        <Route path="/mypage" element={<MyPage />} />
+        <Route
+          path="/about"
+          exact
+          element={<AboutPage />}
+        />
+        <Route
+          path="/regist"
+          exact
+          element={<RegisterPage />}
+        />
+        <Route
+          path="/login"
+          exact
+          element={<LogInPage />}
+        />
+        <Route path="/mypage" exact element={<MyPage />} />
+        <Route
+          path="/userinfo/update"
+          exact
+          element={<UserInfoUpdatePage />}
+        />
         <Route
           // path 를 따로 정의하지 않으면 모든 상황에 렌더링됨
           render={({ location }) => (

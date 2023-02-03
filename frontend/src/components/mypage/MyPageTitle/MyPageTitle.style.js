@@ -2,31 +2,29 @@ import styled from "styled-components";
 import { colors } from "styles/variables";
 
 export const Container = styled.div`
-  box-sizing: border-box;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 400px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  height: 180px;
   background: ${colors.blackColor};
   color: ${colors.whiteColor};
   font-weight: bold;
 
   #mypage {
     position: absolute;
-    font-size: 30px;
-    line-height: 87px;
+    font-size: 40px;
+    line-height: 80px;
     color: ${colors.whiteColor};
-    margin-right: 80%;
-    margin-bottom: 15rem;
+    margin-right: 85%;
+    margin-bottom: 70px;
   }
 
   #title {
-    position: absolute;
-    margin-top: 20px;
-    font-size: 100px;
-    line-height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    font-size: 60px;
   }
 `;
