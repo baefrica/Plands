@@ -85,7 +85,7 @@
 #### port 번호 :
 
 - 80 : main 페이지
-- 8080 : Jenkins
+- 8445 : Jenkins
 - 8994 : OpenVidu Server
 - 9999 : Web Application Server(Spring Boot)
 
