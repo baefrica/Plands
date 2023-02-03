@@ -1,0 +1,93 @@
+.loginFormDiv {
+  margin-top: 150px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.loginFormDiv form {
+  width: 500px;
+  height: 50%;
+  padding: 50px;
+  border: 3px solid black;
+  border-radius: 25px;
+}
+
+.loginFormDiv input,
+select {
+  width: 100%;
+  height: 50px;
+  font-size: 25px;
+  border-radius: 15px;
+  border: 3px solid black;
+}
+
+.loginInputDiv {
+  width: 100%;
+  text-align: center;
+}
+
+.loginBtnDiv {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 70px;
+  height: 50px;
+}
+
+.loginBtnDiv button {
+  display: inline-block;
+  background-color: rgb(150, 150, 150);
+  width: 40%;
+  height: 100%;
+  border: none;
+  font-size: 20px;
+  font-weight: bolder;
+  color: white;
+}
+
+.loginBtnDiv button:hover {
+  background-color: black;
+  cursor: pointer;
+}
+
+.loginBtnDiv button a {
+  text-decoration: none;
+  color: white;
+}
+
+.loginCheckBoxDiv {
+  display: flex;
+  justify-content: space-around;
+}
+.invalidInput {
+  color: rgb(241, 76, 76);
+  text-align: left;
+}
+
+.correctInput {
+  color: rgb(119, 231, 75);
+  text-align: left;
+}
+
+.emailConfirm {
+  margin-top: 9px;
+  text-align: left;
+}
+
+.confirmBtn {
+  width: 100px;
+  height: 30px;
+  font-size: 15px;
+  font-weight: bold;
+  border: none;
+  background-color: white;
+  box-shadow: 2px 2px 5px 1px gray;
+  border-radius: 5px;
+}
+
+.confirmBtn:hover {
+  background-color: rgb(184, 184, 184);
+  color: white;
+  cursor: pointer;
+}
