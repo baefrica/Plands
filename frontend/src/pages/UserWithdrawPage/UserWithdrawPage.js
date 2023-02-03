@@ -2,10 +2,10 @@ import Header from "../../components/header/Header";
 import Nav from "../../components/nav/Nav";
 import MyPageTitle from "../../components/mypage/MyPageTitle/MyPageTitle";
 import MyPageNav from "../../components/mypage/MyPageNav/MyPageNav";
-import UserInfoUpdateMain from "components/mypage/UserInfoUpdateMain/UserInfoUpdateMain";
-import { NavAndMain } from "./UserInfoUpdatePage.style";
+import UserWithdrawMain from "components/mypage/UserWithdrawMain/UserWithdrawMain";
+import { NavAndMain } from "./UserWithdrawPage.style";
 
-function UserInfoUpdatePage() {
+function UserWithdrawPage() {
   return (
     <div>
       <Header />
@@ -13,10 +13,10 @@ function UserInfoUpdatePage() {
       <MyPageTitle />
       <NavAndMain>
         <MyPageNav />
-        <UserInfoUpdateMain />
+        <UserWithdrawMain />
       </NavAndMain>
     </div>
   );
 }
 
-export default UserInfoUpdatePage;
+export default UserWithdrawPage;
