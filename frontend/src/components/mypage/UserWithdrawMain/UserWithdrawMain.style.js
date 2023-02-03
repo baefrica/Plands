@@ -13,7 +13,6 @@ export const Form = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   width: 60%;
   background-color: ${colors.blackColor};
   border-radius: 25px;
@@ -31,74 +30,25 @@ export const Label = styled.div`
   flex-direction: column;
   padding-top: 15px;
   padding-bottom: 15px;
+  margin-right: 25px;
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 80px;
+  color: ${colors.pointColor};
 
-  label {
-    font-size: 30px;
-    font-weight: bold;
-    line-height: 80px;
-    color: ${colors.pointColor};
-
-    :hover {
-      font-size: 35px;
-    }
-  }
-
-  input {
-    text-align: center;
-    font-size: 30px;
-    color: ${colors.pointColor};
-    background: ${colors.heavyGrayColor};
-    border: 3px solid ${colors.pointColor};
-    border: 0;
-    border-radius: 15px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-
-    :hover {
-      border: 3px solid ${colors.pointColor};
-    }
+  :hover {
+    font-size: 35px;
   }
 `;
 
-export const ButtonDiv = styled.div`
+export const WithdrawBtn = styled.button`
   display: flex;
-  width: 300px;
+  width: 200px;
   justify-content: space-around;
   margin-top: 30px;
   margin-bottom: 30px;
-`;
-
-export const UpdateBtn = styled(NavLink)`
+  margin-left: 25px;
   background-color: ${colors.whiteColor};
-  width: 40%;
-  text-align: center;
-  padding: 10px;
-  color: ${colors.blackColor};
-  font-size: 20px;
-  font-weight: bolder;
-  margin: 5px;
-  outline: invert;
-  border: 5px solid ${colors.blueColor};
-  border-radius: 25px;
-
-  &:link {
-    transition: 0.5s;
-    text-decoration: none;
-  }
-
-  &:hover {
-    background: ${colors.blueColor};
-  }
-
-  &.active {
-    font-weight: bold;
-    position: relative;
-  }
-`;
-
-export const CancelBtn = styled(NavLink)`
-  background-color: ${colors.whiteColor};
-  width: 40%;
   text-align: center;
   padding: 10px;
   color: ${colors.black};
@@ -116,6 +66,7 @@ export const CancelBtn = styled(NavLink)`
 
   &:hover {
     background: ${colors.redColor};
+    color: ${colors.whiteColor};
   }
 
   &.active {

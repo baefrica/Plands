@@ -3,7 +3,6 @@ import {
   Container,
   InfoMsg,
   InfoImg,
-  InfoBar,
 } from "./ServiceInfo.style";
 import friendsImg from "assets/images/friends_white.png";
 import arrowImg from "assets/images/arrow.png";
