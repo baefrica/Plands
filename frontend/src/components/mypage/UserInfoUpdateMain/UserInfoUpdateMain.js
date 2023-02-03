@@ -2,6 +2,9 @@ import {
   Container,
   Form,
   Label,
+  ButtonDiv,
+  UpdateBtn,
+  CancelBtn,
 } from "./UserInfoUpdateMain.style";
 
 function UserInfoUpdateMain() {
@@ -40,8 +43,10 @@ function UserInfoUpdateMain() {
             disabled
           />
         </Label>
-        <button>수정 완료</button>
-        <button>취소</button>
+        <ButtonDiv>
+          <UpdateBtn to="/mypage">수정 완료</UpdateBtn>
+          <CancelBtn to="/mypage">취소</CancelBtn>
+        </ButtonDiv>
       </Form>
     </Container>
   );

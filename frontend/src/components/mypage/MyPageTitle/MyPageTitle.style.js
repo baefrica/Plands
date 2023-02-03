@@ -7,7 +7,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   height: 180px;
-  background: ${colors.blackColor};
+  background: ${colors.skyblueColor};
   color: ${colors.whiteColor};
   font-weight: bold;
 

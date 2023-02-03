@@ -64,36 +64,6 @@ export const ButtonDiv = styled.div`
   display: flex;
   width: 300px;
   justify-content: space-around;
-  margin-top: 30px;
-  margin-bottom: 30px;
-`;
-
-export const UpdateBtn = styled(NavLink)`
-  background-color: ${colors.whiteColor};
-  width: 40%;
-  text-align: center;
-  padding: 10px;
-  color: ${colors.blackColor};
-  font-size: 20px;
-  font-weight: bolder;
-  margin: 5px;
-  outline: invert;
-  border: 5px solid ${colors.blueColor};
-  border-radius: 25px;
-
-  &:link {
-    transition: 0.5s;
-    text-decoration: none;
-  }
-
-  &:hover {
-    background: ${colors.blueColor};
-  }
-
-  &.active {
-    font-weight: bold;
-    position: relative;
-  }
 `;
 
 export const CancelBtn = styled(NavLink)`
@@ -116,6 +86,34 @@ export const CancelBtn = styled(NavLink)`
 
   &:hover {
     background: ${colors.redColor};
+  }
+
+  &.active {
+    font-weight: bold;
+    position: relative;
+  }
+`;
+
+export const ChangeBtn = styled(NavLink)`
+  background-color: ${colors.whiteColor};
+  width: 40%;
+  text-align: center;
+  padding: 10px;
+  color: ${colors.blackColor};
+  font-size: 20px;
+  font-weight: bolder;
+  margin: 5px;
+  outline: invert;
+  border: 5px solid ${colors.blueColor};
+  border-radius: 25px;
+
+  &:link {
+    transition: 0.5s;
+    text-decoration: none;
+  }
+
+  &:hover {
+    background: ${colors.blueColor};
   }
 
   &.active {

@@ -6,6 +6,8 @@ import ManagePlanPage from "./pages/ManagePlanPage/ManagePlanPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import MyPage from "./pages/MyPage/MyPage";
 import UserInfoUpdatePage from "./pages/UserInfoUpdatePage/UserInfoUpdatePage";
+import PasswordChangePage from "pages/PasswordChangePage/PasswordChangePage";
+import UserWithdrawPage from "pages/UserWithdrawPage/UserWithdrawPage";
 
 function App() {
   return (
@@ -37,6 +39,16 @@ function App() {
           path="/userinfo/update"
           exact
           element={<UserInfoUpdatePage />}
+        />
+        <Route
+          path="/password/change"
+          exact
+          element={<PasswordChangePage />}
+        />
+        <Route
+          path="/user/withdraw"
+          exact
+          element={<UserWithdrawPage />}
         />
         <Route
           // path 를 따로 정의하지 않으면 모든 상황에 렌더링됨

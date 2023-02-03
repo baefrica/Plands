@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { colors } from "styles/variables";
 
@@ -16,8 +17,13 @@ export const Container = styled.div`
   padding-top: 3%;
 `;
 
-export const NavContent = styled.div`
+export const NavContent = styled(NavLink)`
   :hover {
     font-size: 35px;
+  }
+
+  &:link {
+    transition: 0.5s;
+    text-decoration: none;
   }
 `;
