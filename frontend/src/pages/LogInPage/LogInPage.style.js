@@ -8,77 +8,78 @@ const Container = styled.div`
 `;
 
 const LoginBlock = styled.div`
-  font-weight: bolder;
-  min-height: 480px;
-  min-width: 350px;
-  width: 55vh;
-  height: 70vh;
+  display: flex;
+  flex-direction: column;
   background-color: ${colors.blackColor};
-  border-radius: 10px;
+  border-radius: 15px;
   border: 5px solid ${colors.blackColor};
+  width: 500px;
   margin-top: 5rem;
   margin-bottom: 5rem;
 `;
+
 const LoginHeader = styled.div`
-  margin-top: 1rem;
-  height: 30%;
-  flex-direction: column;
+  margin-top: 2rem;
 
   #title {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80%;
-    font-size: 50px;
+    font-size: 35px;
     font-weight: bold;
     color: ${colors.pointColor};
     text-shadow: 0 0 2px #f00;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    letter-spacing: -1px;
   }
 
   #word {
-    text-align: center;
-    height: 20%;
-    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
     color: ${colors.whiteColor};
   }
 `;
 
-const LoginContent = styled.div`
-  height: 50%;
-`;
+const LoginContent = styled.div``;
+
 const LoginContentRow = styled.div`
-  font-size: 15px;
   text-align: center;
 
   input {
-    font-size: 20px;
-    font-weight: bold;
     display: block;
+    padding: 10px 0;
+    padding-left: 15px;
+    outline: none;
     width: 280px;
-    height: 50px;
+    height: 20px;
     margin: 12px auto;
-    padding: 0 20px;
+    font-size: 15px;
+    font-weight: bold;
     background-color: ${colors.lightGrayColor};
-    border: 0;
-    border-radius: 4px;
+    border: 1px solid ${colors.heavyGrayColor};
+    border-radius: 5px;
 
     &:hover {
-      border: 5px solid ${colors.pointColor};
+      border: 3px solid ${colors.pointColor};
     }
   }
 
   #logIn-btn {
     background-color: ${colors.whiteColor};
-    width: 40%;
+    width: 30%;
     text-align: center;
-    padding: 10px;
+    padding: 7px;
     color: ${colors.blackColor};
-    font-size: 20px;
-    font-weight: bolder;
-    margin: 5px;
-    outline: invert;
+    font-size: 15px;
+    font-weight: bold;
     border: 5px solid ${colors.pointColor};
     border-radius: 25px;
+    margin-bottom: 25px;
+
     &:link {
       transition: 0.5s;
       text-decoration: none;
@@ -94,8 +95,10 @@ const LoginContentRow = styled.div`
 
   #footer {
     text-align: center;
-    font-size: 20px;
+    font-size: 14px;
+    font-weight: bold;
     color: ${colors.pointColor};
+    margin-bottom: 25px;
 
     #signIn-btn {
       background-color: ${colors.whiteColor};
@@ -103,10 +106,8 @@ const LoginContentRow = styled.div`
       text-align: center;
       padding: 10px;
       color: ${colors.blackColor};
-      font-size: 20px;
       font-weight: bold;
       margin: 5px;
-      outline: invert;
       border: 5px solid ${colors.blueColor};
       border-radius: 25px;
       &:link {
@@ -128,11 +129,9 @@ const LoginContentRow = styled.div`
       width: 30%;
       text-align: center;
       padding: 10px;
-      color: black;
-      font-size: 20px;
-      font-weight: bolder;
+      color: ${colors.blackColor};
+      font-weight: bold;
       margin: 5px;
-      outline: invert;
       border: 5px solid ${colors.redColor};
       border-radius: 25px;
       &:link {
@@ -154,11 +153,9 @@ const LoginContentRow = styled.div`
       width: 30%;
       text-align: center;
       padding: 10px;
-      color: black;
-      font-size: 20px;
-      font-weight: bolder;
+      color: ${colors.blackColor};
+      font-weight: bold;
       margin: 5px;
-      outline: invert;
       border: 5px solid ${colors.pinkColor};
       border-radius: 25px;
       &:link {
