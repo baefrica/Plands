@@ -1,14 +1,30 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import styles from "./css/RegisterPage.module.css";
 import {
   isEmail,
   isLength,
   isAlphanumeric,
   isNumeric,
 } from "validator";
-import Header from "../../components/header/Header";
-import Nav from "../../components/nav/Nav";
+import Header from "components/header/Header";
+import Nav from "components/nav/Nav";
+import {
+  Container,
+  RegistFormDiv,
+  RegistInputDiv,
+  RegistBtnDiv,
+  CorrectInput,
+  InvalidInput,
+  EmailConfirm,
+  ConfirmBtn,
+  RegistBtn,
+  CancelBtn,
+} from "./RegisterPage.style";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { SIGN_UP } from "store/slice/memberSlice";
+import { useNavigate } from "react-router-dom";
+
+const URL = "http://localhost:9999/beakgu/member/regist";
 
 function RegisterPage() {
   // 사용자 입력값
@@ -36,14 +52,19 @@ function RegisterPage() {
   const [pNumberError, setPNumberError] = useState(true);
   const [emailError, setEmailError] = useState(true);
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   // Validation 영역
 
   // id 검사
   const onChangeId = (e) => {
     const cur = e.target.value;
+
     if (!isAlphanumeric(cur)) {
       setIdErrorAlpha(true);
     } else setIdErrorAlpha(false);
+
     if (!isLength(cur, { min: 4, max: 16 })) {
       setIdErrorLength(true);
     } else setIdErrorLength(false);
@@ -54,9 +75,11 @@ function RegisterPage() {
     const cur = e.target.value;
     const passwordRegex =
       /^.*(?=^.{8,16}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+
     if (!isLength(cur, { min: 8, max: 16 })) {
       setPwdErrorLength(true);
     } else setPwdErrorLength(false);
+
     if (!passwordRegex.test(cur)) {
       setPwdErrorSpecial(true);
     } else setPwdErrorSpecial(false);
@@ -65,20 +88,24 @@ function RegisterPage() {
 
   const onChangePwdValid = (e) => {
     const cur = e.target.value;
+
     if (pwd !== cur) {
       setPwdValidError(true);
     } else setPwdValidError(false);
 
     setPwdValid(cur);
   };
+
   const isKorean = (txt) => {
     const nameReg = /^[가-힣]{1,5}$/;
+
     if (nameReg.test(txt)) return true;
     else return false;
   };
 
   const onChangeName = (e) => {
     const cur = e.target.value;
+
     if (!isKorean(cur)) setNameErrorKorean(true);
     else setNameErrorKorean(false);
 
@@ -97,14 +124,14 @@ function RegisterPage() {
   };
 
   const onChangeGender = (e) => {
-    // const cur = e.target.value;
-    // console.log("성별", cur);
-    setGender(e.target.value);
+    if (e.target.value === "male") {
+      setGender("M");
+    } else {
+      setGender("W");
+    }
   };
 
   const onChangeBirthDay = (e) => {
-    // const cur = e.target.value;
-    // console.log("생년월일", cur);
     setBirthDay(e.target.value);
   };
 
@@ -126,9 +153,7 @@ function RegisterPage() {
     setEmail(cur);
   };
 
-  //
-
-  // 폼 제출전 확인 메서드
+  // 폼 제출 전 확인 메서드
 
   const validation = () => {
     if (idErrorAlpha) return false;
@@ -147,21 +172,46 @@ function RegisterPage() {
     if (!validation()) {
       alert("회원가입 조건에 맞추어 다시 입력해주세요.");
       return;
-    }
+    } else {
+      alert("회원가입에 성공하셨습니다.");
 
-    // API Call
-    alert("회원가입에 성공하셨습니다.");
+      dispatch(
+        SIGN_UP([
+          id,
+          pwd,
+          name,
+          nickname,
+          gender,
+          birthDay,
+          pNumber,
+          email,
+        ])
+      );
+
+      axios.post(URL, {
+        id: id,
+        pwd: pwd,
+        name: name,
+        nickname: nickname,
+        gender: gender,
+        birthDay: birthDay,
+        pnumber: pNumber,
+        email: email,
+      });
+
+      navigate("/login");
+    }
   };
 
   return (
     <div>
       <Header />
       <Nav />
-      <div className={styles.loginFormDiv}>
-        <form method="POST">
-          <h1>회원 가입</h1>
+      <Container>
+        <RegistFormDiv method="POST">
+          <h1>SIGN UP</h1>
           <h3>아이디</h3>
-          <div className={styles.loginInputDiv}>
+          <RegistInputDiv>
             <input
               type="text"
               required
@@ -170,25 +220,25 @@ function RegisterPage() {
               onChange={onChangeId}
             />
             {!idErrorLength && !idErrorAlpha && id && (
-              <div className={styles.correctInput}>
+              <CorrectInput>
                 🟢&nbsp;올바른 입력입니다.
-              </div>
+              </CorrectInput>
             )}
             {idErrorLength && id && (
-              <div className={styles.invalidInput}>
-                ❌&nbsp;아이디는 4자 이상 16자 이하으로
+              <InvalidInput>
+                ❌&nbsp;아이디는 4자 이상 16자 이하로
                 되어있어야 합니다.
-              </div>
+              </InvalidInput>
             )}
             {idErrorAlpha && id && (
-              <div className={styles.invalidInput}>
+              <InvalidInput>
                 ❌&nbsp;영문자 및 숫자로만 이루어져야
                 합니다.
-              </div>
+              </InvalidInput>
             )}
-          </div>
+          </RegistInputDiv>
           <h3>비밀번호</h3>
-          <div className={styles.loginInputDiv}>
+          <RegistInputDiv>
             <input
               type="password"
               required
@@ -197,25 +247,25 @@ function RegisterPage() {
               onChange={onChangePwd}
             />
             {!pwdErrorLength && !pwdErrorSpecial && pwd && (
-              <div className={styles.correctInput}>
+              <CorrectInput>
                 🟢&nbsp;올바른 입력입니다.
-              </div>
+              </CorrectInput>
             )}
             {pwdErrorLength && pwd && (
-              <div className={styles.invalidInput}>
+              <InvalidInput>
                 ❌&nbsp;비밀번호는 8자 이상 16자 이하으로
                 구성되어야 합니다.
-              </div>
+              </InvalidInput>
             )}
             {pwdErrorSpecial && pwd && (
-              <div className={styles.invalidInput}>
+              <InvalidInput>
                 ❌&nbsp;하나 이상의 문자, 하나의 숫자 및
                 하나의 특수 문자를 포함해야합니다.
-              </div>
+              </InvalidInput>
             )}
-          </div>
+          </RegistInputDiv>
           <h3>비밀번호 확인</h3>
-          <div className={styles.loginInputDiv}>
+          <RegistInputDiv>
             <input
               type="password"
               required
@@ -224,19 +274,19 @@ function RegisterPage() {
               onChange={onChangePwdValid}
             />
             {!pwdValidError && pwdValid && (
-              <div className={styles.correctInput}>
+              <CorrectInput>
                 🟢&nbsp;비밀번호가 일치합니다.
-              </div>
+              </CorrectInput>
             )}
             {pwdValidError && pwdValid && (
-              <div className={styles.invalidInput}>
+              <InvalidInput>
                 ❌&nbsp;비밀번호와 일치하지 않습니다.
                 확인해주세요
-              </div>
+              </InvalidInput>
             )}
-          </div>
+          </RegistInputDiv>
           <h3>이름</h3>
-          <div className={styles.loginInputDiv}>
+          <RegistInputDiv>
             <input
               type="text"
               required
@@ -245,19 +295,19 @@ function RegisterPage() {
               onChange={onChangeName}
             />
             {!nameErrorKorean && name && (
-              <div className={styles.correctInput}>
+              <CorrectInput>
                 🟢&nbsp;올바른 입력입니다.
-              </div>
+              </CorrectInput>
             )}
             {nameErrorKorean && name && (
-              <div className={styles.invalidInput}>
+              <InvalidInput>
                 ❌&nbsp;이름은 한글로 1~5자까지
                 입력가능합니다.
-              </div>
+              </InvalidInput>
             )}
-          </div>
+          </RegistInputDiv>
           <h3>닉네임</h3>
-          <div className={styles.loginInputDiv}>
+          <RegistInputDiv>
             <input
               type="text"
               required
@@ -265,20 +315,20 @@ function RegisterPage() {
               value={nickname}
               onChange={onChangeNickname}
             />
-          </div>
+          </RegistInputDiv>
           {!nicknameError && nickname && (
-            <div className={styles.correctInput}>
+            <CorrectInput>
               🟢&nbsp;올바른 입력입니다.
-            </div>
+            </CorrectInput>
           )}
           {nicknameError && nickname && (
-            <div className={styles.invalidInput}>
+            <InvalidInput>
               ❌&nbsp;닉네임은 한글,영어,숫자(최대10자)
               이루어져야합니다.
-            </div>
+            </InvalidInput>
           )}
           <h3>성별</h3>
-          <div className={styles.loginInputDiv}>
+          <RegistInputDiv>
             <select
               name="gender"
               id="genderSelect"
@@ -290,18 +340,20 @@ function RegisterPage() {
               <option value="male">남성</option>
               <option value="female">여성</option>
             </select>
-          </div>
+          </RegistInputDiv>
           <h3>생년월일</h3>
-          <div className={styles.loginInputDiv}>
+          <RegistInputDiv>
             <input
-              type="date"
+              type="text"
               required
+              placeholder="YYYYMMDD"
               value={birthDay}
               onChange={onChangeBirthDay}
             />
-          </div>
+          </RegistInputDiv>
+
           <h3>전화번호</h3>
-          <div className={styles.loginInputDiv}>
+          <RegistInputDiv>
             <input
               type="tel"
               required
@@ -310,18 +362,18 @@ function RegisterPage() {
               onChange={onChangePNumber}
             />
             {!pNumberError && pNumber && (
-              <div className={styles.correctInput}>
+              <CorrectInput>
                 🟢&nbsp;올바른 입력입니다.
-              </div>
+              </CorrectInput>
             )}
             {pNumberError && pNumber && (
-              <div className={styles.invalidInput}>
+              <InvalidInput>
                 ❌&nbsp; 번호 숫자만 입력해주세요.
-              </div>
+              </InvalidInput>
             )}
-          </div>
+          </RegistInputDiv>
           <h3>이메일</h3>
-          <div className={styles.loginInputDiv}>
+          <RegistInputDiv>
             <input
               type="email"
               required
@@ -329,31 +381,29 @@ function RegisterPage() {
               value={email}
               onChange={onChangeEmail}
             />
-            <div className={styles.emailConfirm}>
-              <button className={styles.confirmBtn}>
-                인증하기
-              </button>
-            </div>
+            <EmailConfirm>
+              <ConfirmBtn>인증하기</ConfirmBtn>
+            </EmailConfirm>
             {!emailError && email && (
-              <div className={styles.correctInput}>
+              <CorrectInput>
                 🟢&nbsp;올바른 입력입니다.
-              </div>
+              </CorrectInput>
             )}
             {emailError && email && (
-              <div className={styles.invalidInput}>
+              <InvalidInput>
                 ❌&nbsp; 이메일 형식대로 입력해주세요.
-              </div>
+              </InvalidInput>
             )}
-          </div>
-          <div className={styles.loginBtnDiv}>
-            <button onClick={onSubmit}>회원가입</button>
-            {/*button으로 감싸서 잘못 클릿하면 submit 됨 해결해야함 */}
-            <button>
-              <Link to={"/login"}>취소</Link>
-            </button>
-          </div>
-        </form>
-      </div>
+          </RegistInputDiv>
+          <RegistBtnDiv>
+            <RegistBtn onClick={onSubmit} to={"/login"}>
+              회원가입
+            </RegistBtn>
+            {/* button으로 감싸서 잘못 클릿하면 submit 됨 해결해야함 */}
+            <CancelBtn to={"/login"}>취소</CancelBtn>
+          </RegistBtnDiv>
+        </RegistFormDiv>
+      </Container>
     </div>
   );
 }

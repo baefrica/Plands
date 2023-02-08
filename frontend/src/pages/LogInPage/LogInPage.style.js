@@ -5,14 +5,14 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100%;
 `;
 
 const LoginBlock = styled.div`
-  display: flex;
-  flex-direction: column;
   background-color: ${colors.blackColor};
   border-radius: 15px;
-  border: 5px solid ${colors.blackColor};
+  border: 3px solid ${colors.blackColor};
   width: 500px;
   margin-top: 5rem;
   margin-bottom: 5rem;
@@ -53,14 +53,13 @@ const LoginContentRow = styled.div`
     display: block;
     padding: 10px 0;
     padding-left: 15px;
-    outline: none;
     width: 280px;
     height: 20px;
     margin: 12px auto;
     font-size: 15px;
     font-weight: bold;
     background-color: ${colors.lightGrayColor};
-    border: 1px solid ${colors.heavyGrayColor};
+    border: 3px solid ${colors.heavyGrayColor};
     border-radius: 5px;
 
     &:hover {
@@ -69,6 +68,7 @@ const LoginContentRow = styled.div`
   }
 
   #logIn-btn {
+    display: inline-block;
     background-color: ${colors.whiteColor};
     width: 30%;
     text-align: center;
@@ -84,9 +84,12 @@ const LoginContentRow = styled.div`
       transition: 0.5s;
       text-decoration: none;
     }
+
     &:hover {
       background: ${colors.pointColor};
+      cursor: pointer;
     }
+
     &.active {
       font-weight: bold;
       position: relative;
@@ -110,14 +113,17 @@ const LoginContentRow = styled.div`
       margin: 5px;
       border: 5px solid ${colors.blueColor};
       border-radius: 25px;
+
       &:link {
         transition: 0.5s;
         text-decoration: none;
       }
+
       &:hover {
         background: ${colors.blueColor};
         color: ${colors.whiteColor};
       }
+
       &.active {
         font-weight: bold;
         position: relative;
@@ -134,14 +140,17 @@ const LoginContentRow = styled.div`
       margin: 5px;
       border: 5px solid ${colors.redColor};
       border-radius: 25px;
+
       &:link {
         transition: 0.5s;
         text-decoration: none;
       }
+
       &:hover {
         background: ${colors.redColor};
         color: ${colors.whiteColor};
       }
+
       &.active {
         font-weight: bold;
         position: relative;
@@ -158,14 +167,17 @@ const LoginContentRow = styled.div`
       margin: 5px;
       border: 5px solid ${colors.pinkColor};
       border-radius: 25px;
+
       &:link {
         transition: 0.5s;
         text-decoration: none;
       }
+
       &:hover {
         background: ${colors.pinkColor};
         color: ${colors.whiteColor};
       }
+
       &.active {
         font-weight: bold;
         position: relative;

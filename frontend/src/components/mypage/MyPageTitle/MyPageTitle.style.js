@@ -6,18 +6,17 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 180px;
   background: ${colors.skyblueColor};
   color: ${colors.whiteColor};
   font-weight: bold;
 
   #mypage {
     position: absolute;
-    font-size: 40px;
+    font-size: 30px;
     line-height: 80px;
     color: ${colors.whiteColor};
     margin-right: 85%;
-    margin-bottom: 70px;
+    margin-bottom: 50px;
   }
 
   #title {
@@ -25,6 +24,7 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
     margin-top: 30px;
-    font-size: 60px;
+    margin-bottom: 10px;
+    font-size: 45px;
   }
 `;

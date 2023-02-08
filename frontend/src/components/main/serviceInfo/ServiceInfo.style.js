@@ -12,7 +12,7 @@ export const Container = styled.div`
 export const InfoMsg = styled.div`
   display: flex;
   padding: 30px;
-  font-size: 35px;
+  font-size: 20px;
   font-weight: bold;
   line-height: 60px;
   color: ${colors.whiteColor};
@@ -22,7 +22,7 @@ export const InfoImg = styled.div`
   display: flex;
   position: absolute;
   padding: 60px;
-  width: 200px;
-  height: 200px;
-  left: 170px;
+  width: 100px;
+  height: 100px;
+  left: 60px;
 `;

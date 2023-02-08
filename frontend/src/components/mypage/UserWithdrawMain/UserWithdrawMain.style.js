@@ -30,14 +30,10 @@ export const Label = styled.div`
   padding-top: 15px;
   padding-bottom: 15px;
   margin-right: 25px;
-  font-size: 30px;
+  font-size: 25px;
   font-weight: bold;
   line-height: 80px;
   color: ${colors.pointColor};
-
-  :hover {
-    font-size: 35px;
-  }
 `;
 
 export const WithdrawBtn = styled.button`

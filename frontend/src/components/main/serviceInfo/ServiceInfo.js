@@ -15,10 +15,8 @@ function ServiceInfo() {
       <InfoMsg>
         가족 혹은 지인들과 함께 여행 계획을 세워보세요.
         <br />
-        <br />
-        함께 이야기하고 여행 계획을 편집하며
-        <br />
-        모두의 생각이 들어간 여행 계획을 세울 수 있습니다.
+        함께 이야기하고 여행 계획을 편집하며 모두의 생각이
+        들어간 여행 계획을 세울 수 있습니다.
       </InfoMsg>
       <InfoImg>
         <img src={friendsImg} alt="friends"></img>

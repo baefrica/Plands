@@ -8,16 +8,76 @@ import {
 } from "./LogInPage.style";
 import Header from "components/header/Header";
 import Nav from "components/nav/Nav";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { LOG_IN } from "store/slice/userSlice";
+import { useNavigate } from "react-router-dom";
+
+const URL = "http://localhost:9999/beakgu/member/login";
 
 export default function LogInPage() {
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
 
-  const LogInBtn = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleId = (event) => {
+    setId(event.target.value);
+  };
+
+  const handlePw = (event) => {
+    setPw(event.target.value);
+  };
+
+  const onClickLoginBtn = (e) => {
+    e.preventDefault();
+
     if (id === "") {
       alert("아이디를 입력하세요");
     } else if (pw === "") {
       alert("패스워드를 입력하세요");
+    } else {
+      axios
+        .post(
+          URL,
+          {
+            id: id,
+            pwd: pw,
+          },
+
+          {
+            headers: {
+              // HTTP 메시지(요청과 응답 모두)에 담겨 보내는 데이터의 형식을 알려주는 헤더
+              "Content-Type":
+                "application/json; charset=utf-8",
+              // 브라우저의 origin 에 상관없이 모든 리소스에 접근하도록 허용
+              "Access-Control-Allow-Origin": "*",
+            },
+          }
+        )
+        .then((res) => {
+          alert("로그인 되었습니다");
+
+          const accessToken =
+            res.data["access-token"].value;
+          const refreshToken =
+            res.data["refresh-token"].value;
+
+          dispatch(
+            LOG_IN([accessToken, refreshToken, id, pw])
+          );
+
+          axios({
+            headers: {
+              "X-AUTH-TOKEN": accessToken,
+            },
+          });
+          // navigate(`/`);
+        })
+        .catch(() => {
+          alert("회원가입을 해주세요");
+        });
     }
   };
 
@@ -34,27 +94,26 @@ export default function LogInPage() {
           <LoginContent>
             <LoginContentRow>
               <input
-                id="id"
                 type="text"
+                id="id"
                 placeholder="아이디를 입력해주세요."
-                onChange={(event) => {
-                  setId(event.target.value);
-                }}
+                value={id}
+                onChange={handleId}
               />
             </LoginContentRow>
             <LoginContentRow>
               <input
                 type="password"
+                id="pw"
                 placeholder="비밀번호를 입력해주세요."
-                onChange={(event) => {
-                  setPw(event.target.value);
-                }}
+                value={pw}
+                onChange={handlePw}
               />
             </LoginContentRow>
             <LoginContentRow>
               <button
                 id="logIn-btn"
-                onClick={() => LogInBtn()}
+                onClick={onClickLoginBtn}
               >
                 로그인
               </button>
