@@ -32,19 +32,20 @@ export const Label = styled.div`
   padding-bottom: 15px;
 
   label {
-    font-size: 30px;
+    font-size: 25px;
     font-weight: bold;
     line-height: 80px;
     color: ${colors.pointColor};
 
     :hover {
-      font-size: 35px;
+      font-size: 30px;
     }
   }
 
   input {
     text-align: center;
-    font-size: 30px;
+    font-size: 20px;
+    width: 100%;
     color: ${colors.pointColor};
     background: ${colors.heavyGrayColor};
     border: 3px solid ${colors.pointColor};
