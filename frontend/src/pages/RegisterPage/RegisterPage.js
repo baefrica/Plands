@@ -65,7 +65,7 @@ const RegisterPage = () => {
       setIdErrorAlpha(true);
     } else setIdErrorAlpha(false);
 
-    if (!isLength(cur, { min: 4, max: 16 })) {
+    if (!isLength(cur, { min: 8, max: 16 })) {
       setIdErrorLength(true);
     } else setIdErrorLength(false);
     setId(cur);
@@ -174,6 +174,7 @@ const RegisterPage = () => {
       axios
         .post(`${URL}/eauth`, email.toString("utf-8"), {
           headers: {
+            // 이상함 : 오타체크할것!!!
             "Content-Type": "applcation/json;",
           },
         })
@@ -239,7 +240,7 @@ const RegisterPage = () => {
             )}
             {idErrorLength && id && (
               <InvalidInput>
-                ❌&nbsp;아이디는 4자 이상 16자 이하로
+                ❌&nbsp;아이디는 8자 이상 16자 이하로
                 되어있어야 합니다.
               </InvalidInput>
             )}
