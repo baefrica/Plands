@@ -10,7 +10,7 @@ import {
   items,
 } from "./Carousel.style";
 
-function Carousel() {
+const Carousel = () => {
   const settings = {
     dots: true,
     infinite: true, // 해당 슬라이드를 무한으로 반복할 수 있도록
@@ -42,6 +42,6 @@ function Carousel() {
       </StyledSlider>
     </Container>
   );
-}
+};
 
 export default Carousel;

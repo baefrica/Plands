@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "./MyPageTitle.style";
 
-function MyPageTitle() {
+const MyPageTitle = () => {
   return (
     <div>
       <Container>
@@ -10,6 +10,6 @@ function MyPageTitle() {
       </Container>
     </div>
   );
-}
+};
 
 export default MyPageTitle;

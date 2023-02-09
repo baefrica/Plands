@@ -5,7 +5,7 @@ import MyPageNav from "../../components/mypage/MyPageNav/MyPageNav";
 import UserInfoUpdateMain from "components/mypage/UserInfoUpdateMain/UserInfoUpdateMain";
 import { NavAndMain } from "./UserInfoUpdatePage.style";
 
-function UserInfoUpdatePage() {
+const UserInfoUpdatePage = () => {
   return (
     <div>
       <Header />
@@ -17,6 +17,6 @@ function UserInfoUpdatePage() {
       </NavAndMain>
     </div>
   );
-}
+};
 
 export default UserInfoUpdatePage;

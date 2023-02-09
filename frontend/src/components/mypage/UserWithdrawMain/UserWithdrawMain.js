@@ -5,7 +5,7 @@ import {
   WithdrawBtn,
 } from "./UserWithdrawMain.style";
 
-function UserWithdrawMain() {
+const UserWithdrawMain = () => {
   return (
     <Container>
       <Form>
@@ -14,6 +14,6 @@ function UserWithdrawMain() {
       </Form>
     </Container>
   );
-}
+};
 
 export default UserWithdrawMain;

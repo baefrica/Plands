@@ -3,7 +3,7 @@ import Nav from "../../components/nav/Nav";
 import Carousel from "components/main/carousel/Carousel";
 import ServiceInfo from "components/main/serviceInfo/ServiceInfo";
 
-function MainPage() {
+const MainPage = () => {
   return (
     <div>
       <Header />
@@ -12,6 +12,6 @@ function MainPage() {
       <ServiceInfo />
     </div>
   );
-}
+};
 
 export default MainPage;

@@ -5,7 +5,7 @@ import MyPageNav from "../../components/mypage/MyPageNav/MyPageNav";
 import PasswordChangeMain from "components/mypage/PasswordChangeMain/PasswordChangeMain";
 import { NavAndMain } from "./PasswordChangePage.style";
 
-function PasswordChangePage() {
+const PasswordChangePage = () => {
   return (
     <div>
       <Header />
@@ -17,6 +17,6 @@ function PasswordChangePage() {
       </NavAndMain>
     </div>
   );
-}
+};
 
 export default PasswordChangePage;

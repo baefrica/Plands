@@ -20,13 +20,11 @@ import {
   CancelBtn,
 } from "./RegisterPage.style";
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { SIGN_UP } from "store/slice/memberSlice";
 import { useNavigate } from "react-router-dom";
 
-const URL = "http://localhost:9999/beakgu/member/regist";
+const URL = "http://localhost:9999/beakgu/member";
 
-function RegisterPage() {
+const RegisterPage = () => {
   // 사용자 입력값
   const [id, setId] = useState("");
   const [pwd, setPwd] = useState("");
@@ -52,7 +50,6 @@ function RegisterPage() {
   const [pNumberError, setPNumberError] = useState(true);
   const [emailError, setEmailError] = useState(true);
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   // Validation 영역
@@ -168,27 +165,22 @@ function RegisterPage() {
     else return true;
   };
 
-  const onSubmit = (e) => {
+  const onClickEmailConfirmBtn = () => {
+    axios.post(`${URL}/eauth`, email.toString("utf-8"), {
+      headers: {
+        "Content-Type": "applcation/json",
+      },
+    });
+  };
+
+  const onClickRegistBtn = (e) => {
     if (!validation()) {
       alert("회원가입 조건에 맞추어 다시 입력해주세요.");
       return;
     } else {
       alert("회원가입에 성공하셨습니다.");
 
-      dispatch(
-        SIGN_UP([
-          id,
-          pwd,
-          name,
-          nickname,
-          gender,
-          birthDay,
-          pNumber,
-          email,
-        ])
-      );
-
-      axios.post(URL, {
+      axios.post(`${URL}/regist`, {
         id: id,
         pwd: pwd,
         name: name,
@@ -201,6 +193,10 @@ function RegisterPage() {
 
       navigate("/login");
     }
+  };
+
+  const onClickCancelBtn = (e) => {
+    navigate("/login");
   };
 
   return (
@@ -333,7 +329,6 @@ function RegisterPage() {
               name="gender"
               id="genderSelect"
               required
-              value={gender}
               onChange={onChangeGender}
             >
               <option value="">성별을 선택해주세요</option>
@@ -378,10 +373,11 @@ function RegisterPage() {
               type="email"
               required
               placeholder="이메일 주소를 입력하세요"
+              name="email"
               value={email}
               onChange={onChangeEmail}
             />
-            <EmailConfirm>
+            <EmailConfirm onClick={onClickEmailConfirmBtn}>
               <ConfirmBtn>인증하기</ConfirmBtn>
             </EmailConfirm>
             {!emailError && email && (
@@ -396,16 +392,18 @@ function RegisterPage() {
             )}
           </RegistInputDiv>
           <RegistBtnDiv>
-            <RegistBtn onClick={onSubmit} to={"/login"}>
+            <RegistBtn onClick={onClickRegistBtn}>
               회원가입
             </RegistBtn>
             {/* button으로 감싸서 잘못 클릿하면 submit 됨 해결해야함 */}
-            <CancelBtn to={"/login"}>취소</CancelBtn>
+            <CancelBtn onClick={onClickCancelBtn}>
+              취소
+            </CancelBtn>
           </RegistBtnDiv>
         </RegistFormDiv>
       </Container>
     </div>
   );
-}
+};
 
 export default RegisterPage;

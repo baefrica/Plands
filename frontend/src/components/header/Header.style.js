@@ -27,6 +27,32 @@ export const LoginMsg = styled.div`
   color: ${colors.whiteColor};
 `;
 
+export const MyPageBtn = styled(NavLink)`
+  background-color: ${colors.whiteColor};
+  text-align: center;
+  color: ${colors.blackColor};
+  font-size: 20px;
+  font-weight: bolder;
+  margin: 5px;
+  outline: invert;
+  border: 5px solid ${colors.redColor};
+  border-radius: 25px;
+
+  &:link {
+    transition: 0.5s;
+    text-decoration: none;
+  }
+
+  &:hover {
+    background: ${colors.redColor};
+  }
+
+  &.active {
+    font-weight: bold;
+    position: relative;
+  }
+`;
+
 export const LogoutBtn = styled(NavLink)`
   background-color: ${colors.whiteColor};
   text-align: center;

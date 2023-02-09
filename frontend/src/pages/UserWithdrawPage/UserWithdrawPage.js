@@ -5,7 +5,7 @@ import MyPageNav from "../../components/mypage/MyPageNav/MyPageNav";
 import UserWithdrawMain from "components/mypage/UserWithdrawMain/UserWithdrawMain";
 import { NavAndMain } from "./UserWithdrawPage.style";
 
-function UserWithdrawPage() {
+const UserWithdrawPage = () => {
   return (
     <div>
       <Header />
@@ -17,6 +17,6 @@ function UserWithdrawPage() {
       </NavAndMain>
     </div>
   );
-}
+};
 
 export default UserWithdrawPage;
