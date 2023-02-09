@@ -50,6 +50,9 @@ const RegisterPage = () => {
   const [pNumberError, setPNumberError] = useState(true);
   const [emailError, setEmailError] = useState(true);
 
+  const [eauthBtn, setEauthBtn] = useState(false);
+  const [eauthSuccess, setEauthSuccess] = useState(false);
+
   const navigate = useNavigate();
 
   // Validation 영역
@@ -162,15 +165,29 @@ const RegisterPage = () => {
     else if (nicknameError) return false;
     else if (pNumberError) return false;
     else if (emailError) return false;
+    else if (!eauthSuccess) return false;
     else return true;
   };
 
   const onClickEmailConfirmBtn = () => {
-    axios.post(`${URL}/eauth`, email.toString("utf-8"), {
-      headers: {
-        "Content-Type": "applcation/json",
-      },
-    });
+    if (!emailError) {
+      axios
+        .post(`${URL}/eauth`, email.toString("utf-8"), {
+          headers: {
+            "Content-Type": "applcation/json;",
+          },
+        })
+        .then((res) => {
+          setEauthBtn(true);
+          console.log(res);
+        })
+        .catch(() => {});
+    }
+  };
+
+  const onHandleEauthSuccess = () => {
+    // input 값과 response 의 인증번호를 비교한 후, 맞다면
+    setEauthSuccess(true);
   };
 
   const onClickRegistBtn = (e) => {
@@ -178,7 +195,7 @@ const RegisterPage = () => {
       alert("회원가입 조건에 맞추어 다시 입력해주세요.");
       return;
     } else {
-      alert("회원가입에 성공하셨습니다.");
+      alert("회원가입에 성공하였습니다.");
 
       axios.post(`${URL}/regist`, {
         id: id,
@@ -377,8 +394,23 @@ const RegisterPage = () => {
               value={email}
               onChange={onChangeEmail}
             />
-            <EmailConfirm onClick={onClickEmailConfirmBtn}>
-              <ConfirmBtn>인증하기</ConfirmBtn>
+            <EmailConfirm>
+              {eauthBtn ? (
+                <>
+                  <input placeholder="인증번호를 입력해주세요" />
+                  <ConfirmBtn
+                    onClick={onHandleEauthSuccess}
+                  >
+                    인증 확인
+                  </ConfirmBtn>
+                </>
+              ) : (
+                <ConfirmBtn
+                  onClick={onClickEmailConfirmBtn}
+                >
+                  인증하기
+                </ConfirmBtn>
+              )}
             </EmailConfirm>
             {!emailError && email && (
               <CorrectInput>
@@ -395,7 +427,6 @@ const RegisterPage = () => {
             <RegistBtn onClick={onClickRegistBtn}>
               회원가입
             </RegistBtn>
-            {/* button으로 감싸서 잘못 클릿하면 submit 됨 해결해야함 */}
             <CancelBtn onClick={onClickCancelBtn}>
               취소
             </CancelBtn>
