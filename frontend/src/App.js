@@ -9,6 +9,7 @@ import UserInfoUpdatePage from "./pages/UserInfoUpdatePage/UserInfoUpdatePage";
 import GoPlanPage from "pages/GoPlanPage/GoPlanPage";
 import PasswordChangePage from "pages/PasswordChangePage/PasswordChangePage";
 import UserWithdrawPage from "pages/UserWithdrawPage/UserWithdrawPage";
+import FindPwPage from "pages/FindPwPage/FindPwPage";
 
 const App = () => {
   return (
@@ -50,6 +51,11 @@ const App = () => {
           path="/user/withdraw"
           exact
           element={<UserWithdrawPage />}
+        />
+        <Route
+          path="/find/pwd"
+          exact
+          element={<FindPwPage />}
         />
         <Route
           // path 를 따로 정의하지 않으면 모든 상황에 렌더링됨

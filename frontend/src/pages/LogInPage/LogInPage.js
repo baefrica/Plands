@@ -88,6 +88,10 @@ const LogInPage = () => {
     }
   };
 
+  const onClickFindPwBtn = () => {
+    navigate("/find/pwd");
+  };
+
   return (
     <div>
       <Header />
@@ -135,7 +139,10 @@ const LogInPage = () => {
                   회원가입
                 </button>
                 <button id="findId-btn">아이디 찾기</button>
-                <button id="findPw-btn">
+                <button
+                  id="findPw-btn"
+                  onClick={onClickFindPwBtn}
+                >
                   비밀번호 찾기
                 </button>
               </div>
