@@ -1,6 +1,6 @@
 import { NavStyle, BlackNav } from "./Nav.style";
 
-function Nav() {
+const Nav = () => {
   return (
     <BlackNav>
       <NavStyle to="/">홈</NavStyle>
@@ -8,6 +8,6 @@ function Nav() {
       <NavStyle to="/about">소개</NavStyle>
     </BlackNav>
   );
-}
+};
 
 export default Nav;

@@ -10,12 +10,12 @@ import Header from "components/header/Header";
 import Nav from "components/nav/Nav";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { LOG_IN } from "store/slice/userSlice";
+import { LOGIN_TOKEN } from "store/slice/userSlice";
 import { useNavigate } from "react-router-dom";
 
-const URL = "http://localhost:9999/beakgu/member/login";
+const URL = "http://localhost:9999/beakgu/member";
 
-export default function LogInPage() {
+const LogInPage = () => {
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
 
@@ -30,6 +30,10 @@ export default function LogInPage() {
     setPw(event.target.value);
   };
 
+  const onClickRegistBtn = (e) => {
+    navigate("/regist");
+  };
+
   const onClickLoginBtn = (e) => {
     e.preventDefault();
 
@@ -40,7 +44,7 @@ export default function LogInPage() {
     } else {
       axios
         .post(
-          URL,
+          `${URL}/login`,
           {
             id: id,
             pwd: pw,
@@ -65,18 +69,21 @@ export default function LogInPage() {
             res.data["refresh-token"].value;
 
           dispatch(
-            LOG_IN([accessToken, refreshToken, id, pw])
+            LOGIN_TOKEN([accessToken, refreshToken])
           );
 
           axios({
+            url: URL,
+            method: "get",
             headers: {
               "X-AUTH-TOKEN": accessToken,
             },
+          }).then((res) => {
+            navigate("/");
           });
-          // navigate(`/`);
         })
         .catch(() => {
-          alert("회원가입을 해주세요");
+          alert("아이디와 비밀번호를 확인해주세요");
         });
     }
   };
@@ -121,7 +128,12 @@ export default function LogInPage() {
             <LoginContentRow>
               <div id="footer">
                 <p>아직 회원이 아니신가요?</p>
-                <button id="signIn-btn">회원가입</button>
+                <button
+                  id="signIn-btn"
+                  onClick={onClickRegistBtn}
+                >
+                  회원가입
+                </button>
                 <button id="findId-btn">아이디 찾기</button>
                 <button id="findPw-btn">
                   비밀번호 찾기
@@ -133,4 +145,6 @@ export default function LogInPage() {
       </Container>
     </div>
   );
-}
+};
+
+export default LogInPage;

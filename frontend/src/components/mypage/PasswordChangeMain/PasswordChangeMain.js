@@ -7,7 +7,7 @@ import {
   ChangeBtn,
 } from "./PasswordChangeMain.style";
 
-function PasswordChangeMain() {
+const PasswordChangeMain = () => {
   return (
     <Container>
       <Form>
@@ -30,6 +30,6 @@ function PasswordChangeMain() {
       </Form>
     </Container>
   );
-}
+};
 
 export default PasswordChangeMain;

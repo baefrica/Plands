@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, NavContent } from "./MyPageNav.style";
 
-function MyPageNav() {
+const MyPageNav = () => {
   return (
     <Container>
       <NavContent to="/mypage">회원 정보 보기</NavContent>
@@ -14,6 +14,6 @@ function MyPageNav() {
       <NavContent to="/user/withdraw">회원 탈퇴</NavContent>
     </Container>
   );
-}
+};
 
 export default MyPageNav;

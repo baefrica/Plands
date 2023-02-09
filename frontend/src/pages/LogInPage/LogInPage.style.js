@@ -122,6 +122,7 @@ const LoginContentRow = styled.div`
       &:hover {
         background: ${colors.blueColor};
         color: ${colors.whiteColor};
+        cursor: pointer;
       }
 
       &.active {
@@ -149,6 +150,7 @@ const LoginContentRow = styled.div`
       &:hover {
         background: ${colors.redColor};
         color: ${colors.whiteColor};
+        cursor: pointer;
       }
 
       &.active {
@@ -176,6 +178,7 @@ const LoginContentRow = styled.div`
       &:hover {
         background: ${colors.pinkColor};
         color: ${colors.whiteColor};
+        cursor: pointer;
       }
 
       &.active {

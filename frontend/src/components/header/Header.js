@@ -9,18 +9,36 @@ import {
   LogoLink,
   LogoImg,
   LoginMsg,
+  MyPageBtn,
   LogoutBtn,
   Loginned,
 } from "./Header.style";
+import axios from "axios";
+import { useState } from "react";
 
-function Header() {
-  const id = useSelector((state) => {
-    return state.user.id;
-  });
+const URL = "http://localhost:9999/beakgu/member";
+
+const Header = () => {
+  const [nickName, setNickName] = useState();
 
   const isLogin = useSelector((state) => {
     return state.user.isLogin;
   });
+  const accessToken = useSelector((state) => {
+    return state.user.accessToken;
+  });
+
+  if (isLogin === true) {
+    axios({
+      url: URL,
+      method: "get",
+      headers: {
+        "X-AUTH-TOKEN": accessToken,
+      },
+    }).then((res) => {
+      setNickName(res.data.nickname);
+    });
+  }
 
   return (
     <HeaderDiv>
@@ -29,7 +47,8 @@ function Header() {
       </LogoLink>
       {isLogin ? (
         <Loginned>
-          <LoginMsg>{id}님 환영합니다</LoginMsg>
+          <LoginMsg>{nickName}님 환영합니다</LoginMsg>
+          <MyPageBtn to="/mypage">마이 페이지</MyPageBtn>
           <LogoutBtn to="/">로그아웃</LogoutBtn>
         </Loginned>
       ) : (
@@ -46,6 +65,6 @@ function Header() {
       )}
     </HeaderDiv>
   );
-}
+};
 
 export default Header;

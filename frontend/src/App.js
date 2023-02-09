@@ -10,17 +10,37 @@ import GoPlanPage from "pages/GoPlanPage/GoPlanPage";
 import PasswordChangePage from "pages/PasswordChangePage/PasswordChangePage";
 import UserWithdrawPage from "pages/UserWithdrawPage/UserWithdrawPage";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <Routes>
         <Route path="/" exact element={<MainPage />} />
-        <Route path="/plans" exact element={<ManagePlanPage />} />
-        <Route path="/about" exact element={<AboutPage />} />
-        <Route path="/regist" exact element={<RegisterPage />} />
-        <Route path="/login" exact element={<LogInPage />} />
+        <Route
+          path="/plans"
+          exact
+          element={<ManagePlanPage />}
+        />
+        <Route
+          path="/about"
+          exact
+          element={<AboutPage />}
+        />
+        <Route
+          path="/regist"
+          exact
+          element={<RegisterPage />}
+        />
+        <Route
+          path="/login"
+          exact
+          element={<LogInPage />}
+        />
         <Route path="/mypage" exact element={<MyPage />} />
-        <Route path="/userinfo/update" exact element={<UserInfoUpdatePage />} />
+        <Route
+          path="/userinfo/update"
+          exact
+          element={<UserInfoUpdatePage />}
+        />
         <Route
           path="/password/change"
           exact
@@ -40,10 +60,14 @@ function App() {
             </div>
           )}
         />
-        <Route path="/goplan" exact element={<GoPlanPage />} />
+        <Route
+          path="/goplan"
+          exact
+          element={<GoPlanPage />}
+        />
       </Routes>
     </div>
   );
-}
+};
 
 export default App;

@@ -33,8 +33,7 @@ const RegistFormDiv = styled.div`
     color: ${colors.whiteColor};
   }
 
-  input,
-  select {
+  input {
     padding: 10px 0;
     padding-left: 15px;
     width: 100%;
@@ -53,6 +52,22 @@ const RegistFormDiv = styled.div`
 
 const RegistInputDiv = styled.div`
   text-align: center;
+
+  select {
+    padding: 10px 0;
+    padding-left: 15px;
+    width: 100%;
+    height: 20px;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: ${colors.lightGrayColor};
+    border: 3px solid ${colors.heavyGrayColor};
+    border-radius: 5px;
+
+    &:hover {
+      border: 3px solid ${colors.pointColor};
+    }
+  }
 `;
 
 const RegistBtnDiv = styled.div`
@@ -64,7 +79,7 @@ const RegistBtnDiv = styled.div`
   height: 50px;
 `;
 
-const RegistBtn = styled(NavLink)`
+const RegistBtn = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,7 +108,7 @@ const RegistBtn = styled(NavLink)`
   }
 `;
 
-const CancelBtn = styled(NavLink)`
+const CancelBtn = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;

@@ -9,7 +9,7 @@ import arrowImg from "assets/images/arrow.png";
 import carImg from "assets/images/car.png";
 import computerImg from "assets/images/computer.png";
 
-function ServiceInfo() {
+const ServiceInfo = () => {
   return (
     <Container>
       <InfoMsg>
@@ -27,6 +27,6 @@ function ServiceInfo() {
       </InfoImg>
     </Container>
   );
-}
+};
 
 export default ServiceInfo;
