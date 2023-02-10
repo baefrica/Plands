@@ -23,8 +23,6 @@ export const userSlice = createSlice({
       alert("로그아웃됨");
       state.accessToken = null;
       state.refreshToken = null;
-      state.id = null;
-      state.pw = null;
       state.isLogin = false;
     },
   },

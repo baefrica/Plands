@@ -9,6 +9,7 @@ import UserInfoUpdatePage from "./pages/UserInfoUpdatePage/UserInfoUpdatePage";
 import GoPlanPage from "pages/GoPlanPage/GoPlanPage";
 import PasswordChangePage from "pages/PasswordChangePage/PasswordChangePage";
 import UserWithdrawPage from "pages/UserWithdrawPage/UserWithdrawPage";
+import FindIdPage from "pages/FindIdPage/FindIdPage";
 import FindPwPage from "pages/FindPwPage/FindPwPage";
 
 const App = () => {
@@ -51,6 +52,11 @@ const App = () => {
           path="/user/withdraw"
           exact
           element={<UserWithdrawPage />}
+        />
+        <Route
+          path="/find/id"
+          exact
+          element={<FindIdPage />}
         />
         <Route
           path="/find/pwd"
