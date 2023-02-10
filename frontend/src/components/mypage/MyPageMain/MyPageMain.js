@@ -4,7 +4,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 
 const MyPageMain = () => {
-  const URL = "http://localhost:9999/beakgu/member";
+  const URL = "http://localhost:9999/baekgu/member";
 
   const [id, setId] = useState();
   const [name, setName] = useState();

@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 
 const UserInfoUpdateMain = () => {
-  const URL = "http://localhost:9999/beakgu/member";
+  const URL = "http://localhost:9999/baekgu";
 
   const [id, setId] = useState();
   const [name, setName] = useState();
@@ -26,7 +26,7 @@ const UserInfoUpdateMain = () => {
   });
 
   axios({
-    url: URL,
+    url: `${URL}/member`,
     method: "get",
     headers: {
       "X-AUTH-TOKEN": accessToken,

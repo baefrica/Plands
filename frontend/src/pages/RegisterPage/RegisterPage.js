@@ -22,7 +22,7 @@ import {
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const URL = "http://localhost:9999/beakgu/member";
+const URL = "http://localhost:9999/baekgu";
 
 const RegisterPage = () => {
   // 사용자 입력값
@@ -52,6 +52,8 @@ const RegisterPage = () => {
 
   const [eauthBtn, setEauthBtn] = useState(false);
   const [eauthSuccess, setEauthSuccess] = useState(false);
+  const [emailInput, setEmailInput] = useState(false);
+  const [eauthNum, setEauthNum] = useState("");
 
   const navigate = useNavigate();
 
@@ -123,13 +125,13 @@ const RegisterPage = () => {
     setNickname(cur);
   };
 
-  const onChangeGender = (e) => {
-    if (e.target.value === "male") {
-      setGender("M");
-    } else {
-      setGender("W");
-    }
-  };
+  // const onChangeGender = (e) => {
+  //   if (e.target.value === "male") {
+  //     setGender("M");
+  //   } else {
+  //     setGender("W");
+  //   }
+  // };
 
   const onChangeBirthDay = (e) => {
     setBirthDay(e.target.value);
@@ -153,6 +155,10 @@ const RegisterPage = () => {
     setEmail(cur);
   };
 
+  const onChangeEauthNum = (e) => {
+    setEauthNum(e.target.value);
+  };
+
   // 폼 제출 전 확인 메서드
 
   const validation = () => {
@@ -169,26 +175,52 @@ const RegisterPage = () => {
     else return true;
   };
 
-  const onClickEmailConfirmBtn = () => {
+  const onClickEmailSendBtn = () => {
     if (!emailError) {
       axios
-        .post(`${URL}/eauth`, email.toString("utf-8"), {
+        .post(`${URL}/email/send`, email, {
           headers: {
-            // 이상함 : 오타체크할것!!!
-            "Content-Type": "applcation/json;",
+            "Content-Type": "text/plain",
           },
         })
         .then((res) => {
           setEauthBtn(true);
+          setEmailInput(true);
           console.log(res);
         })
-        .catch(() => {});
+        .catch((res) => {
+          console.log(res);
+        });
     }
   };
 
   const onHandleEauthSuccess = () => {
-    // input 값과 response 의 인증번호를 비교한 후, 맞다면
-    setEauthSuccess(true);
+    axios
+      .post(
+        `${URL}/email/auth`,
+        {
+          email: email,
+          authCode: eauthNum,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((res) => {
+        alert("인증에 성공하였습니다");
+        setEauthSuccess(true);
+      })
+      .catch((res) => {
+        alert("인증번호가 틀립니다");
+      });
+  };
+
+  const onClickReEauthBtn = () => {
+    setEmailInput("");
+    setEmailInput(false);
+    setEauthBtn(false);
   };
 
   const onClickRegistBtn = (e) => {
@@ -198,7 +230,7 @@ const RegisterPage = () => {
     } else {
       alert("회원가입에 성공하였습니다.");
 
-      axios.post(`${URL}/regist`, {
+      axios.post(`${URL}/session/regist`, {
         id: id,
         pwd: pwd,
         name: name,
@@ -346,12 +378,16 @@ const RegisterPage = () => {
             <select
               name="gender"
               id="genderSelect"
+              onChange={(e) => {
+                setGender(
+                  e.target.selectedOptions[0].value
+                );
+              }}
               required
-              onChange={onChangeGender}
             >
               <option value="">성별을 선택해주세요</option>
-              <option value="male">남성</option>
-              <option value="female">여성</option>
+              <option value="M">남성</option>
+              <option value="W">여성</option>
             </select>
           </RegistInputDiv>
           <h3>생년월일</h3>
@@ -387,27 +423,50 @@ const RegisterPage = () => {
           </RegistInputDiv>
           <h3>이메일</h3>
           <RegistInputDiv>
-            <input
-              type="email"
-              required
-              placeholder="이메일 주소를 입력하세요"
-              name="email"
-              value={email}
-              onChange={onChangeEmail}
-            />
+            {emailInput ? (
+              <input
+                type="email"
+                required
+                placeholder="이메일 주소를 입력하세요"
+                name="email"
+                value={email}
+                disabled
+              />
+            ) : (
+              <input
+                type="email"
+                required
+                placeholder="이메일 주소를 입력하세요"
+                name="email"
+                value={email}
+                onChange={onChangeEmail}
+              />
+            )}
             <EmailConfirm>
               {eauthBtn ? (
                 <>
-                  <input placeholder="인증번호를 입력해주세요" />
+                  <input
+                    value={eauthNum}
+                    placeholder="인증번호를 입력해주세요"
+                    onChange={onChangeEauthNum}
+                  />
                   <ConfirmBtn
+                    id="confirmBtn"
                     onClick={onHandleEauthSuccess}
                   >
                     인증 확인
                   </ConfirmBtn>
+                  <ConfirmBtn
+                    id="reEauthBtn"
+                    onClick={onClickReEauthBtn}
+                  >
+                    이메일 재입력
+                  </ConfirmBtn>
                 </>
               ) : (
                 <ConfirmBtn
-                  onClick={onClickEmailConfirmBtn}
+                  id="sendBtn"
+                  onClick={onClickEmailSendBtn}
                 >
                   인증하기
                 </ConfirmBtn>

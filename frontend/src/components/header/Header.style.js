@@ -27,7 +27,7 @@ export const LoginMsg = styled.div`
   color: ${colors.whiteColor};
 `;
 
-export const MyPageBtn = styled(NavLink)`
+export const MyPageBtn = styled.button`
   background-color: ${colors.whiteColor};
   text-align: center;
   color: ${colors.blackColor};
@@ -53,7 +53,7 @@ export const MyPageBtn = styled(NavLink)`
   }
 `;
 
-export const LogoutBtn = styled(NavLink)`
+export const LogoutBtn = styled.button`
   background-color: ${colors.whiteColor};
   text-align: center;
   color: ${colors.blackColor};

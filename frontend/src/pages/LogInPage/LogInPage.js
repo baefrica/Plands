@@ -13,7 +13,7 @@ import { useDispatch } from "react-redux";
 import { LOGIN_TOKEN } from "store/slice/userSlice";
 import { useNavigate } from "react-router-dom";
 
-const URL = "http://localhost:9999/beakgu/member";
+const URL = "http://localhost:9999/baekgu";
 
 const LogInPage = () => {
   const [id, setId] = useState("");
@@ -44,7 +44,7 @@ const LogInPage = () => {
     } else {
       axios
         .post(
-          `${URL}/login`,
+          `${URL}/session/login`,
           {
             id: id,
             pwd: pw,
@@ -73,7 +73,7 @@ const LogInPage = () => {
           );
 
           axios({
-            url: URL,
+            url: `${URL}/member`,
             method: "get",
             headers: {
               "X-AUTH-TOKEN": accessToken,
@@ -86,6 +86,10 @@ const LogInPage = () => {
           alert("아이디와 비밀번호를 확인해주세요");
         });
     }
+  };
+
+  const onClickFindIdBtn = () => {
+    navigate("/find/id");
   };
 
   const onClickFindPwBtn = () => {
@@ -138,7 +142,12 @@ const LogInPage = () => {
                 >
                   회원가입
                 </button>
-                <button id="findId-btn">아이디 찾기</button>
+                <button
+                  id="findId-btn"
+                  onClick={onClickFindIdBtn}
+                >
+                  아이디 찾기
+                </button>
                 <button
                   id="findPw-btn"
                   onClick={onClickFindPwBtn}

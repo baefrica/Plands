@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import {
   Container,
-  FindPwBlock,
-  FindPwHeader,
+  FindIdBlock,
+  FindIdHeader,
   Content,
   ContentRow,
-} from "./FindPwPage.style";
+} from "./FindIdPage.style";
 import Header from "components/header/Header";
 import Nav from "components/nav/Nav";
 import axios from "axios";
@@ -13,15 +13,10 @@ import { useNavigate } from "react-router-dom";
 
 const URL = "http://localhost:9999/baekgu";
 
-const FindPwPage = () => {
-  const [id, setId] = useState("");
+const FindIdPage = () => {
   const [email, setEmail] = useState("");
 
   const navigate = useNavigate();
-
-  const handleId = (event) => {
-    setId(event.target.value);
-  };
 
   const handleEmail = (event) => {
     setEmail(event.target.value);
@@ -31,22 +26,14 @@ const FindPwPage = () => {
     e.preventDefault();
 
     axios
-      .post(
-        `${URL}/email/pwd`,
-        {
-          id: id,
-          email: email,
+      .post(`${URL}/session/id`, email.toString("utf-8"), {
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+          "Access-Control-Allow-Origin": "*",
         },
-        {
-          headers: {
-            "Content-Type":
-              "application/json; charset=utf-8",
-            "Access-Control-Allow-Origin": "*",
-          },
-        }
-      )
+      })
       .then((res) => {
-        alert("임시 비밀번호를 보냈습니다");
+        alert(res.data);
         navigate("/login");
       })
       .catch(() => {
@@ -59,20 +46,11 @@ const FindPwPage = () => {
       <Header />
       <Nav />
       <Container>
-        <FindPwBlock>
-          <FindPwHeader>
-            <div id="title">비밀번호 찾기</div>
-          </FindPwHeader>
+        <FindIdBlock>
+          <FindIdHeader>
+            <div id="title">아이디 찾기</div>
+          </FindIdHeader>
           <Content>
-            <ContentRow>
-              <input
-                type="text"
-                id="id"
-                placeholder="아이디를 입력해주세요."
-                value={id}
-                onChange={handleId}
-              />
-            </ContentRow>
             <ContentRow>
               <input
                 type="email"
@@ -86,10 +64,10 @@ const FindPwPage = () => {
               <button onClick={onClickFindBtn}>찾기</button>
             </ContentRow>
           </Content>
-        </FindPwBlock>
+        </FindIdBlock>
       </Container>
     </div>
   );
 };
 
-export default FindPwPage;
+export default FindIdPage;
