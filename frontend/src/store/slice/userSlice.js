@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  accessToken: "",
-  accessTime: "",
-  refreshToken: "",
+  accessToken: null,
+  accessTime: null,
+  refreshToken: null,
 };
 
 export const userSlice = createSlice({
@@ -17,11 +17,18 @@ export const userSlice = createSlice({
 
     LOG_OUT: (state) => {
       alert("로그아웃됨");
-      state.accessToken = "";
-      state.refreshToken = "";
+      state.accessToken = null;
+      state.refreshToken = null;
+    },
+
+    WITH_DRAW: (state) => {
+      alert("회원 탈퇴");
+      state.accessToken = null;
+      state.refreshToken = null;
     },
   },
 });
 
-export const { LOGIN_TOKEN, LOG_OUT } = userSlice.actions;
+export const { LOGIN_TOKEN, LOG_OUT, WITH_DRAW } =
+  userSlice.actions;
 export default userSlice.reducer;

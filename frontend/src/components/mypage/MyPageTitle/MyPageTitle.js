@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Container } from "./MyPageTitle.style";
 import axios from "axios";
 import { useSelector } from "react-redux";
@@ -12,7 +12,8 @@ const MyPageTitle = () => {
     return state.user.accessToken;
   });
 
-  useEffect(() => {
+  if (accessToken !== null) {
+    console.log("널인데 왜들어와3333", accessToken);
     axios({
       url: `${URL}/member`,
       method: "get",
@@ -22,7 +23,7 @@ const MyPageTitle = () => {
     }).then((res) => {
       setNickName(res.data.nickname);
     });
-  });
+  }
 
   return (
     <div>

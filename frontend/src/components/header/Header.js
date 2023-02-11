@@ -26,7 +26,7 @@ const Header = () => {
   });
   const [nickName, setNickName] = useState("");
 
-  if (accessToken !== "") {
+  if (accessToken !== null) {
     axios({
       url: `${URL}/member`,
       method: "get",
@@ -46,6 +46,7 @@ const Header = () => {
   };
 
   const onClickLogOutBtn = () => {
+    console.log(accessToken);
     axios
       .post(`${URL}/session/logout`, {
         headers: {
@@ -54,9 +55,7 @@ const Header = () => {
       })
       .then((res) => {
         alert("다음에 또 오세요");
-        console.log(res);
-
-        dispatch(LOG_OUT);
+        dispatch(LOG_OUT());
         navigate("/");
       })
       .catch(() => {});
@@ -67,7 +66,7 @@ const Header = () => {
       <LogoLink to="/">
         <LogoImg src={logo} />
       </LogoLink>
-      {accessToken !== "" ? (
+      {accessToken !== null ? (
         <Loginned>
           <LoginMsg>{nickName}님 환영합니다</LoginMsg>
           <MyPageBtn onClick={onClickMyPageBtn}>
