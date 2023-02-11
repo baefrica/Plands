@@ -2,13 +2,7 @@
 // npm i slick-carousel
 
 import React from "react";
-import {
-  Container,
-  StyledSlider,
-  ImgContainer,
-  Img,
-  items,
-} from "./Carousel.style";
+import * as S from "./Carousel.style";
 
 const Carousel = () => {
   const settings = {
@@ -19,28 +13,31 @@ const Carousel = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 5000,
     pauseOnHover: true, // 화면에 올리면 슬라이더가 자동으로 넘어가지 않음
   };
 
   return (
-    <Container>
-      <StyledSlider {...settings}>
-        {items.map((item) => {
+    <S.Container>
+      <S.CarouselText id="carouselContent">
+        <S.CarouselTextP>새로운 여행을 계획해보세요</S.CarouselTextP>
+        <S.CarouselButton>여행 계획 만들기</S.CarouselButton>
+      </S.CarouselText>
+      <S.StyledSlider {...settings}>
+        {S.items.map((item) => {
           return (
-            <div key={item.id}>
-              <ImgContainer>
-                <div id="carouselContent">
-                  <p>새로운 여행을 계획해보세요</p>
-                  <button>여행 계획 만들기</button>
-                </div>
-                <Img src={item.url} />
-              </ImgContainer>
-            </div>
+            <>
+              <S.ImgFilter />
+              <div key={item.id}>
+                <S.ImgContainer>
+                  <S.Img src={item.url} />
+                </S.ImgContainer>
+              </div>
+            </>
           );
         })}
-      </StyledSlider>
-    </Container>
+      </S.StyledSlider>
+    </S.Container>
   );
 };
 

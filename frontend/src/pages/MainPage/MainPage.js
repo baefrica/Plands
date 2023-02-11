@@ -3,7 +3,7 @@ import Nav from "../../components/nav/Nav";
 import Carousel from "components/main/carousel/Carousel";
 import * as S from "./MainPage.style";
 import ServiceInfo from "components/main/serviceInfo/ServiceInfo";
-import SideNavMain from "components/SideNavForMain/SideNavMain";
+import SideNavMain from "components/sideNavForMain/SideNavMain";
 
 /*
     <div>
