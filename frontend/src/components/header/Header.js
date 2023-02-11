@@ -21,22 +21,12 @@ import { LOG_OUT } from "store/slice/userSlice";
 const URL = "http://localhost:9999/baekgu";
 
 const Header = () => {
-  const [nickName, setNickName] = useState();
-
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const [isLogin, setIsLogin] = useState(
-    useSelector((state) => {
-      return state.user.isLogin;
-    })
-  );
-
   const accessToken = useSelector((state) => {
     return state.user.accessToken;
   });
+  const [nickName, setNickName] = useState("");
 
-  if (isLogin === true) {
+  if (accessToken !== "") {
     axios({
       url: `${URL}/member`,
       method: "get",
@@ -48,26 +38,28 @@ const Header = () => {
     });
   }
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const onClickMyPageBtn = () => {
     navigate("/mypage");
   };
 
   const onClickLogOutBtn = () => {
-    axios({
-      url: `${URL}/member`,
-      method: "delete",
-      headers: {
-        "X-AUTH-TOKEN": accessToken,
-      },
-    }).then((res) => {
-      alert("다음에 또 오세요");
-      console.log(res);
+    axios
+      .post(`${URL}/session/logout`, {
+        headers: {
+          "X-AUTH-TOKEN": accessToken,
+        },
+      })
+      .then((res) => {
+        alert("다음에 또 오세요");
+        console.log(res);
 
-      dispatch(LOG_OUT);
-      setIsLogin(false);
-
-      navigate("/");
-    });
+        dispatch(LOG_OUT);
+        navigate("/");
+      })
+      .catch(() => {});
   };
 
   return (
@@ -75,7 +67,7 @@ const Header = () => {
       <LogoLink to="/">
         <LogoImg src={logo} />
       </LogoLink>
-      {isLogin ? (
+      {accessToken !== "" ? (
         <Loginned>
           <LoginMsg>{nickName}님 환영합니다</LoginMsg>
           <MyPageBtn onClick={onClickMyPageBtn}>

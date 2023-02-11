@@ -28,7 +28,7 @@ export const Label = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
   padding-top: 15px;
   padding-bottom: 15px;
 
@@ -37,6 +37,7 @@ export const Label = styled.div`
     font-weight: bold;
     line-height: 80px;
     color: ${colors.pointColor};
+    margin-right: 30px;
 
     :hover {
       font-size: 30px;
@@ -46,7 +47,6 @@ export const Label = styled.div`
   input {
     text-align: center;
     font-size: 20px;
-    width: 100%;
     color: ${colors.pointColor};
     background: ${colors.heavyGrayColor};
     border: 3px solid ${colors.pointColor};
@@ -61,6 +61,22 @@ export const Label = styled.div`
   }
 `;
 
+export const CorrectInput = styled.div`
+  font-weight: bold;
+  color: ${colors.greenColor};
+  text-align: left;
+  margin-left: 10px;
+  margin-top: 10px;
+  padding-bottom: 10px;
+`;
+
+export const InvalidInput = styled.div`
+  font-weight: bold;
+  color: ${colors.redColor};
+  text-align: left;
+  margin-left: 10px;
+`;
+
 export const ButtonDiv = styled.div`
   display: flex;
   width: 300px;
@@ -69,7 +85,7 @@ export const ButtonDiv = styled.div`
   margin-bottom: 30px;
 `;
 
-export const UpdateBtn = styled(NavLink)`
+export const UpdateBtn = styled.button`
   background-color: ${colors.whiteColor};
   width: 40%;
   text-align: center;

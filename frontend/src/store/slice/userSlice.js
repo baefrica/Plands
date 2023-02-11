@@ -1,10 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  accessToken: null,
-  accessTime: null,
-  refreshToken: null,
-  isLogin: false,
+  accessToken: "",
+  accessTime: "",
+  refreshToken: "",
 };
 
 export const userSlice = createSlice({
@@ -14,16 +13,12 @@ export const userSlice = createSlice({
     LOGIN_TOKEN: (state, action) => {
       state.accessToken = action.payload[0];
       state.refreshToken = action.payload[1];
-      state.isLogin = true;
-
-      console.log(action.payload);
     },
 
     LOG_OUT: (state) => {
       alert("로그아웃됨");
-      state.accessToken = null;
-      state.refreshToken = null;
-      state.isLogin = false;
+      state.accessToken = "";
+      state.refreshToken = "";
     },
   },
 });
