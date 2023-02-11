@@ -1,4 +1,3 @@
-import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { colors } from "styles/variables";
 
@@ -28,15 +27,14 @@ export const Label = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  flex-direction: row;
 
   label {
     font-size: 25px;
     font-weight: bold;
     line-height: 80px;
     color: ${colors.pointColor};
+    margin-right: 30px;
 
     :hover {
       font-size: 30px;
@@ -60,13 +58,29 @@ export const Label = styled.div`
   }
 `;
 
+export const CorrectInput = styled.div`
+  font-weight: bold;
+  color: ${colors.greenColor};
+  text-align: left;
+  margin-left: 10px;
+  margin-top: 10px;
+  padding-bottom: 10px;
+`;
+
+export const InvalidInput = styled.div`
+  font-weight: bold;
+  color: ${colors.redColor};
+  text-align: left;
+  margin-left: 10px;
+`;
+
 export const ButtonDiv = styled.div`
   display: flex;
   width: 300px;
   justify-content: space-around;
 `;
 
-export const CancelBtn = styled(NavLink)`
+export const CancelBtn = styled.button`
   background-color: ${colors.whiteColor};
   width: 40%;
   text-align: center;
@@ -94,7 +108,7 @@ export const CancelBtn = styled(NavLink)`
   }
 `;
 
-export const ChangeBtn = styled(NavLink)`
+export const ChangeBtn = styled.button`
   background-color: ${colors.whiteColor};
   width: 40%;
   text-align: center;

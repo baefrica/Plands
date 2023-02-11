@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 const URL = "http://localhost:9999/baekgu";
 
 const MyPageTitle = () => {
-  const [nickName, setNickName] = useState();
+  const [nickName, setNickName] = useState("");
 
   const accessToken = useSelector((state) => {
     return state.user.accessToken;

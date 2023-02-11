@@ -27,7 +27,7 @@ export const Label = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
   padding-top: 15px;
   padding-bottom: 15px;
 
@@ -36,6 +36,7 @@ export const Label = styled.div`
     font-weight: bold;
     line-height: 80px;
     color: ${colors.pointColor};
+    margin-right: 30px;
 
     :hover {
       font-size: 30px;
@@ -45,7 +46,6 @@ export const Label = styled.div`
   input {
     text-align: center;
     font-size: 20px;
-    width: 100%;
     color: ${colors.pointColor};
     background: ${colors.heavyGrayColor};
     border: 3px solid ${colors.pointColor};

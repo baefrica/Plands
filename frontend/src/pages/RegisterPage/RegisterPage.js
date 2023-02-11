@@ -58,7 +58,6 @@ const RegisterPage = () => {
   const navigate = useNavigate();
 
   // Validation 영역
-
   // id 검사
   const onChangeId = (e) => {
     const cur = e.target.value;
@@ -73,6 +72,7 @@ const RegisterPage = () => {
     setId(cur);
   };
 
+  // pwd 검사
   const onChangePwd = (e) => {
     const cur = e.target.value;
     const passwordRegex =
@@ -98,6 +98,7 @@ const RegisterPage = () => {
     setPwdValid(cur);
   };
 
+  // 이름 검사
   const isKorean = (txt) => {
     const nameReg = /^[가-힣]{1,5}$/;
 
@@ -114,6 +115,7 @@ const RegisterPage = () => {
     setName(cur);
   };
 
+  // 닉네임 검사
   const onChangeNickname = (e) => {
     const cur = e.target.value;
     const nicknameReg =
@@ -133,10 +135,12 @@ const RegisterPage = () => {
   //   }
   // };
 
+  // 생년월일 검사
   const onChangeBirthDay = (e) => {
     setBirthDay(e.target.value);
   };
 
+  // 전화번호 검사
   const onChangePNumber = (e) => {
     const cur = e.target.value;
 
@@ -146,6 +150,7 @@ const RegisterPage = () => {
     setPNumber(cur);
   };
 
+  // 이메일 검사
   const onChangeEmail = (e) => {
     const cur = e.target.value;
 

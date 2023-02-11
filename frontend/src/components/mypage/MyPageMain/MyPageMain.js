@@ -4,35 +4,38 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 
 const MyPageMain = () => {
-  const URL = "http://localhost:9999/baekgu/member";
+  const URL = "http://localhost:9999/baekgu";
 
-  const [id, setId] = useState();
-  const [name, setName] = useState();
-  const [nickName, setNickName] = useState();
-  const [gender, setGender] = useState();
-  const [birthDay, setBirthDay] = useState();
-  const [pNumber, setPNumber] = useState();
-  const [email, setEmail] = useState();
+  const [id, setId] = useState("");
+  const [name, setName] = useState("");
+  const [nickName, setNickName] = useState("");
+  const [gender, setGender] = useState("");
+  const [birthDay, setBirthDay] = useState("");
+  const [pNumber, setPNumber] = useState("");
+  const [email, setEmail] = useState("");
 
   const accessToken = useSelector((state) => {
     return state.user.accessToken;
   });
 
-  axios({
-    url: URL,
-    method: "get",
-    headers: {
-      "X-AUTH-TOKEN": accessToken,
-    },
-  }).then((res) => {
-    setId(res.data.id);
-    setName(res.data.name);
-    setNickName(res.data.nickname);
-    setGender(res.data.gender);
-    setBirthDay(res.data.birthDay);
-    setPNumber(res.data.pnumber);
-    setEmail(res.data.email);
-  });
+  useEffect(() => {
+    axios({
+      url: `${URL}/member`,
+      method: "get",
+      headers: {
+        "X-AUTH-TOKEN": accessToken,
+      },
+    }).then((res) => {
+      setId(res.data.id);
+      setName(res.data.name);
+      setNickName(res.data.nickname);
+      setGender(res.data.gender);
+      setBirthDay(res.data.birthDay);
+      setPNumber(res.data.pnumber);
+      console.log(res.data);
+      setEmail(res.data.email);
+    });
+  }, [accessToken]);
 
   return (
     <Container>
