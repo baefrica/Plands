@@ -4,7 +4,7 @@ import {
   Left,
   InfoImg,
   ExImg,
-} from "./ServiceResult.style";
+} from "../serviceResult./serviceInfo/ServiceResult.style";
 import pdfImg from "assets/images/pdf.png";
 import picImg from "assets/images/pic.png";
 import gura from "assets/images/gura.JPG";
@@ -20,7 +20,7 @@ const ServiceResult = () => {
           <img src={picImg} alt="pic"></img>
         </InfoImg>
       </Left>
-      
+
       <ExImg>
         <img src={gura} alt="pic"></img>
       </ExImg>
@@ -29,4 +29,3 @@ const ServiceResult = () => {
 };
 
 export default ServiceResult;
-
