@@ -102,6 +102,7 @@ const PasswordChangeMain = () => {
             value={curPwd}
             onChange={(e) => {
               setCurPwd(e.target.value);
+              console.log(curPwd);
             }}
           />
         </Label>

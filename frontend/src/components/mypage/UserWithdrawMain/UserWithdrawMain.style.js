@@ -62,6 +62,7 @@ export const WithdrawBtn = styled.button`
   &:hover {
     background: ${colors.redColor};
     color: ${colors.whiteColor};
+    cursor: pointer;
   }
 
   &.active {
