@@ -15,16 +15,16 @@ const SideNavMain = () => {
           <S.SideNavUl>
             <S.LineForSide />
             <S.SideNavDiv onClick={() => handleClick("serviceInfo")}>
-              <li>소개</li>
+              <S.SideNavList>소개</S.SideNavList>
             </S.SideNavDiv>
             <S.SideNavDiv onClick={() => handleClick("serviceEx")}>
-              <li>예시</li>
+              <S.SideNavList>예시</S.SideNavList>
             </S.SideNavDiv>
             <S.SideNavDiv onClick={() => handleClick("serviceResult")}>
-              <li>결과</li>
+              <S.SideNavList>결과</S.SideNavList>
             </S.SideNavDiv>
             <S.SideNavDiv onClick={() => handleClick("serviceShare")}>
-              <li>공유</li>
+              <S.SideNavList>공유</S.SideNavList>
             </S.SideNavDiv>
           </S.SideNavUl>
         </S.SideNavTree>

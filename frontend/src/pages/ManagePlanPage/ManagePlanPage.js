@@ -1,28 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../../components/header/Header";
 import Nav from "../../components/nav/Nav";
 import { useDispatch, useSelector } from "react-redux";
 import PlanCard from "components/plancard/PlanCard";
 import * as S from "./ManagePlanPage.style";
-import axios from "axios";
-
-const URL = "http://localhost:9999/baekgu";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ManagePlanPage = () => {
   const accessToken = useSelector((state) => {
     return state.user.accessToken;
   });
-  const [planList, setPlanList] = useState(() => {
-    axios({
-      url: `${URL}/plan`,
-      method: "get",
-      headers: {
-        "X-AUTH-TOKEN": accessToken,
-      },
-    }).then((res) => {
-      console.log(res.data);
-    });
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!accessToken) {
+      Swal.fire({
+        title: "Error!",
+        text: "로그인을 해주세요",
+        icon: "error",
+        confirmButtonText: "확인",
+        timer: 1000,
+      }).then(navigate("/login"));
+    }
   });
+
+  const [planList, setPlanList] = useState();
   const [uuidList, setUuidList] = useState();
 
   return (

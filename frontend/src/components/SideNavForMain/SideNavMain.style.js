@@ -13,16 +13,19 @@ export const SideNavTreeWrapper = styled.div`
   margin-right: 50px;
 `;
 
-export const SideNavTree = styled.nav`
+export const SideNavTree = styled.div`
   transform: translateX(50%);
 `;
 
 export const SideNavUl = styled.ul`
   list-style: none;
+  padding: 0;
   display: flex;
   flex-direction: column;
 `;
-
+export const SideNavList = styled.li`
+  width: auto;
+`;
 export const SideNavDiv = styled.div`
   padding: 5px;
   width: 43px;
