@@ -1,13 +1,27 @@
 import { useState } from "react";
 import Header from "../../components/header/Header";
 import Nav from "../../components/nav/Nav";
-import AddPlanBtn from "components/plancard/AddPlanBtn";
+import { useDispatch, useSelector } from "react-redux";
 import PlanCard from "components/plancard/PlanCard";
 import * as S from "./ManagePlanPage.style";
 import axios from "axios";
+
+const URL = "http://localhost:9999/baekgu";
+
 const ManagePlanPage = () => {
+  const accessToken = useSelector((state) => {
+    return state.user.accessToken;
+  });
   const [planList, setPlanList] = useState(() => {
-    axios.get();
+    axios({
+      url: `${URL}/plan`,
+      method: "get",
+      headers: {
+        "X-AUTH-TOKEN": accessToken,
+      },
+    }).then((res) => {
+      console.log(res.data);
+    });
   });
   const [uuidList, setUuidList] = useState();
 
