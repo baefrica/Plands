@@ -1,20 +1,14 @@
-import {
-  PlanWrapper,
-  PlanCardHeader,
-  PlanCardBody,
-  PlanCardFooter,
-  PlanTitle,
-} from "./PlanCard.style";
+import * as S from "./PlanCard.style";
 
-function PlanCard() {
+function PlanCard({ uuid, travelTitle }) {
   return (
-    <PlanWrapper>
-      <PlanCardHeader></PlanCardHeader>
-      <PlanCardBody></PlanCardBody>
-      <PlanCardFooter>
-        <PlanTitle>우주 여행</PlanTitle>
-      </PlanCardFooter>
-    </PlanWrapper>
+    <S.PlanWrapper>
+      <S.PlanCardHeader></S.PlanCardHeader>
+      <S.PlanCardBody></S.PlanCardBody>
+      <S.PlanCardFooter>
+        <S.PlanTitle>우주 여행</S.PlanTitle>
+      </S.PlanCardFooter>
+    </S.PlanWrapper>
   );
 }
 

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const PlanWrapper = styled.div`
-  width: 350px;
-  height: 300px;
+  width: 250px;
+  height: 200px;
   border-radius: 15px;
   background: linear-gradient(
     180deg,
