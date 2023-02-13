@@ -4,41 +4,24 @@ import VideoSpace from "components/collaborative/VideoSpace";
 import GoPlanHeader from "components/collaborative/GoPlanHeader";
 import * as S from "./GoPlanPage.style";
 import SideNav from "components/collaborative/SideNav";
+import { useParams } from "react-router-dom";
 
-function App() {
-  const [input, setInput] = useState("");
-  const [room, setRoom] = useState("");
-
-  const handleOnChange = (e) => {
-    setInput(e.target.value);
-  };
-
-  const handleOnClick = () => {
-    setRoom(input);
-  };
-
+const GoPlanPage = () => {
+  const { uuid, title, nickName } = useParams();
   return (
     <div className="App">
-      <input value={input} onChange={handleOnChange} />
-      <button onClick={handleOnClick}>입장</button>
-
-      {room && (
-        <S.MainContent>
-          <S.StickySpace>
-            <GoPlanHeader />
-            <VideoSpace
-              mySessionId={room}
-              myUserName={"Participant" + Math.floor(Math.random() * 100)}
-            />
-          </S.StickySpace>
-          <S.ContentSpace>
-            <TravelPlanTemplate room={room} />
-            <SideNav />
-          </S.ContentSpace>
-        </S.MainContent>
-      )}
+      <S.MainContent>
+        <S.StickySpace>
+          <GoPlanHeader title={title} />
+          <VideoSpace mySessionId={uuid} myUserName={nickName} />
+        </S.StickySpace>
+        <S.ContentSpace>
+          <TravelPlanTemplate room={uuid} />
+          <SideNav />
+        </S.ContentSpace>
+      </S.MainContent>
     </div>
   );
-}
+};
 
-export default App;
+export default GoPlanPage;

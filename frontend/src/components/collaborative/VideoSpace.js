@@ -24,11 +24,14 @@ const VideoSpace = ({ mySessionId, myUserName }) => {
 
   useEffect(() => {
     setOV(new OpenVidu());
-    joinSession();
+    const temp = OV.initSession();
+    setSession(temp);
+    joinSessionNext(temp);
     window.addEventListener("beforeunload", onbeforeunload);
     return () => {
+      window.removeEventListener("beforeunload", onbeforeunload);
       console.log("오픈비두 종료");
-      leaveSession();
+      leaveSession(temp);
     };
   }, []);
 
@@ -146,13 +149,13 @@ const VideoSpace = ({ mySessionId, myUserName }) => {
     );
   };
 
-  const joinSession = useCallback(() => {
-    const temp = OV.initSession();
-    setSession(temp);
-    joinSessionNext(temp);
-  }, [OV, joinSessionNext]);
+  // const joinSession = useCallback(() => {
+  //   const temp = OV.initSession();
+  //   setSession(temp);
+  //   joinSessionNext(temp);
+  // }, [OV, joinSessionNext]);
 
-  const leaveSession = () => {
+  const leaveSession = (session) => {
     if (session) {
       session.disconnect();
       setOV(null);

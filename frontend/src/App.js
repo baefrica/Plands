@@ -36,7 +36,11 @@ const App = () => {
             </div>
           )}
         />
-        <Route path="/goplan/:uuid/:title" exact element={<GoPlanPage />} />
+        <Route
+          path="/goplan/:uuid/:title/:nickName"
+          exact
+          element={<GoPlanPage />}
+        />
       </Routes>
     </div>
   );
