@@ -6,11 +6,17 @@ export const ContentWrapper = styled.div`
 `;
 export const PlanListWrapper = styled.div`
   margin: auto;
-  border: 1px solid black;
   width: 80%;
   margin-top: 50px;
   padding: 50px;
   /* padding-left: 50px; */
+`;
+
+export const ItemWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 50px;
 `;
 
 export const PlanListHeader = styled.div`

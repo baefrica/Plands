@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { getPlanList, createPlan } from "utils/api/planApi";
 import Swal from "sweetalert2";
 import AddPlanModal from "components/modal/AddPlanModal";
+import { chunk } from "utils/util/chunk";
 
 const ManagePlanPage = () => {
   const accessToken = useSelector((state) => {
@@ -28,9 +29,12 @@ const ManagePlanPage = () => {
         timer: 1000,
       }).then(() => navigate("/login"));
     } else {
-      getPlanList(accessToken, 0, 6).then((res) => setPlanList(res.data));
+      getPlanList(accessToken, 0, 6).then((res) => {
+        const divided = chunk(res.data, 3);
+        setPlanList(divided);
+      });
     }
-  });
+  }, [accessToken, navigate]);
 
   const handleAddPlanButton = () => {
     // 모달창 띄우고 해당 모달창에서 입력받은 제목으로 생성
@@ -55,8 +59,12 @@ const ManagePlanPage = () => {
           </S.PlanAddButton>
         </S.PlanListHeader>
         <S.PlanListWrapper>
-          {planList.map((item) => (
-            <PlanCard item={item} />
+          {planList.map((items) => (
+            <S.ItemWrapper>
+              {items.map((item) => (
+                <PlanCard item={item} />
+              ))}
+            </S.ItemWrapper>
           ))}
         </S.PlanListWrapper>
         <S.PlanListFooter></S.PlanListFooter>
