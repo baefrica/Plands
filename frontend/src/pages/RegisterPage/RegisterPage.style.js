@@ -4,134 +4,86 @@ import { colors } from "styles/variables";
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 150px;
-  width: 100%;
-  height: 100%;
+  padding-top: 80px;
 `;
 
 const RegistFormDiv = styled.div`
   background-color: ${colors.blackColor};
-  border-radius: 15px;
+  border-radius: 5px;
   border: 3px solid ${colors.blackColor};
   width: 500px;
-  height: 50%;
   padding: 50px;
   margin-bottom: 5rem;
 
   h1 {
     font-size: 35px;
-    font-weight: bold;
+    font-weight: bolder;
     color: ${colors.pointColor};
-    text-shadow: 0 0 2px #f00;
-    letter-spacing: -1px;
-  }
-
-  h3 {
-    font-size: 20px;
-    font-weight: bold;
-    color: ${colors.whiteColor};
-  }
-
-  input {
-    padding: 10px 0;
-    padding-left: 15px;
-    width: 100%;
-    height: 20px;
-    font-size: 15px;
-    font-weight: bold;
-    background-color: ${colors.lightGrayColor};
-    border: 3px solid ${colors.heavyGrayColor};
-    border-radius: 5px;
-
-    &:hover {
-      border: 3px solid ${colors.pointColor};
-    }
+    padding-bottom: 50px;
   }
 `;
 
 const RegistInputDiv = styled.div`
-  text-align: center;
+  margin-bottom: 40px;
 
   select {
-    padding: 10px 0;
-    padding-left: 15px;
-    width: 100%;
+    display: flex;
     font-size: 15px;
-    font-weight: bold;
-    background-color: ${colors.lightGrayColor};
-    border: 3px solid ${colors.heavyGrayColor};
+    font-weight: bolder;
+    border: none;
+    width: 89%;
+    height: 55px;
+    margin-top: 5px;
+    padding-left: 30px;
+    margin-bottom: 50px;
     border-radius: 5px;
+    background-color: ${colors.blackColor};
+    border-bottom: 2px solid ${colors.pointColor};
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+    color: ${colors.whiteColor};
 
     &:hover {
-      border: 3px solid ${colors.pointColor};
+      border: 2px solid ${colors.pointColor};
     }
   }
-`;
 
-const RegistBtnDiv = styled.div`
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content: space-around;
-  margin-top: 50px;
-  height: 50px;
-`;
+  input {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: bolder;
+    border: none;
+    width: 89%;
+    padding: 20px 20px;
+    height: 15px;
+    border-radius: 5px;
+    background-color: ${colors.blackColor};
+    border-bottom: 2px solid ${colors.pointColor};
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+    color: ${colors.whiteColor};
 
-const RegistBtn = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: ${colors.whiteColor};
-  width: 150px;
-  height: 70%;
-  color: ${colors.blackColor};
-  font-size: 15px;
-  font-weight: bold;
-  border: 5px solid ${colors.blueColor};
-  border-radius: 5px;
+    :focus {
+      outline: 0;
+      border: 2px solid ${colors.pointColor};
+    }
 
-  &:link {
-    transition: 0.5s;
-    text-decoration: none;
+    &:hover {
+      border: 2px solid ${colors.pointColor};
+    }
   }
 
-  &:hover {
-    background: ${colors.blueColor};
-    cursor: pointer;
-  }
-
-  &.active {
-    font-weight: bold;
+  span {
+    font-size: 17px;
+    display: inline-block;
     position: relative;
-  }
-`;
-
-const CancelBtn = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: ${colors.whiteColor};
-  width: 150px;
-  height: 70%;
-  color: ${colors.blackColor};
-  font-size: 15px;
-  font-weight: bold;
-  border: 5px solid ${colors.redColor};
-  border-radius: 5px;
-
-  &:link {
-    transition: 0.5s;
-    text-decoration: none;
-  }
-
-  &:hover {
-    background: ${colors.redColor};
-    cursor: pointer;
-  }
-
-  &.active {
-    font-weight: bold;
-    position: relative;
+    transition: all 0.5s ease-in-out;
+    font-weight: bolder;
+    color: ${colors.pointColor};
+    background-color: ${colors.blackColor};
+    padding-right: 5px;
+    padding-left: 10px;
+    padding-bottom: 5px;
   }
 `;
 
@@ -153,33 +105,112 @@ const InvalidInput = styled.div`
 
 const EmailConfirm = styled.div`
   margin-top: 9px;
-  text-align: left;
+`;
+
+const SendBtn = styled.button`
+  padding: 10px 10px;
+  border-radius: 5px;
+  background: ${colors.greenColor};
+  margin-left: 5px;
+  margin-right: 5px;
+  color: ${colors.blackColor};
+  font-size: 15px;
+  font-weight: bolder;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  &:hover {
+    background: #3e7d3e;
+    color: ${colors.greenColor};
+    cursor: pointer;
+  }
+`;
+
+const ResendBtn = styled.button`
+  padding: 10px 10px;
+  border: 1px solid ${colors.greenColor};
+  border-radius: 5px;
+  background: ${colors.blackColor};
+  margin-left: 5px;
+  margin-right: 5px;
+  color: ${colors.greenColor};
+  font-size: 15px;
+  font-weight: bolder;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  &:hover {
+    border: ${colors.blackColor};
+    background: #3e7d3e;
+    color: ${colors.greenColor};
+    cursor: pointer;
+  }
 `;
 
 const ConfirmBtn = styled.button`
-  width: 100px;
-  height: 30px;
-  font-size: 15px;
-  font-weight: bold;
-  border: none;
-  background-color: ${colors.whiteColor};
-  box-shadow: 2px 2px 5px 1px;
+  padding: 10px 10px;
   border-radius: 5px;
-  border: 5px solid ${colors.greenColor};
-
-  &:link {
-    transition: 0.5s;
-    text-decoration: none;
-  }
+  background: ${colors.greenColor};
+  margin-top: 15px;
+  margin-left: 5px;
+  margin-right: 5px;
+  color: ${colors.blackColor};
+  font-size: 15px;
+  font-weight: bolder;
+  padding-left: 10px;
+  padding-right: 10px;
 
   &:hover {
-    background: ${colors.greenColor};
+    background: #3e7d3e;
+    color: ${colors.greenColor};
     cursor: pointer;
   }
+`;
 
-  &.active {
-    font-weight: bold;
-    position: relative;
+const RegistBtnDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+`;
+
+const RegistBtn = styled.button`
+  padding: 10px 10px;
+  border-radius: 5px;
+  background: ${colors.blueColor};
+  margin-left: 25px;
+  margin-right: 25px;
+  color: ${colors.blackColor};
+  font-size: 15px;
+  font-weight: bolder;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 130px;
+
+  &:hover {
+    background: #4a7296;
+    color: ${colors.blueColor};
+    cursor: pointer;
+  }
+`;
+
+const CancelBtn = styled.button`
+  padding: 10px 10px;
+  border-radius: 5px;
+  background: ${colors.redColor};
+  margin-left: 25px;
+  margin-right: 25px;
+  color: ${colors.blackColor};
+  font-size: 15px;
+  font-weight: bolder;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 130px;
+
+  &:hover {
+    background: #8a3d3f;
+    color: ${colors.redColor};
+    cursor: pointer;
   }
 `;
 
@@ -191,6 +222,8 @@ export {
   CorrectInput,
   InvalidInput,
   EmailConfirm,
+  SendBtn,
+  ResendBtn,
   ConfirmBtn,
   RegistBtn,
   CancelBtn,

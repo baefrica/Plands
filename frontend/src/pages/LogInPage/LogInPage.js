@@ -104,7 +104,6 @@ const LogInPage = () => {
         <LoginBlock>
           <LoginHeader>
             <div id="title">LOGIN</div>
-            <div id="word">여행 계획을 세워보세요!</div>
           </LoginHeader>
           <LoginContent>
             <LoginContentRow>
@@ -137,7 +136,7 @@ const LogInPage = () => {
               <div id="footer">
                 <p>아직 회원이 아니신가요?</p>
                 <button
-                  id="signIn-btn"
+                  id="signUp-btn"
                   onClick={onClickRegistBtn}
                 >
                   회원가입

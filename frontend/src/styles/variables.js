@@ -11,4 +11,6 @@ export const colors = {
   midGrayColor: "#DFDFDF",
   heavyGrayColor: "#808080",
   whiteColor: "white",
+  orangeColor: "#ffc107",
+  purpleColor: "#6f42c1",
 };

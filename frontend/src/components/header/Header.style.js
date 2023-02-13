@@ -28,7 +28,6 @@ export const HeaderButtonDiv = styled.div`
 
 export const LoginBtnStyle = styled.button`
   padding: 10px 10px;
-  border: 1px solid ${colors.pointColor};
   border-radius: 5px;
   background: ${colors.pointColor};
   margin-left: 5px;
@@ -40,7 +39,7 @@ export const LoginBtnStyle = styled.button`
   padding-right: 10px;
 
   &:hover {
-    background: ${colors.blackColor};
+    background: #86873a;
     color: ${colors.pointColor};
     cursor: pointer;
   }
@@ -48,7 +47,6 @@ export const LoginBtnStyle = styled.button`
 
 export const RegistBtnStyle = styled.button`
   padding: 10px 10px;
-  border: 1px solid ${colors.blueColor};
   border-radius: 5px;
   background: ${colors.blueColor};
   margin-left: 5px;
@@ -58,7 +56,7 @@ export const RegistBtnStyle = styled.button`
   font-weight: bolder;
 
   &:hover {
-    background: ${colors.blackColor};
+    background: #4a7296;
     color: ${colors.blueColor};
     cursor: pointer;
   }
@@ -77,13 +75,12 @@ export const LoginMsg = styled.div`
   align-items: center;
   font-weight: bolder;
   font-size: 25px;
-  color: ${colors.whiteColor};
+  color: ${colors.pointColor};
   margin-right: 20px;
 `;
 
 export const MyPageBtn = styled.button`
   padding: 10px 10px;
-  border: 1px solid ${colors.midGrayColor};
   border-radius: 5px;
   background: ${colors.midGrayColor};
   margin-left: 5px;
@@ -93,7 +90,7 @@ export const MyPageBtn = styled.button`
   font-weight: bolder;
 
   &:hover {
-    background: ${colors.blackColor};
+    background: #757373;
     color: ${colors.midGrayColor};
     cursor: pointer;
   }
@@ -101,7 +98,6 @@ export const MyPageBtn = styled.button`
 
 export const LogoutBtn = styled.button`
   padding: 10px 10px;
-  border: 1px solid ${colors.redColor};
   border-radius: 5px;
   background: ${colors.redColor};
   margin-left: 5px;
@@ -111,7 +107,7 @@ export const LogoutBtn = styled.button`
   font-weight: bolder;
 
   &:hover {
-    background: ${colors.blackColor};
+    background: #8a3d3f;
     color: ${colors.redColor};
     cursor: pointer;
   }
