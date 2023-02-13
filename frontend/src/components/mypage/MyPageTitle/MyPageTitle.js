@@ -13,7 +13,6 @@ const MyPageTitle = () => {
   });
 
   if (accessToken !== null) {
-    console.log("널인데 왜들어와3333", accessToken);
     axios({
       url: `${URL}/member`,
       method: "get",

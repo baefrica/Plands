@@ -26,10 +26,9 @@ const FindIdPage = () => {
     e.preventDefault();
 
     axios
-      .post(`${URL}/session/id`, email.toString("utf-8"), {
+      .post(`${URL}/member/id`, email, {
         headers: {
-          "Content-Type": "application/json; charset=utf-8",
-          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "text/plain",
         },
       })
       .then((res) => {

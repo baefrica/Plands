@@ -138,7 +138,7 @@ const UserInfoUpdateMain = () => {
           gender: gender,
           birthDay: birthDay,
           pnumber: pNumber,
-          pwd: "rjqnrdl28@",
+          // pwd: "rjqnrdl28@",
         },
       })
         .then((res) => {

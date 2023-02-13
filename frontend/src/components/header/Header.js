@@ -58,7 +58,9 @@ const Header = () => {
         dispatch(LOG_OUT());
         navigate("/");
       })
-      .catch(() => {});
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
