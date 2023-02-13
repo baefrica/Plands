@@ -1,18 +1,6 @@
 import logo from "assets/images/logo_white.png";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  HeaderDiv,
-  HeaderBtnColumDiv,
-  HeaderButtonDiv,
-  LoginBtnStyle,
-  RegistBtnStyle,
-  LogoLink,
-  LogoImg,
-  LoginMsg,
-  MyPageBtn,
-  LogoutBtn,
-  Loginned,
-} from "./Header.style";
+import * as S from "./Header.style";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LOG_OUT } from "store/slice/userSlice";
@@ -27,8 +15,11 @@ const Header = () => {
   const [nickName, setNickName] = useState("");
 
   if (accessToken !== null) {
+    console.log("여기들어옴?", accessToken);
+
     // 멤버 정보 요청
     getMemberDetail(accessToken).then((res) => {
+      console.log("여기서 에러야?");
       setNickName(res.data.nickname);
     });
   }
@@ -36,12 +27,21 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  // 로그인 버튼 클릭
+  const onClickLoginBtn = () => {
+    navigate("/login");
+  };
+  // 회원가입 버튼 클릭
+  const onClickRegistnBtn = () => {
+    navigate("/regist");
+  };
+  // 마이페이지 버튼 클릭
   const onClickMyPageBtn = () => {
     navigate("/mypage");
   };
-
+  // 로그아웃 버튼 클릭
   const onClickLogOutBtn = () => {
-    // 로그아웃 요청
+    // 로그아웃 요청 -> ****에러 있음
     logout(accessToken)
       .then((res) => {
         Swal.fire({
@@ -52,42 +52,39 @@ const Header = () => {
         });
 
         dispatch(LOG_OUT());
+        navigate("/");
       })
       .catch((err) => {
         // console.log(err);
       });
-
-    navigate("/");
   };
 
   return (
-    <HeaderDiv>
-      <LogoLink to="/">
-        <LogoImg src={logo} />
-      </LogoLink>
+    <S.HeaderDiv>
+      <S.LogoLink to="/">
+        <S.LogoImg src={logo} />
+      </S.LogoLink>
       {accessToken !== null ? (
-        <Loginned>
-          <LoginMsg>{nickName}님 환영합니다</LoginMsg>
-          <MyPageBtn onClick={onClickMyPageBtn}>
+        <S.Loginned>
+          <S.LoginMsg>{nickName}님 환영합니다</S.LoginMsg>
+          <S.MyPageBtn onClick={onClickMyPageBtn}>
             마이 페이지
-          </MyPageBtn>
-          <LogoutBtn onClick={onClickLogOutBtn}>
+          </S.MyPageBtn>
+          <S.LogoutBtn onClick={onClickLogOutBtn}>
             로그아웃
-          </LogoutBtn>
-        </Loginned>
+          </S.LogoutBtn>
+        </S.Loginned>
       ) : (
-        <HeaderBtnColumDiv>
-          <HeaderButtonDiv>
-            <LoginBtnStyle to="/login">
-              로그인
-            </LoginBtnStyle>
-            <RegistBtnStyle to="/regist">
-              회원가입
-            </RegistBtnStyle>
-          </HeaderButtonDiv>
-        </HeaderBtnColumDiv>
+        <S.HeaderButtonDiv>
+          <S.LoginBtnStyle onClick={onClickLoginBtn}>
+            로그인
+          </S.LoginBtnStyle>
+          <S.RegistBtnStyle onClick={onClickRegistnBtn}>
+            회원가입
+          </S.RegistBtnStyle>
+        </S.HeaderButtonDiv>
       )}
-    </HeaderDiv>
+    </S.HeaderDiv>
   );
 };
 
