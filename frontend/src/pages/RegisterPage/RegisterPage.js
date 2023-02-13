@@ -15,6 +15,8 @@ import {
   CorrectInput,
   InvalidInput,
   EmailConfirm,
+  SendBtn,
+  ResendBtn,
   ConfirmBtn,
   RegistBtn,
   CancelBtn,
@@ -303,8 +305,8 @@ const RegisterPage = () => {
       <Container>
         <RegistFormDiv method="POST">
           <h1>SIGN UP</h1>
-          <h3>아이디</h3>
           <RegistInputDiv>
+            <span>아이디</span>
             <input
               type="text"
               required
@@ -330,8 +332,8 @@ const RegisterPage = () => {
               </InvalidInput>
             )}
           </RegistInputDiv>
-          <h3>비밀번호</h3>
           <RegistInputDiv>
+            <span>비밀번호</span>
             <input
               type="password"
               required
@@ -357,8 +359,8 @@ const RegisterPage = () => {
               </InvalidInput>
             )}
           </RegistInputDiv>
-          <h3>비밀번호 확인</h3>
           <RegistInputDiv>
+            <span>비밀번호 확인</span>
             <input
               type="password"
               required
@@ -378,8 +380,8 @@ const RegisterPage = () => {
               </InvalidInput>
             )}
           </RegistInputDiv>
-          <h3>이름</h3>
           <RegistInputDiv>
+            <span>이름</span>
             <input
               type="text"
               required
@@ -399,8 +401,8 @@ const RegisterPage = () => {
               </InvalidInput>
             )}
           </RegistInputDiv>
-          <h3>닉네임</h3>
           <RegistInputDiv>
+            <span>닉네임</span>
             <input
               type="text"
               required
@@ -408,20 +410,20 @@ const RegisterPage = () => {
               value={nickname}
               onChange={onChangeNickname}
             />
+            {!nicknameError && nickname && (
+              <CorrectInput>
+                🟢&nbsp;올바른 입력입니다.
+              </CorrectInput>
+            )}
+            {nicknameError && nickname && (
+              <InvalidInput>
+                ❌&nbsp;닉네임은 한글,영어,숫자(최대10자)
+                이루어져야합니다.
+              </InvalidInput>
+            )}
           </RegistInputDiv>
-          {!nicknameError && nickname && (
-            <CorrectInput>
-              🟢&nbsp;올바른 입력입니다.
-            </CorrectInput>
-          )}
-          {nicknameError && nickname && (
-            <InvalidInput>
-              ❌&nbsp;닉네임은 한글,영어,숫자(최대10자)
-              이루어져야합니다.
-            </InvalidInput>
-          )}
-          <h3>성별</h3>
           <RegistInputDiv>
+            <span>성별</span>
             <select
               name="gender"
               id="genderSelect"
@@ -437,8 +439,8 @@ const RegisterPage = () => {
               <option value="W">여성</option>
             </select>
           </RegistInputDiv>
-          <h3>생년월일</h3>
           <RegistInputDiv>
+            <span>생년월일</span>
             <input
               type="text"
               required
@@ -447,9 +449,8 @@ const RegisterPage = () => {
               onChange={onChangeBirthDay}
             />
           </RegistInputDiv>
-
-          <h3>전화번호</h3>
           <RegistInputDiv>
+            <span>전화번호</span>
             <input
               type="tel"
               required
@@ -468,8 +469,8 @@ const RegisterPage = () => {
               </InvalidInput>
             )}
           </RegistInputDiv>
-          <h3>이메일</h3>
           <RegistInputDiv>
+            <span>이메일</span>
             {emailInput ? (
               <input
                 type="email"
@@ -513,20 +514,20 @@ const RegisterPage = () => {
                   >
                     인증 확인
                   </ConfirmBtn>
-                  <ConfirmBtn
+                  <ResendBtn
                     id="reEauthBtn"
                     onClick={onClickReEauthBtn}
                   >
                     이메일 재입력
-                  </ConfirmBtn>
+                  </ResendBtn>
                 </>
               ) : (
-                <ConfirmBtn
+                <SendBtn
                   id="sendBtn"
                   onClick={onClickEmailSendBtn}
                 >
                   인증하기
-                </ConfirmBtn>
+                </SendBtn>
               )}
             </EmailConfirm>
           </RegistInputDiv>
