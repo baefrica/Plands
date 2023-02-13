@@ -17,52 +17,16 @@ const App = () => {
     <div className="App">
       <Routes>
         <Route path="/" exact element={<MainPage />} />
-        <Route
-          path="/plans"
-          exact
-          element={<ManagePlanPage />}
-        />
-        <Route
-          path="/about"
-          exact
-          element={<AboutPage />}
-        />
-        <Route
-          path="/regist"
-          exact
-          element={<RegisterPage />}
-        />
-        <Route
-          path="/login"
-          exact
-          element={<LogInPage />}
-        />
+        <Route path="/plans" exact element={<ManagePlanPage />} />
+        <Route path="/about" exact element={<AboutPage />} />
+        <Route path="/regist" exact element={<RegisterPage />} />
+        <Route path="/login" exact element={<LogInPage />} />
         <Route path="/mypage" exact element={<MyPage />} />
-        <Route
-          path="/userinfo/update"
-          exact
-          element={<UserInfoUpdatePage />}
-        />
-        <Route
-          path="/password/change"
-          exact
-          element={<PasswordChangePage />}
-        />
-        <Route
-          path="/user/withdraw"
-          exact
-          element={<UserWithdrawPage />}
-        />
-        <Route
-          path="/find/id"
-          exact
-          element={<FindIdPage />}
-        />
-        <Route
-          path="/find/pwd"
-          exact
-          element={<FindPwPage />}
-        />
+        <Route path="/userinfo/update" exact element={<UserInfoUpdatePage />} />
+        <Route path="/password/change" exact element={<PasswordChangePage />} />
+        <Route path="/user/withdraw" exact element={<UserWithdrawPage />} />
+        <Route path="/find/id" exact element={<FindIdPage />} />
+        <Route path="/find/pwd" exact element={<FindPwPage />} />
         <Route
           // path 를 따로 정의하지 않으면 모든 상황에 렌더링됨
           render={({ location }) => (
@@ -72,11 +36,7 @@ const App = () => {
             </div>
           )}
         />
-        <Route
-          path="/goplan"
-          exact
-          element={<GoPlanPage />}
-        />
+        <Route path="/goplan/:uuid/:title" exact element={<GoPlanPage />} />
       </Routes>
     </div>
   );
