@@ -25,6 +25,7 @@ import {
   emailSend,
   verifyAuthNumber,
 } from "utils/api/emailApi";
+import Swal from "sweetalert2";
 
 const RegisterPage = () => {
   // 사용자 입력값
@@ -208,12 +209,18 @@ const RegisterPage = () => {
       // 이메일 인증번호 발송 요청
       emailSend(email)
         .then((res) => {
+          Swal.fire({
+            title: "인증번호를 발송했습니다.",
+            icon: "success",
+            confirmButtonText: "확인",
+            timer: 3000,
+          });
+
           setEauthBtn(true);
           setEmailInput(true);
-          console.log(res);
         })
-        .catch((res) => {
-          console.log(res);
+        .catch((err) => {
+          // console.log(err);
         });
     }
   };
@@ -225,11 +232,22 @@ const RegisterPage = () => {
       authCode: eauthNum,
     })
       .then((res) => {
-        alert("인증에 성공하였습니다");
+        Swal.fire({
+          title: "인증에 성공하였습니다.",
+          icon: "success",
+          confirmButtonText: "확인",
+          timer: 3000,
+        });
+
         setEauthSuccess(true);
       })
       .catch((res) => {
-        alert("인증번호가 틀립니다");
+        Swal.fire({
+          title: "인증번호가 다릅니다.",
+          icon: "error",
+          confirmButtonText: "확인",
+          timer: 3000,
+        });
       });
   };
 
@@ -241,10 +259,22 @@ const RegisterPage = () => {
 
   const onClickRegistBtn = (e) => {
     if (!validation()) {
-      alert("회원가입 조건에 맞추어 다시 입력해주세요.");
+      Swal.fire({
+        title: "회원가입 조건에 맞게 입력하세요.",
+        text: "아이디나 이메일을 중복 확인해주세요.",
+        icon: "error",
+        confirmButtonText: "확인",
+        timer: 3000,
+      });
+
       return;
     } else {
-      alert("회원가입에 성공하였습니다.");
+      Swal.fire({
+        title: "회원가입이 완료되었습니다.",
+        icon: "success",
+        confirmButtonText: "확인",
+        timer: 3000,
+      });
 
       // 회원가입 요청
       regist({
@@ -459,6 +489,16 @@ const RegisterPage = () => {
                 onChange={onChangeEmail}
               />
             )}
+            {!emailError && email && (
+              <CorrectInput>
+                🟢&nbsp;올바른 입력입니다.
+              </CorrectInput>
+            )}
+            {emailError && email && (
+              <InvalidInput>
+                ❌&nbsp; 이메일 형식대로 입력해주세요.
+              </InvalidInput>
+            )}
             <EmailConfirm>
               {eauthBtn ? (
                 <>
@@ -489,16 +529,6 @@ const RegisterPage = () => {
                 </ConfirmBtn>
               )}
             </EmailConfirm>
-            {!emailError && email && (
-              <CorrectInput>
-                🟢&nbsp;올바른 입력입니다.
-              </CorrectInput>
-            )}
-            {emailError && email && (
-              <InvalidInput>
-                ❌&nbsp; 이메일 형식대로 입력해주세요.
-              </InvalidInput>
-            )}
           </RegistInputDiv>
           <RegistBtnDiv>
             <RegistBtn onClick={onClickRegistBtn}>

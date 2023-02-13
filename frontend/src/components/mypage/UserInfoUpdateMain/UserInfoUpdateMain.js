@@ -16,6 +16,7 @@ import {
   getMemberDetail,
   modifyMember,
 } from "utils/api/memberApi";
+import Swal from "sweetalert2";
 
 const UserInfoUpdateMain = () => {
   const navigate = useNavigate();
@@ -99,7 +100,6 @@ const UserInfoUpdateMain = () => {
     }
 
     setPNumber(cur);
-    console.log(pNumberError);
   };
 
   const validation = () => {
@@ -115,9 +115,14 @@ const UserInfoUpdateMain = () => {
   };
 
   const onClickUpdateBtn = () => {
-    console.log(pNumber);
     if (!validation()) {
-      alert("조건에 맞추어 다시 입력해주세요.");
+      Swal.fire({
+        title: "조건에 맞추어 다시 입력해주세요.",
+        icon: "error",
+        confirmButtonText: "확인",
+        timer: 3000,
+      });
+
       return;
     } else {
       modifyMember(accessToken, {
@@ -128,11 +133,17 @@ const UserInfoUpdateMain = () => {
         pnumber: pNumber,
       })
         .then((res) => {
-          alert("회원 정보 수정이 완료되었습니다");
+          Swal.fire({
+            title: "회원 정보 수정이 완료되었습니다.",
+            icon: "success",
+            confirmButtonText: "확인",
+            timer: 3000,
+          });
+
           navigate("/mypage");
         })
         .catch((err) => {
-          console.log(err);
+          // console.log(err);
         });
     }
   };

@@ -13,6 +13,7 @@ import { isLength } from "validator";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { modifyPassword } from "utils/api/memberApi";
+import Swal from "sweetalert2";
 
 const PasswordChangeMain = () => {
   const accessToken = useSelector((state) => {
@@ -83,10 +84,21 @@ const PasswordChangeMain = () => {
 
   const onClickChangeBtn = () => {
     if (!validation()) {
-      alert("비밀번호 조건에 맞추어 다시 입력해주세요.");
+      Swal.fire({
+        title: "비밀번호 조건에 맞추어 다시 입력해주세요.",
+        icon: "error",
+        confirmButtonText: "확인",
+        timer: 3000,
+      });
+
       return;
     } else {
-      alert("비밀번호를 변경하였습니다.");
+      Swal.fire({
+        title: "비밀번호를 변경하였습니다.",
+        icon: "success",
+        confirmButtonText: "확인",
+        timer: 3000,
+      });
 
       // 비밀번호 변경 요청
       modifyPassword(accessToken, {
@@ -96,7 +108,9 @@ const PasswordChangeMain = () => {
         .then(() => {
           navigate("/mypage");
         })
-        .catch((err) => {});
+        .catch((err) => {
+          // console.log(err);
+        });
     }
   };
 
@@ -110,7 +124,6 @@ const PasswordChangeMain = () => {
             value={curPwd}
             onChange={(e) => {
               setCurPwd(e.target.value);
-              console.log(curPwd);
             }}
           />
         </Label>
