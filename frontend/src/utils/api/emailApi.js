@@ -23,7 +23,8 @@ export const emailSend = async (data) => {
 export const findPassword = async (data) => {
   const response = await client.post(`/email/pwd`, data, {
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json; charset=utf-8",
+      "Access-Control-Allow-Origin": "*",
     },
   });
 

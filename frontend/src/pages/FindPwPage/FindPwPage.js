@@ -8,10 +8,8 @@ import {
 } from "./FindPwPage.style";
 import Header from "components/header/Header";
 import Nav from "components/nav/Nav";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
-const URL = "http://localhost:9999/baekgu";
+import { findPassword } from "utils/api/emailApi";
 
 const FindPwPage = () => {
   const [id, setId] = useState("");
@@ -30,26 +28,16 @@ const FindPwPage = () => {
   const onClickFindBtn = (e) => {
     e.preventDefault();
 
-    axios
-      .post(
-        `${URL}/email/pwd`,
-        {
-          id: id,
-          email: email,
-        },
-        {
-          headers: {
-            "Content-Type":
-              "application/json; charset=utf-8",
-            "Access-Control-Allow-Origin": "*",
-          },
-        }
-      )
+    // 비밀번호 찾기 -> 임시 비밀번호 발급 요청
+    findPassword({
+      id: id,
+      email: email,
+    })
       .then((res) => {
         alert("임시 비밀번호를 보냈습니다");
         navigate("/login");
       })
-      .catch(() => {
+      .catch((err) => {
         alert("입력 정보를 확인해주세요");
       });
   };

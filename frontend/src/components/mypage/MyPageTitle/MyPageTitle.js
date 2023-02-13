@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { Container } from "./MyPageTitle.style";
-import axios from "axios";
 import { useSelector } from "react-redux";
-
-const URL = "http://localhost:9999/baekgu";
+import { getMemberDetail } from "utils/api/memberApi";
 
 const MyPageTitle = () => {
   const [nickName, setNickName] = useState("");
@@ -13,13 +11,8 @@ const MyPageTitle = () => {
   });
 
   if (accessToken !== null) {
-    axios({
-      url: `${URL}/member`,
-      method: "get",
-      headers: {
-        "X-AUTH-TOKEN": accessToken,
-      },
-    }).then((res) => {
+    // 멤버 정보 요청
+    getMemberDetail(accessToken).then((res) => {
       setNickName(res.data.nickname);
     });
   }

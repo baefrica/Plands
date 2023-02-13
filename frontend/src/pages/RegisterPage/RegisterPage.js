@@ -19,15 +19,12 @@ import {
   RegistBtn,
   CancelBtn,
 } from "./RegisterPage.style";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { regist } from "utils/api/sessionApi";
 import {
   emailSend,
   verifyAuthNumber,
 } from "utils/api/emailApi";
-
-const URL = "http://localhost:9999/baekgu";
 
 const RegisterPage = () => {
   // 사용자 입력값
