@@ -51,7 +51,7 @@ export const Img = styled.img`
 `;
 
 export const CarouselText = styled.div`
-  z-index: 100;
+  z-index: 10;
   position: absolute;
   top: 50%;
   left: 50%;

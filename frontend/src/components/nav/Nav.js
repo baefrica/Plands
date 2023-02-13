@@ -1,12 +1,12 @@
-import { NavStyle, BlackNav } from "./Nav.style";
+import * as S from "./Nav.style";
 
 const Nav = () => {
   return (
-    <BlackNav>
-      <NavStyle to="/">홈</NavStyle>
-      <NavStyle to="/plans">여행계획관리</NavStyle>
-      <NavStyle to="/about">소개</NavStyle>
-    </BlackNav>
+    <S.BlackNav>
+      <S.NavStyle to="/">홈</S.NavStyle>
+      <S.NavStyle to="/plans">여행계획관리</S.NavStyle>
+      <S.NavStyle to="/about">소개</S.NavStyle>
+    </S.BlackNav>
   );
 };
 
