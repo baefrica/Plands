@@ -9,15 +9,25 @@ import { getPlanList, createPlan } from "utils/api/planApi";
 import Swal from "sweetalert2";
 import AddPlanModal from "components/modal/AddPlanModal";
 import { chunk } from "utils/util/chunk";
-
+import DescPlanModal from "components/modal/DescPlanModal";
+import { getMemberDetail } from "utils/api/memberApi";
 const ManagePlanPage = () => {
   const accessToken = useSelector((state) => {
     return state.user.accessToken;
   });
 
   const [planList, setPlanList] = useState([]);
-  const [modalToggle, setModalToggle] = useState(false);
+  const [addModalToggle, setAddModalToggle] = useState(false);
+  const [descModalToggle, setDescModalToggle] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState({});
+  const [nickName, setNickName] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    getMemberDetail(accessToken).then((res) => {
+      setNickName(res.data.nickname);
+    });
+  }, []);
 
   useEffect(() => {
     if (!accessToken) {
@@ -29,25 +39,41 @@ const ManagePlanPage = () => {
         timer: 1000,
       }).then(() => navigate("/login"));
     } else {
-      getPlanList(accessToken, 0, 6).then((res) => {
+      getPlanList(accessToken, 0, 27).then((res) => {
         const divided = chunk(res.data, 3);
-        setPlanList(divided);
+        setPlanList([...divided]);
       });
     }
-  }, [accessToken, navigate]);
+  }, [accessToken, navigate, addModalToggle, descModalToggle]);
 
   const handleAddPlanButton = () => {
     // 모달창 띄우고 해당 모달창에서 입력받은 제목으로 생성
     // createPlan()
-    setModalToggle(!modalToggle);
+    setAddModalToggle(!addModalToggle);
   };
 
+  const handleDescPlanButton = (event) => {
+    // 모달창 띄우고 해당 모달창에서 입력받은 제목으로 생성
+    // createPlan()
+    console.log(event.target);
+    setSelectedPlan({});
+    setDescModalToggle(!descModalToggle);
+  };
   return (
     <>
-      {modalToggle && (
+      {addModalToggle && (
         <AddPlanModal
           accessToken={accessToken}
-          setModalToggle={setModalToggle}
+          setAddModalToggle={setAddModalToggle}
+        />
+      )}
+      {descModalToggle && (
+        <DescPlanModal
+          uuid={selectedPlan.uuid}
+          title={selectedPlan.title}
+          nickName={nickName}
+          accessToken={accessToken}
+          setDescModalToggle={setDescModalToggle}
         />
       )}
       <Header />
@@ -62,7 +88,12 @@ const ManagePlanPage = () => {
           {planList.map((items) => (
             <S.ItemWrapper>
               {items.map((item) => (
-                <PlanCard item={item} />
+                <PlanCard
+                  uuid={item.code}
+                  title={item.title}
+                  setDescModalToggle={setDescModalToggle}
+                  setSelectedPlan={setSelectedPlan}
+                />
               ))}
             </S.ItemWrapper>
           ))}

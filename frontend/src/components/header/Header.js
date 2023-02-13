@@ -16,10 +16,8 @@ const Header = () => {
 
   useEffect(() => {
     if (accessToken !== null) {
-      console.log("여기들어옴?", accessToken);
       // 멤버 정보 요청
       getMemberDetail(accessToken).then((res) => {
-        console.log("여기서 에러야?");
         setNickName(res.data.nickname);
       });
     }
