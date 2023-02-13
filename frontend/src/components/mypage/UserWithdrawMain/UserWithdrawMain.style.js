@@ -52,7 +52,7 @@ export const WithdrawBtn = styled.button`
   margin: 5px;
   outline: invert;
   border: 5px solid ${colors.redColor};
-  border-radius: 25px;
+  border-radius: 5px;
 
   &:link {
     transition: 0.5s;

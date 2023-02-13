@@ -22,9 +22,10 @@ export const Loginned = styled.div`
 export const LoginMsg = styled.div`
   display: flex;
   align-items: center;
-  font-weight: 500;
-  font-size: 20px;
+  font-weight: bolder;
+  font-size: 25px;
   color: ${colors.whiteColor};
+  margin-right: 20px;
 `;
 
 export const MyPageBtn = styled.button`
@@ -35,8 +36,8 @@ export const MyPageBtn = styled.button`
   font-weight: bolder;
   margin: 5px;
   outline: invert;
-  border: 5px solid ${colors.redColor};
-  border-radius: 25px;
+  border: 5px solid ${colors.pointColor};
+  border-radius: 5px;
 
   &:link {
     transition: 0.5s;
@@ -44,7 +45,8 @@ export const MyPageBtn = styled.button`
   }
 
   &:hover {
-    background: ${colors.redColor};
+    background: ${colors.pointColor};
+    cursor: pointer;
   }
 
   &.active {
@@ -62,7 +64,7 @@ export const LogoutBtn = styled.button`
   margin: 5px;
   outline: invert;
   border: 5px solid ${colors.redColor};
-  border-radius: 25px;
+  border-radius: 5px;
 
   &:link {
     transition: 0.5s;
@@ -71,6 +73,7 @@ export const LogoutBtn = styled.button`
 
   &:hover {
     background: ${colors.redColor};
+    cursor: pointer;
   }
 
   &.active {
@@ -94,7 +97,7 @@ export const HeaderButtonDiv = styled.div`
 `;
 
 export const LoginBtnStyle = styled(NavLink)`
-  background-color: white;
+  background-color: ${colors.whiteColor};
   width: 40%;
   text-align: center;
   color: black;
@@ -103,7 +106,7 @@ export const LoginBtnStyle = styled(NavLink)`
   margin: 5px;
   outline: invert;
   border: 5px solid #faff00;
-  border-radius: 25px;
+  border-radius: 5px;
 
   &:link {
     transition: 0.5s;
@@ -112,6 +115,7 @@ export const LoginBtnStyle = styled(NavLink)`
 
   &:hover {
     background: #faff00;
+    cursor: pointer;
   }
 
   &.active {
@@ -130,7 +134,7 @@ export const RegistBtnStyle = styled(NavLink)`
   margin: 5px;
   outline: invert;
   border: 5px solid #41a3fe;
-  border-radius: 25px;
+  border-radius: 5px;
 
   &:link {
     transition: 0.5s;
@@ -139,6 +143,7 @@ export const RegistBtnStyle = styled(NavLink)`
 
   &:hover {
     background: #41a3fe;
+    cursor: pointer;
   }
 
   &.active {

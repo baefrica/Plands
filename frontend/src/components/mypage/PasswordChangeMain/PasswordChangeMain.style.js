@@ -91,7 +91,7 @@ export const CancelBtn = styled.button`
   margin: 5px;
   outline: invert;
   border: 5px solid ${colors.redColor};
-  border-radius: 25px;
+  border-radius: 5px;
 
   &:link {
     transition: 0.5s;
@@ -100,6 +100,7 @@ export const CancelBtn = styled.button`
 
   &:hover {
     background: ${colors.redColor};
+    cursor: pointer;
   }
 
   &.active {
@@ -119,7 +120,7 @@ export const ChangeBtn = styled.button`
   margin: 5px;
   outline: invert;
   border: 5px solid ${colors.blueColor};
-  border-radius: 25px;
+  border-radius: 5px;
 
   &:link {
     transition: 0.5s;
@@ -128,6 +129,7 @@ export const ChangeBtn = styled.button`
 
   &:hover {
     background: ${colors.blueColor};
+    cursor: pointer;
   }
 
   &.active {

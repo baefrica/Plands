@@ -96,7 +96,7 @@ export const UpdateBtn = styled.button`
   margin: 5px;
   outline: invert;
   border: 5px solid ${colors.blueColor};
-  border-radius: 25px;
+  border-radius: 5px;
 
   &:link {
     transition: 0.5s;
@@ -105,6 +105,7 @@ export const UpdateBtn = styled.button`
 
   &:hover {
     background: ${colors.blueColor};
+    cursor: pointer;
   }
 
   &.active {
@@ -113,7 +114,7 @@ export const UpdateBtn = styled.button`
   }
 `;
 
-export const CancelBtn = styled(NavLink)`
+export const CancelBtn = styled.button`
   background-color: ${colors.whiteColor};
   width: 40%;
   text-align: center;
@@ -124,7 +125,7 @@ export const CancelBtn = styled(NavLink)`
   margin: 5px;
   outline: invert;
   border: 5px solid ${colors.redColor};
-  border-radius: 25px;
+  border-radius: 5px;
 
   &:link {
     transition: 0.5s;
@@ -133,6 +134,7 @@ export const CancelBtn = styled(NavLink)`
 
   &:hover {
     background: ${colors.redColor};
+    cursor: pointer;
   }
 
   &.active {
