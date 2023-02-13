@@ -8,10 +8,8 @@ import {
 } from "./FindIdPage.style";
 import Header from "components/header/Header";
 import Nav from "components/nav/Nav";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
-const URL = "http://localhost:9999/baekgu";
+import { findId } from "utils/api/memberApi";
 
 const FindIdPage = () => {
   const [email, setEmail] = useState("");
@@ -25,12 +23,8 @@ const FindIdPage = () => {
   const onClickFindBtn = (e) => {
     e.preventDefault();
 
-    axios
-      .post(`${URL}/member/id`, email, {
-        headers: {
-          "Content-Type": "text/plain",
-        },
-      })
+    // 아이디 찾기 요청
+    findId(email)
       .then((res) => {
         alert(res.data);
         navigate("/login");

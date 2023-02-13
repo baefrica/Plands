@@ -9,13 +9,15 @@ import {
   CancelBtn,
 } from "./UserInfoUpdateMain.style";
 import { isNumeric } from "validator";
-import axios from "axios";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {
+  getMemberDetail,
+  modifyMember,
+} from "utils/api/memberApi";
 
 const UserInfoUpdateMain = () => {
-  const URL = "http://localhost:9999/baekgu";
   const navigate = useNavigate();
 
   const [id, setId] = useState("");
@@ -31,13 +33,7 @@ const UserInfoUpdateMain = () => {
   });
 
   useEffect(() => {
-    axios({
-      url: `${URL}/member`,
-      method: "get",
-      headers: {
-        "X-AUTH-TOKEN": accessToken,
-      },
-    }).then((res) => {
+    getMemberDetail(accessToken).then((res) => {
       setId(res.data.id);
       setName(res.data.name);
       setNickName(res.data.nickname);
@@ -124,29 +120,18 @@ const UserInfoUpdateMain = () => {
       alert("조건에 맞추어 다시 입력해주세요.");
       return;
     } else {
-      axios({
-        url: `${URL}/member`,
-        method: "put",
-        headers: {
-          "X-AUTH-TOKEN": accessToken,
-          "Content-Type": "application/json",
-        },
-        // ****비밀번호를 보낼 방법???
-        data: {
-          name: name,
-          nickname: nickName,
-          gender: gender,
-          birthDay: birthDay,
-          pnumber: pNumber,
-          // pwd: "rjqnrdl28@",
-        },
+      modifyMember(accessToken, {
+        name: name,
+        nickname: nickName,
+        gender: gender,
+        birthDay: birthDay,
+        pnumber: pNumber,
       })
         .then((res) => {
           alert("회원 정보 수정이 완료되었습니다");
           navigate("/mypage");
         })
         .catch((err) => {
-          console.log("수정 에러");
           console.log(err);
         });
     }

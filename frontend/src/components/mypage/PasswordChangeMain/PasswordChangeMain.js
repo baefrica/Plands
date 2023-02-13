@@ -11,10 +11,8 @@ import {
 import { useState } from "react";
 import { isLength } from "validator";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { useSelector } from "react-redux";
-
-const URL = "http://localhost:9999/baekgu";
+import { modifyPassword } from "utils/api/memberApi";
 
 const PasswordChangeMain = () => {
   const accessToken = useSelector((state) => {
@@ -90,21 +88,15 @@ const PasswordChangeMain = () => {
     } else {
       alert("비밀번호를 변경하였습니다.");
 
-      axios.post(
-        `${URL}/member/newpwd`,
-        {
-          inputPwd: curPwd,
-          newPwd: newPwd,
-        },
-        {
-          headers: {
-            "X-AUTH-TOKEN": accessToken,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      navigate("/mypage");
+      // 비밀번호 변경 요청
+      modifyPassword(accessToken, {
+        inputPwd: curPwd,
+        newPwd: newPwd,
+      })
+        .then(() => {
+          navigate("/mypage");
+        })
+        .catch((err) => {});
     }
   };
 

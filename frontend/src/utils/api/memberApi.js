@@ -14,6 +14,7 @@ export const modifyMember = async (accessToken, data) => {
   const response = await client.put(`/member`, data, {
     headers: {
       "X-AUTH-TOKEN": accessToken,
+      "Content-Type": "application/json",
     },
   });
 
@@ -21,11 +22,23 @@ export const modifyMember = async (accessToken, data) => {
 };
 
 export const findId = async (emailAddress) => {
-  const response = await client.post(`/member/id`, emailAddress);
+  const response = await client.post(
+    `/member/id`,
+    emailAddress,
+    {
+      headers: {
+        "Content-Type": "text/plain",
+      },
+    }
+  );
   return response;
 };
 
-export const getMemberList = async (accessToken, offset, size) => {
+export const getMemberList = async (
+  accessToken,
+  offset,
+  size
+) => {
   const response = await client.get(
     `/member/list?offset=${offset}&size=${size}`,
     {
@@ -39,11 +52,15 @@ export const getMemberList = async (accessToken, offset, size) => {
 };
 
 export const modifyPassword = async (accessToken, data) => {
-  const response = await client.post(`/baekgu/member/newpwd`, data, {
-    headers: {
-      "X-AUTH-TOKEN": accessToken,
-    },
-  });
+  const response = await client.post(
+    `/baekgu/member/newpwd`,
+    data,
+    {
+      headers: {
+        "X-AUTH-TOKEN": accessToken,
+      },
+    }
+  );
 
   return response;
 };

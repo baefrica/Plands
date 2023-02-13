@@ -4,12 +4,10 @@ import {
   Label,
   WithdrawBtn,
 } from "./UserWithdrawMain.style";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { WITH_DRAW } from "store/slice/userSlice";
-
-const URL = "http://localhost:9999/baekgu";
+import { deleteMember } from "utils/api/sessionApi";
 
 const UserWithdrawMain = () => {
   const navigate = useNavigate();
@@ -20,12 +18,8 @@ const UserWithdrawMain = () => {
   });
 
   const onClickWithdrawBtn = () => {
-    axios
-      .delete(`${URL}/session`, {
-        headers: {
-          "X-AUTH-TOKEN": accessToken,
-        },
-      })
+    // 회원탈퇴 요청
+    deleteMember(accessToken)
       .then((res) => {
         alert("성공적으로 회원탈퇴하였습니다.");
         dispatch(WITH_DRAW());

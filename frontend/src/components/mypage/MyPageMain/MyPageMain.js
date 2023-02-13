@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { Container, Form, Label } from "./MyPageMain.style";
-import axios from "axios";
 import { useSelector } from "react-redux";
+import { getMemberDetail } from "utils/api/memberApi";
 
 const MyPageMain = () => {
-  const URL = "http://localhost:9999/baekgu";
-
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [nickName, setNickName] = useState("");
@@ -19,20 +17,13 @@ const MyPageMain = () => {
   });
 
   useEffect(() => {
-    axios({
-      url: `${URL}/member`,
-      method: "get",
-      headers: {
-        "X-AUTH-TOKEN": accessToken,
-      },
-    }).then((res) => {
+    getMemberDetail(accessToken).then((res) => {
       setId(res.data.id);
       setName(res.data.name);
       setNickName(res.data.nickname);
       setGender(res.data.gender);
       setBirthDay(res.data.birthDay);
       setPNumber(res.data.pnumber);
-      console.log(res.data);
       setEmail(res.data.email);
     });
   }, [accessToken]);
