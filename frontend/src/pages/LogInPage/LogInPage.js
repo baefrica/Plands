@@ -13,6 +13,7 @@ import { LOGIN_TOKEN } from "store/slice/userSlice";
 import { useNavigate } from "react-router-dom";
 import { login } from "utils/api/sessionApi";
 import { getMemberDetail } from "utils/api/memberApi";
+import Swal from "sweetalert2";
 
 const LogInPage = () => {
   const [id, setId] = useState("");
@@ -34,12 +35,20 @@ const LogInPage = () => {
   };
 
   const onClickLoginBtn = (e) => {
-    e.preventDefault();
-
     if (id === "") {
-      alert("아이디를 입력하세요");
+      Swal.fire({
+        title: "아이디를 입력해주세요.",
+        icon: "warning",
+        confirmButtonText: "확인",
+        timer: 3000,
+      });
     } else if (pw === "") {
-      alert("패스워드를 입력하세요");
+      Swal.fire({
+        title: "비밀번호를 입력해주세요.",
+        icon: "warning",
+        confirmButtonText: "확인",
+        timer: 3000,
+      });
     } else {
       // 로그인 요청
       login({
@@ -47,7 +56,12 @@ const LogInPage = () => {
         pwd: pw,
       })
         .then((res) => {
-          alert("로그인 되었습니다");
+          Swal.fire({
+            title: "로그인에 성공하였습니다.",
+            icon: "success",
+            confirmButtonText: "확인",
+            timer: 3000,
+          });
 
           const accessToken =
             res.data["access-token"].value;
@@ -64,7 +78,12 @@ const LogInPage = () => {
           });
         })
         .catch(() => {
-          alert("아이디와 비밀번호를 확인해주세요");
+          Swal.fire({
+            title: "아이디와 비밀번호를 확인해주세요.",
+            icon: "error",
+            confirmButtonText: "확인",
+            timer: 3000,
+          });
         });
     }
   };

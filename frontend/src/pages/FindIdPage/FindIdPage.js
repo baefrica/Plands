@@ -10,6 +10,7 @@ import Header from "components/header/Header";
 import Nav from "components/nav/Nav";
 import { useNavigate } from "react-router-dom";
 import { findId } from "utils/api/memberApi";
+import Swal from "sweetalert2";
 
 const FindIdPage = () => {
   const [email, setEmail] = useState("");
@@ -21,16 +22,24 @@ const FindIdPage = () => {
   };
 
   const onClickFindBtn = (e) => {
-    e.preventDefault();
-
     // 아이디 찾기 요청
     findId(email)
       .then((res) => {
-        alert(res.data);
+        Swal.fire({
+          title: `${res.data}`,
+          icon: "success",
+          confirmButtonText: "확인",
+        });
+
         navigate("/login");
       })
       .catch(() => {
-        alert("입력 정보를 확인해주세요");
+        Swal.fire({
+          title: "이메일 주소를 확인해주세요",
+          icon: "error",
+          confirmButtonText: "확인",
+          timer: 3000,
+        });
       });
   };
 
