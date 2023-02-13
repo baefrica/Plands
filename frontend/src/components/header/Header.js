@@ -40,17 +40,17 @@ const Header = () => {
   };
 
   const onClickLogOutBtn = () => {
-    console.log(accessToken);
     // 로그아웃 요청
-    logout
+    logout(accessToken)
       .then((res) => {
         alert("다음에 또 오세요");
         dispatch(LOG_OUT());
-        navigate("/");
       })
       .catch((err) => {
         console.log(err);
       });
+
+    navigate("/");
   };
 
   return (

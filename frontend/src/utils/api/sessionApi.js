@@ -19,11 +19,15 @@ export const login = async (data) => {
 };
 
 export const logout = async (accessToken) => {
-  const response = await client.post(`/session/logout`, {
-    headers: {
-      "X-AUTH-TOKEN": accessToken,
-    },
-  });
+  const response = await client.post(
+    `/session/logout`,
+    {},
+    {
+      headers: {
+        "X-AUTH-TOKEN": accessToken,
+      },
+    }
+  );
 
   return response;
 };
