@@ -13,12 +13,11 @@ import {
   LogoutBtn,
   Loginned,
 } from "./Header.style";
-import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LOG_OUT } from "store/slice/userSlice";
-
-const URL = "http://localhost:9999/baekgu";
+import { getMemberDetail } from "utils/api/memberApi";
+import { logout } from "utils/api/sessionApi";
 
 const Header = () => {
   const accessToken = useSelector((state) => {
@@ -27,13 +26,8 @@ const Header = () => {
   const [nickName, setNickName] = useState("");
 
   if (accessToken !== null) {
-    axios({
-      url: `${URL}/member`,
-      method: "get",
-      headers: {
-        "X-AUTH-TOKEN": accessToken,
-      },
-    }).then((res) => {
+    // 멤버 정보 요청
+    getMemberDetail(accessToken).then((res) => {
       setNickName(res.data.nickname);
     });
   }
@@ -47,12 +41,8 @@ const Header = () => {
 
   const onClickLogOutBtn = () => {
     console.log(accessToken);
-    axios
-      .post(`${URL}/session/logout`, {
-        headers: {
-          "X-AUTH-TOKEN": accessToken,
-        },
-      })
+    // 로그아웃 요청
+    logout
       .then((res) => {
         alert("다음에 또 오세요");
         dispatch(LOG_OUT());
