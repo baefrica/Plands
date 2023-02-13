@@ -11,18 +11,17 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     LOGIN_TOKEN: (state, action) => {
+      console.log(action.payload);
       state.accessToken = action.payload[0];
       state.refreshToken = action.payload[1];
     },
 
     LOG_OUT: (state) => {
-      alert("로그아웃됨");
       state.accessToken = null;
       state.refreshToken = null;
     },
 
     WITH_DRAW: (state) => {
-      alert("회원 탈퇴");
       state.accessToken = null;
       state.refreshToken = null;
     },
