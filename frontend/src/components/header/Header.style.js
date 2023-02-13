@@ -3,20 +3,71 @@ import { NavLink } from "react-router-dom";
 import { colors } from "styles/variables";
 
 export const HeaderDiv = styled.div`
+  display: grid;
+  grid-template-columns: repeat(25, 1fr);
+  grid-gap: 1em;
+  border-bottom: 2px solid ${colors.pointColor};
   background: ${colors.blackColor};
-  width: 100%;
+`;
+
+export const LogoLink = styled(NavLink)`
+  grid-column: 2;
+`;
+
+export const LogoImg = styled.img`
   height: 80px;
+  object-fit: cover;
+`;
+
+export const HeaderButtonDiv = styled.div`
+  grid-column: 24;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  font-weight: 500;
+  width: 200px;
+`;
+
+export const LoginBtnStyle = styled.button`
+  padding: 10px 5px;
+  border: 1px solid ${colors.pointColor};
+  border-radius: 5px;
+  background: ${colors.pointColor};
+  margin-left: 5px;
+  margin-right: 5px;
+  color: ${colors.blackColor};
   font-size: 20px;
-  color: ${colors.whiteColor};
-  box-sizing: border-box;
+  font-weight: bolder;
+
+  &:hover {
+    background: ${colors.blackColor};
+    color: ${colors.pointColor};
+    cursor: pointer;
+  }
+`;
+
+export const RegistBtnStyle = styled.button`
+  padding: 10px 5px;
+  border: 1px solid ${colors.blueColor};
+  border-radius: 5px;
+  background: ${colors.blueColor};
+  margin-left: 5px;
+  margin-right: 5px;
+  color: ${colors.blackColor};
+  font-size: 20px;
+  font-weight: bolder;
+
+  &:hover {
+    background: ${colors.blackColor};
+    color: ${colors.blueColor};
+    cursor: pointer;
+  }
 `;
 
 export const Loginned = styled.div`
+  grid-column: 26;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 550px;
 `;
 
 export const LoginMsg = styled.div`
@@ -29,134 +80,37 @@ export const LoginMsg = styled.div`
 `;
 
 export const MyPageBtn = styled.button`
-  background-color: ${colors.whiteColor};
-  text-align: center;
+  padding: 10px 5px;
+  border: 1px solid ${colors.midGrayColor};
+  border-radius: 5px;
+  background: ${colors.midGrayColor};
+  margin-left: 5px;
+  margin-right: 5px;
   color: ${colors.blackColor};
   font-size: 20px;
   font-weight: bolder;
-  margin: 5px;
-  outline: invert;
-  border: 5px solid ${colors.pointColor};
-  border-radius: 5px;
-
-  &:link {
-    transition: 0.5s;
-    text-decoration: none;
-  }
 
   &:hover {
-    background: ${colors.pointColor};
+    background: ${colors.blackColor};
+    color: ${colors.midGrayColor};
     cursor: pointer;
-  }
-
-  &.active {
-    font-weight: bold;
-    position: relative;
   }
 `;
 
 export const LogoutBtn = styled.button`
-  background-color: ${colors.whiteColor};
-  text-align: center;
+  padding: 10px 5px;
+  border: 1px solid ${colors.redColor};
+  border-radius: 5px;
+  background: ${colors.redColor};
+  margin-left: 5px;
+  margin-right: 5px;
   color: ${colors.blackColor};
   font-size: 20px;
   font-weight: bolder;
-  margin: 5px;
-  outline: invert;
-  border: 5px solid ${colors.redColor};
-  border-radius: 5px;
-
-  &:link {
-    transition: 0.5s;
-    text-decoration: none;
-  }
 
   &:hover {
-    background: ${colors.redColor};
+    background: ${colors.blackColor};
+    color: ${colors.redColor};
     cursor: pointer;
   }
-
-  &.active {
-    font-weight: bold;
-    position: relative;
-  }
-`;
-
-export const HeaderBtnColumDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-right: 50px;
-`;
-
-export const HeaderButtonDiv = styled.div`
-  display: flex;
-  width: 300px;
-  height: 50px;
-  justify-content: space-around;
-`;
-
-export const LoginBtnStyle = styled(NavLink)`
-  background-color: ${colors.whiteColor};
-  width: 40%;
-  text-align: center;
-  color: black;
-  font-size: 20px;
-  font-weight: bolder;
-  margin: 5px;
-  outline: invert;
-  border: 5px solid #faff00;
-  border-radius: 5px;
-
-  &:link {
-    transition: 0.5s;
-    text-decoration: none;
-  }
-
-  &:hover {
-    background: #faff00;
-    cursor: pointer;
-  }
-
-  &.active {
-    font-weight: bold;
-    position: relative;
-  }
-`;
-
-export const RegistBtnStyle = styled(NavLink)`
-  background-color: white;
-  width: 40%;
-  text-align: center;
-  color: black;
-  font-size: 20px;
-  font-weight: bolder;
-  margin: 5px;
-  outline: invert;
-  border: 5px solid #41a3fe;
-  border-radius: 5px;
-
-  &:link {
-    transition: 0.5s;
-    text-decoration: none;
-  }
-
-  &:hover {
-    background: #41a3fe;
-    cursor: pointer;
-  }
-
-  &.active {
-    font-weight: bold;
-    position: relative;
-  }
-`;
-
-export const LogoLink = styled(NavLink)`
-  height: 100%;
-`;
-
-export const LogoImg = styled.img`
-  height: 80px;
-  object-fit: cover;
 `;
