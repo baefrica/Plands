@@ -30,4 +30,4 @@ export const userSlice = createSlice({
 
 export const { LOGIN_TOKEN, LOG_OUT, WITH_DRAW } =
   userSlice.actions;
-export default userSlice.reducer;
+export default userSlice;

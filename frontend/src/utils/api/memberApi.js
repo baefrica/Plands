@@ -53,7 +53,7 @@ export const getMemberList = async (
 
 export const modifyPassword = async (accessToken, data) => {
   const response = await client.post(
-    `/baekgu/member/newpwd`,
+    `/member/newpwd`,
     data,
     {
       headers: {
