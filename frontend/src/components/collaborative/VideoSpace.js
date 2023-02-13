@@ -27,7 +27,8 @@ const VideoSpace = ({ mySessionId, myUserName }) => {
     joinSession();
     window.addEventListener("beforeunload", onbeforeunload);
     return () => {
-      window.removeEventListener("beforeunload", onbeforeunload);
+      console.log("오픈비두 종료");
+      leaveSession();
     };
   }, []);
 
@@ -154,7 +155,7 @@ const VideoSpace = ({ mySessionId, myUserName }) => {
   const leaveSession = () => {
     if (session) {
       session.disconnect();
-      setOV(new OpenVidu());
+      setOV(null);
       setSession(undefined);
       setSubscribers([]);
       setMainStreamManager(undefined);
