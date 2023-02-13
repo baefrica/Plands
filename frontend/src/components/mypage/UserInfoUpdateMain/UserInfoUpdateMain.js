@@ -148,6 +148,10 @@ const UserInfoUpdateMain = () => {
     }
   };
 
+  const onClickCancelBtn = () => {
+    navigate("/mypage");
+  };
+
   return (
     <Container>
       <Form>
@@ -250,7 +254,9 @@ const UserInfoUpdateMain = () => {
           <UpdateBtn onClick={onClickUpdateBtn}>
             수정 완료
           </UpdateBtn>
-          <CancelBtn to="/mypage">취소</CancelBtn>
+          <CancelBtn onClick={onClickCancelBtn}>
+            취소
+          </CancelBtn>
         </ButtonDiv>
       </Form>
     </Container>

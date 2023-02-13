@@ -88,7 +88,7 @@ const RegistBtn = styled.button`
   font-size: 15px;
   font-weight: bold;
   border: 5px solid ${colors.blueColor};
-  border-radius: 25px;
+  border-radius: 5px;
 
   &:link {
     transition: 0.5s;
@@ -117,7 +117,7 @@ const CancelBtn = styled.button`
   font-size: 15px;
   font-weight: bold;
   border: 5px solid ${colors.redColor};
-  border-radius: 25px;
+  border-radius: 5px;
 
   &:link {
     transition: 0.5s;

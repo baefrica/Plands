@@ -68,7 +68,7 @@ const ContentRow = styled.div`
     font-size: 15px;
     font-weight: bold;
     border: 5px solid ${colors.pointColor};
-    border-radius: 25px;
+    border-radius: 5px;
     margin-bottom: 25px;
 
     &:link {

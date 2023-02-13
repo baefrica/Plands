@@ -77,7 +77,7 @@ const LoginContentRow = styled.div`
     font-size: 15px;
     font-weight: bold;
     border: 5px solid ${colors.pointColor};
-    border-radius: 25px;
+    border-radius: 5px;
     margin-bottom: 25px;
 
     &:link {
@@ -112,7 +112,7 @@ const LoginContentRow = styled.div`
       font-weight: bold;
       margin: 5px;
       border: 5px solid ${colors.blueColor};
-      border-radius: 25px;
+      border-radius: 5px;
 
       &:link {
         transition: 0.5s;
@@ -140,7 +140,7 @@ const LoginContentRow = styled.div`
       font-weight: bold;
       margin: 5px;
       border: 5px solid ${colors.redColor};
-      border-radius: 25px;
+      border-radius: 5px;
 
       &:link {
         transition: 0.5s;
@@ -168,7 +168,7 @@ const LoginContentRow = styled.div`
       font-weight: bold;
       margin: 5px;
       border: 5px solid ${colors.pinkColor};
-      border-radius: 25px;
+      border-radius: 5px;
 
       &:link {
         transition: 0.5s;

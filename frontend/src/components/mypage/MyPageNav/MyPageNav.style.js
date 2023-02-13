@@ -11,15 +11,16 @@ export const Container = styled.div`
   color: ${colors.blackColor};
   text-shadow: ${colors.pointColor} 1px 0 5px;
   outline: invert;
-  font-size: 20px;
-  font-weight: bold;
-  line-height: 70px;
   padding-top: 3%;
 `;
 
 export const NavContent = styled(NavLink)`
+  font-size: 20px;
+  font-weight: bolder;
+  line-height: 70px;
+
   :hover {
-    font-size: 25px;
+    font-size: 23px;
   }
 
   &:link {

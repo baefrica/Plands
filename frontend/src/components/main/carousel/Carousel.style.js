@@ -43,34 +43,6 @@ export const ImgContainer = styled.div`
     p {
       text-shadow: 0 0 2px ${colors.blackColor};
     }
-
-    button {
-      background-color: ${colors.whiteColor};
-      width: 40%;
-      text-align: center;
-      padding: 10px;
-      color: ${colors.blackColor};
-      font-size: 20px;
-      font-weight: bold;
-      border: 5px solid ${colors.blackColor};
-      border-radius: 25px;
-
-      &:link {
-        transition: 0.5s;
-        text-decoration: none;
-      }
-
-      &:hover {
-        background: ${colors.blackColor};
-        color: ${colors.whiteColor};
-        border: 5px solid ${colors.blackColor};
-      }
-
-      &.active {
-        font-weight: bold;
-        position: relative;
-      }
-    }
   }
 `;
 
