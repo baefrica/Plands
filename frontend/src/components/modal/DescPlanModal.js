@@ -1,5 +1,5 @@
 import { useState } from "react";
-import * as S from "./AddPlanModal.style";
+import * as S from "./DescPlanModal.style";
 import { createPlan } from "utils/api/planApi";
 import { useNavigate } from "react-router-dom";
 import { deletePlan } from "utils/api/planApi";

@@ -17,10 +17,10 @@ export const ModalWrapper = styled.div`
 export const ModalFormDiv = styled.div`
   position: absolute;
   width: 50%;
-  height: 400px;
+  height: 200px;
   /* background-color: #404752; */
   background-color: #242424;
-  top: 20%;
+  top: 40%;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
