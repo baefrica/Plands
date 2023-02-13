@@ -5,7 +5,6 @@ export const HeaderWrapper = styled.div`
   height: auto;
   padding-top: 10px;
   padding-bottom: 10px;
-  margin-top: 25px;
   background-color: #262e36;
   box-sizing: border-box;
 `;
