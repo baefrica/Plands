@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { colors } from "styles/variables";
 
 export const Container = styled.div`
-  background: ${colors.skyblueColor};
+  background: linear-gradient(#141e30, #243b55);
   color: ${colors.whiteColor};
   font-weight: bold;
 
