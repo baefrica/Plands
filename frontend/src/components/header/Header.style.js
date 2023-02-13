@@ -23,11 +23,11 @@ export const HeaderButtonDiv = styled.div`
   grid-column: 24;
   display: flex;
   align-items: center;
-  width: 200px;
+  width: 210px;
 `;
 
 export const LoginBtnStyle = styled.button`
-  padding: 10px 5px;
+  padding: 10px 10px;
   border: 1px solid ${colors.pointColor};
   border-radius: 5px;
   background: ${colors.pointColor};
@@ -36,6 +36,8 @@ export const LoginBtnStyle = styled.button`
   color: ${colors.blackColor};
   font-size: 20px;
   font-weight: bolder;
+  padding-left: 10px;
+  padding-right: 10px;
 
   &:hover {
     background: ${colors.blackColor};
@@ -45,7 +47,7 @@ export const LoginBtnStyle = styled.button`
 `;
 
 export const RegistBtnStyle = styled.button`
-  padding: 10px 5px;
+  padding: 10px 10px;
   border: 1px solid ${colors.blueColor};
   border-radius: 5px;
   background: ${colors.blueColor};
@@ -67,7 +69,7 @@ export const Loginned = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 550px;
+  width: 570px;
 `;
 
 export const LoginMsg = styled.div`
@@ -80,7 +82,7 @@ export const LoginMsg = styled.div`
 `;
 
 export const MyPageBtn = styled.button`
-  padding: 10px 5px;
+  padding: 10px 10px;
   border: 1px solid ${colors.midGrayColor};
   border-radius: 5px;
   background: ${colors.midGrayColor};
@@ -98,7 +100,7 @@ export const MyPageBtn = styled.button`
 `;
 
 export const LogoutBtn = styled.button`
-  padding: 10px 5px;
+  padding: 10px 10px;
   border: 1px solid ${colors.redColor};
   border-radius: 5px;
   background: ${colors.redColor};

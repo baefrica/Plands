@@ -4,42 +4,35 @@ import { colors } from "styles/variables";
 
 export const BlackNav = styled.div`
   display: flex;
-  align-items: center;
-  background: ${colors.whiteColor};
+  flex-direction: row;
+  position: sticky;
+  top: 0;
   width: 100%;
   height: 50px;
-  font-weight: 500;
-  font-size: 20px;
-  box-sizing: border-box;
-  border-top: 3px solid ${colors.blackColor};
-  border-bottom: 3px solid ${colors.blackColor};
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  background: ${colors.whiteColor};
+  z-index: 15;
+  border-bottom: 2px solid ${colors.pointColor};
+
+  span {
+  }
 `;
 
 export const NavStyle = styled(NavLink)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  text-decoration: none;
   color: ${colors.blackColor};
-  text-align: center;
-  border-radius: 5px;
-  padding: 7px;
   font-size: 20px;
-  font-weight: bold;
-  margin-left: 30px;
-  margin-right: 20px;
-  outline: invert;
-
-  &:link {
-    transition: 0.5s;
-    text-decoration: none;
-  }
+  font-weight: bolder;
+  letter-spacing: 0.1rem;
+  transition: all 0.5s ease;
 
   &:hover {
     color: ${colors.whiteColor};
-    background-color: ${colors.skyblueColor};
-  }
-
-  &.active {
-    font-weight: bold;
-    color: ${colors.whiteColor};
-    background-color: ${colors.skyblueColor};
-    position: relative;
+    background: ${colors.blackColor};
+    transition: all 0.5s ease;
   }
 `;
