@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const OpenViduWrapper = styled.div`
   padding: 15px;
-  background-color: #455662;
+  background: linear-gradient(#141e30, #243b55);
 `;
 
 export const VideoContainer = styled.div`
