@@ -8,12 +8,11 @@ import {
 } from "./LogInPage.style";
 import Header from "components/header/Header";
 import Nav from "components/nav/Nav";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { LOGIN_TOKEN } from "store/slice/userSlice";
 import { useNavigate } from "react-router-dom";
-
-const URL = "http://localhost:9999/baekgu";
+import { login } from "utils/api/sessionApi";
+import { getMemberDetail } from "utils/api/memberApi";
 
 const LogInPage = () => {
   const [id, setId] = useState("");
@@ -42,24 +41,11 @@ const LogInPage = () => {
     } else if (pw === "") {
       alert("패스워드를 입력하세요");
     } else {
-      axios
-        .post(
-          `${URL}/session/login`,
-          {
-            id: id,
-            pwd: pw,
-          },
-
-          {
-            headers: {
-              // HTTP 메시지(요청과 응답 모두)에 담겨 보내는 데이터의 형식을 알려주는 헤더
-              "Content-Type":
-                "application/json; charset=utf-8",
-              // 브라우저의 origin 에 상관없이 모든 리소스에 접근하도록 허용
-              "Access-Control-Allow-Origin": "*",
-            },
-          }
-        )
+      // 로그인 요청
+      login({
+        id: id,
+        pwd: pw,
+      })
         .then((res) => {
           alert("로그인 되었습니다");
 
@@ -72,13 +58,8 @@ const LogInPage = () => {
             LOGIN_TOKEN([accessToken, refreshToken])
           );
 
-          axios({
-            url: `${URL}/member`,
-            method: "get",
-            headers: {
-              "X-AUTH-TOKEN": accessToken,
-            },
-          }).then((res) => {
+          // 멤버 정보 요청
+          getMemberDetail(accessToken).then((res) => {
             navigate("/");
           });
         })

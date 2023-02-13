@@ -21,6 +21,11 @@ import {
 } from "./RegisterPage.style";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { regist } from "utils/api/sessionApi";
+import {
+  emailSend,
+  verifyAuthNumber,
+} from "utils/api/emailApi";
 
 const URL = "http://localhost:9999/baekgu";
 
@@ -80,11 +85,15 @@ const RegisterPage = () => {
 
     if (!isLength(cur, { min: 8, max: 16 })) {
       setPwdErrorLength(true);
-    } else setPwdErrorLength(false);
+    } else {
+      setPwdErrorLength(false);
+    }
 
     if (!passwordRegex.test(cur)) {
       setPwdErrorSpecial(true);
-    } else setPwdErrorSpecial(false);
+    } else {
+      setPwdErrorSpecial(false);
+    }
     setPwd(cur);
   };
 
@@ -93,7 +102,9 @@ const RegisterPage = () => {
 
     if (pwd !== cur) {
       setPwdValidError(true);
-    } else setPwdValidError(false);
+    } else {
+      setPwdValidError(false);
+    }
 
     setPwdValid(cur);
   };
@@ -102,15 +113,21 @@ const RegisterPage = () => {
   const isKorean = (txt) => {
     const nameReg = /^[가-힣]{1,5}$/;
 
-    if (nameReg.test(txt)) return true;
-    else return false;
+    if (nameReg.test(txt)) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   const onChangeName = (e) => {
     const cur = e.target.value;
 
-    if (!isKorean(cur)) setNameErrorKorean(true);
-    else setNameErrorKorean(false);
+    if (!isKorean(cur)) {
+      setNameErrorKorean(true);
+    } else {
+      setNameErrorKorean(false);
+    }
 
     setName(cur);
   };
@@ -121,8 +138,11 @@ const RegisterPage = () => {
     const nicknameReg =
       /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{1,10}$/;
 
-    if (!nicknameReg.test(cur)) setNicknameError(true);
-    else setNicknameError(false);
+    if (!nicknameReg.test(cur)) {
+      setNicknameError(true);
+    } else {
+      setNicknameError(false);
+    }
 
     setNickname(cur);
   };
@@ -144,8 +164,11 @@ const RegisterPage = () => {
   const onChangePNumber = (e) => {
     const cur = e.target.value;
 
-    if (!isNumeric(cur)) setPNumberError(true);
-    else setPNumberError(false);
+    if (!isNumeric(cur)) {
+      setPNumberError(true);
+    } else {
+      setPNumberError(false);
+    }
 
     setPNumber(cur);
   };
@@ -154,8 +177,11 @@ const RegisterPage = () => {
   const onChangeEmail = (e) => {
     const cur = e.target.value;
 
-    if (!isEmail(cur)) setEmailError(true);
-    else setEmailError(false);
+    if (!isEmail(cur)) {
+      setEmailError(true);
+    } else {
+      setEmailError(false);
+    }
 
     setEmail(cur);
   };
@@ -182,12 +208,8 @@ const RegisterPage = () => {
 
   const onClickEmailSendBtn = () => {
     if (!emailError) {
-      axios
-        .post(`${URL}/email/send`, email, {
-          headers: {
-            "Content-Type": "text/plain",
-          },
-        })
+      // 이메일 인증번호 발송 요청
+      emailSend(email)
         .then((res) => {
           setEauthBtn(true);
           setEmailInput(true);
@@ -200,19 +222,11 @@ const RegisterPage = () => {
   };
 
   const onHandleEauthSuccess = () => {
-    axios
-      .post(
-        `${URL}/email/auth`,
-        {
-          email: email,
-          authCode: eauthNum,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
+    // 이메일 인증번호 확인 요청
+    verifyAuthNumber({
+      email: email,
+      authCode: eauthNum,
+    })
       .then((res) => {
         alert("인증에 성공하였습니다");
         setEauthSuccess(true);
@@ -235,7 +249,8 @@ const RegisterPage = () => {
     } else {
       alert("회원가입에 성공하였습니다.");
 
-      axios.post(`${URL}/session/regist`, {
+      // 회원가입 요청
+      regist({
         id: id,
         pwd: pwd,
         name: name,
