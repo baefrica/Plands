@@ -4,7 +4,8 @@ import { colors } from "styles/variables";
 export const Container = styled.div`
   width: 100%;
   height: 1000px;
-  background: ${colors.blackColor};
+  background: linear-gradient(#141e30, #243b55);
+  /* background: ${colors.blackColor}; */
   border-bottom: 10px solid black;
 `;
 

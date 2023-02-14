@@ -9,11 +9,13 @@ export const Container = styled.div`
 `;
 
 export const StyledSlider = styled(Slider)`
+  width: 100%;
   .slick-slide div {
     outline: none;
   }
 
   .slick-arrow {
+    position: absolute;
     /* 두 화살표의 공통 요소 */
     width: 10px;
     height: 10px;
@@ -23,6 +25,8 @@ export const StyledSlider = styled(Slider)`
       }
     }
   }
+
+  margin-right: 0;
 `;
 
 export const ImgContainer = styled.div`
