@@ -1,12 +1,5 @@
 import styled from "styled-components";
 import { colors } from "styles/variables";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  solid,
-  regular,
-  brands,
-  icon,
-} from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
 
 export const SideNavWrapper = styled.div`
   background: linear-gradient(#141e30, #243b55);
