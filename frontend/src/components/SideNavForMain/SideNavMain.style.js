@@ -1,7 +1,15 @@
 import styled from "styled-components";
 import { colors } from "styles/variables";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  solid,
+  regular,
+  brands,
+  icon,
+} from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
+
 export const SideNavWrapper = styled.div`
-  background: ${colors.blackColor};
+  background: linear-gradient(#141e30, #243b55);
   width: 300px;
   text-align: center;
 `;
@@ -14,6 +22,7 @@ export const SideNavTreeWrapper = styled.div`
 `;
 
 export const SideNavTree = styled.div`
+  width: 100px;
   transform: translateX(50%);
 `;
 

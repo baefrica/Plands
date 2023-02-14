@@ -23,8 +23,8 @@ const SideNavMain = () => {
             <S.SideNavDiv onClick={() => handleClick("serviceResult")}>
               <S.SideNavList>결과</S.SideNavList>
             </S.SideNavDiv>
-            <S.SideNavDiv onClick={() => handleClick("serviceShare")}>
-              <S.SideNavList>공유</S.SideNavList>
+            <S.SideNavDiv onClick={() => handleClick("topHeader")}>
+              <S.SideNavList>맨위로</S.SideNavList>
             </S.SideNavDiv>
           </S.SideNavUl>
         </S.SideNavTree>

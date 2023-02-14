@@ -4,12 +4,13 @@ export const PlanWrapper = styled.div`
   width: 250px;
   height: 200px;
   border-radius: 15px;
-  background: linear-gradient(
-    180deg,
-    #fcfcfc 71.87%,
-    rgba(0, 0, 0, 0.6) 79.17%
-  );
+  background: linear-gradient(#141e30, #243b55);
   box-shadow: 5px 5px 4px 2px rgba(0, 0, 0, 0.25);
+
+  &:hover {
+    cursor: pointer;
+    background: linear-gradient(#141e30, #335c8a);
+  }
 `;
 
 export const PlanCardHeader = styled.div`

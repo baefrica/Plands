@@ -59,7 +59,7 @@ const Header = () => {
   };
 
   return (
-    <S.HeaderDiv>
+    <S.HeaderDiv id="topHeader">
       <S.LogoLink to="/">
         <S.LogoImg src={logo} />
       </S.LogoLink>

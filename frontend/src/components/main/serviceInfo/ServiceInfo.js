@@ -45,11 +45,6 @@ const ServiceInfo = () => {
           <S.InfoMsg>PDF 결과물이 들어갈 페이지</S.InfoMsg>
         </S.ContentWrapper>
       </S.Container>
-      <S.Container id="serviceShare">
-        <S.ContentWrapper>
-          <S.InfoMsg>공유 작업이 된다면 넣고 안되면 뺄 예정</S.InfoMsg>
-        </S.ContentWrapper>
-      </S.Container>
     </S.ServiceInfoWrapper>
   );
 };
