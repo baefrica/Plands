@@ -8,15 +8,14 @@ function PlanCard({ uuid, title, setDescModalToggle, setSelectedPlan }) {
     // 입장 시에는 뒤에 uuid 붙여서 라우팅\
     setDescModalToggle(true);
     setSelectedPlan({ uuid, title });
-    console.log("-------플랜입니다------", uuid);
   };
   return (
     <S.PlanWrapper onClick={handlePlancardOnClick}>
       <S.PlanCardHeader></S.PlanCardHeader>
-      <S.PlanCardBody></S.PlanCardBody>
-      <S.PlanCardFooter>
+      <S.PlanCardBody>
         <S.PlanTitle>{title}</S.PlanTitle>
-      </S.PlanCardFooter>
+      </S.PlanCardBody>
+      <S.PlanCardFooter></S.PlanCardFooter>
     </S.PlanWrapper>
   );
 }

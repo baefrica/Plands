@@ -6,7 +6,7 @@ export const ContentWrapper = styled.div`
 `;
 export const PlanListWrapper = styled.div`
   margin: auto;
-  width: 80%;
+  width: 85%;
   margin-top: 50px;
   padding: 50px;
   /* padding-left: 50px; */
