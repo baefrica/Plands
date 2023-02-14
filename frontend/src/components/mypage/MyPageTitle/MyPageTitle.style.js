@@ -3,22 +3,13 @@ import { colors } from "styles/variables";
 
 export const Container = styled.div`
   background: linear-gradient(#141e30, #243b55);
+  border-bottom: 2px solid ${colors.pointColor};
+`;
+
+export const Title = styled.div`
+  font-size: 30px;
+  font-weight: bolder;
+  line-height: 80px;
   color: ${colors.whiteColor};
-  font-weight: bold;
-
-  #mypage {
-    height: 40px;
-    font-size: 30px;
-    line-height: 80px;
-    color: ${colors.whiteColor};
-    margin-left: 40px;
-  }
-
-  #title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 45px;
-    padding-bottom: 20px;
-  }
+  margin-left: 40px;
 `;

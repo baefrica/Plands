@@ -1,27 +1,27 @@
 import React, { useState } from "react";
-import { Container } from "./MyPageTitle.style";
+import { Container, Title } from "./MyPageTitle.style";
 import { useSelector } from "react-redux";
 import { getMemberDetail } from "utils/api/memberApi";
 
 const MyPageTitle = () => {
-  const [nickName, setNickName] = useState("");
+  // const [nickName, setNickName] = useState("");
 
-  const accessToken = useSelector((state) => {
-    return state.user.accessToken;
-  });
+  // const accessToken = useSelector((state) => {
+  //   return state.user.accessToken;
+  // });
 
-  if (accessToken !== null) {
-    // 멤버 정보 요청
-    getMemberDetail(accessToken).then((res) => {
-      setNickName(res.data.nickname);
-    });
-  }
+  // if (accessToken !== null) {
+  //   // 멤버 정보 요청
+  //   getMemberDetail(accessToken).then((res) => {
+  //     setNickName(res.data.nickname);
+  //   });
+  // }
 
   return (
     <div>
       <Container>
-        <div id="mypage">My Page</div>
-        <div id="title">{nickName}님의 마이 페이지</div>
+        <Title>My Page</Title>
+        {/* <div id="title">{nickName}님의 마이 페이지</div> */}
       </Container>
     </div>
   );
