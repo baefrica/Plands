@@ -10,8 +10,6 @@ export const ModalWrapper = styled.div`
   bottom: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.8);
-
-  z-index: 10;
 `;
 
 export const ModalFormDiv = styled.div`
