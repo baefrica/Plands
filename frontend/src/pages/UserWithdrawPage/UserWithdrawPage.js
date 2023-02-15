@@ -8,7 +8,6 @@ import { NavAndMain } from "./UserWithdrawPage.style";
 const UserWithdrawPage = () => {
   return (
     <div>
-      <Header />
       <Nav />
       <MyPageTitle />
       <NavAndMain>

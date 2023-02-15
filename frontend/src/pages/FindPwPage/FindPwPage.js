@@ -53,7 +53,6 @@ const FindPwPage = () => {
 
   return (
     <div>
-      <Header />
       <Nav />
       <Container>
         <FindPwBlock>

@@ -8,7 +8,6 @@ import { NavAndMain } from "./UserInfoUpdatePage.style";
 const UserInfoUpdatePage = () => {
   return (
     <div>
-      <Header />
       <Nav />
       <MyPageTitle />
       <NavAndMain>

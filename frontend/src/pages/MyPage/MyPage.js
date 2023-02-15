@@ -8,7 +8,6 @@ import { NavAndMain } from "./MyPage.style";
 const MyPage = () => {
   return (
     <div>
-      <Header />
       <Nav />
       <MyPageTitle />
       <NavAndMain>

@@ -8,7 +8,6 @@ import { NavAndMain } from "./PasswordChangePage.style";
 const PasswordChangePage = () => {
   return (
     <div>
-      <Header />
       <Nav />
       <MyPageTitle />
       <NavAndMain>
