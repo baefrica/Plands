@@ -171,10 +171,7 @@ const TravelPlanTemplate = ({ room, isShow }) => {
               }}
             />
           ) : (
-            <h1>
-              <br />
-              {travelObj.travelTitle}
-            </h1>
+            <S.PdfTitle> {travelObj.travelTitle}</S.PdfTitle>
           )}
         </S.TravelTitleWrapper>
         <S.CustomHr />

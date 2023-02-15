@@ -2,7 +2,6 @@ import styled from "styled-components";
 import TemplateBackground from "./img/background.jpg";
 
 export const TemplateWrapper = styled.div`
-  padding-top: 50px;
   width: 100%;
   height: 100%;
   // background-image: url(${TemplateBackground});
@@ -90,6 +89,7 @@ export const ListAddButton = styled.button`
 
 export const TravelTitleWrapper = styled.div`
   text-align: center;
+  padding-top: 100px;
   margin-bottom: 100px;
 `;
 export const CustomHr = styled.hr`
@@ -170,4 +170,9 @@ export const ConfirmButton = styled.button`
     cursor: pointer;
     background-color: greenyellow;
   }
+`;
+
+export const PdfTitle = styled.div`
+  font-size: 70px;
+  font-weight: bolder;
 `;

@@ -48,10 +48,6 @@ const GoPlanPage = () => {
         unit: "mm",
         format: "a1",
       });
-      // const imgProperties = pdf.getImageProperties(data);
-      // const pdfWidth = pdf.internal.pageSize.getWidth();
-      // const pdfHeight = (imgProperties.height * pdfWidth) / imgProperties.width;
-
       pdf.addImage(data, "PNG", 0, 0, 600, 850);
       pdf.save("print.pdf");
     }, 1);

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const SideNavWrapper = styled.div`
   background-color: #cbcfd4;
+
   width: 300px;
   text-align: center;
 `;

@@ -12,7 +12,7 @@ export const MainContent = styled.div`
 export const StickySpace = styled.div`
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 5;
 `;
 export const PdfWrapper = styled.div`
   width: 100%;
