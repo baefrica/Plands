@@ -1,5 +1,5 @@
 import { OpenVidu } from "openvidu-browser";
-
+import Loading from "components/loading/Loading";
 import axios from "axios";
 import React, { useState, useCallback, useEffect } from "react";
 import UserVideoComponent from "./UserVideoComponent";
@@ -19,7 +19,7 @@ const VideoSpace = ({ mySessionId, myUserName }) => {
   const [publisher, setPublisher] = useState(undefined);
   const [currentVideoDevice, setCurrentVideoDevice] = useState(undefined);
   const [subscribers, setSubscribers] = useState([]);
-
+  const [loadOV, setLoadOV] = useState(true);
   const [OV, setOV] = useState(new OpenVidu());
 
   useEffect(() => {
@@ -28,6 +28,7 @@ const VideoSpace = ({ mySessionId, myUserName }) => {
     setSession(temp);
     joinSessionNext(temp);
     window.addEventListener("beforeunload", onbeforeunload);
+
     return () => {
       window.removeEventListener("beforeunload", onbeforeunload);
       console.log("오픈비두 종료");
@@ -100,6 +101,7 @@ const VideoSpace = ({ mySessionId, myUserName }) => {
           );
         });
     });
+    setLoadOV(false);
   };
 
   const addSubs = (mySession, event) => {
@@ -222,6 +224,35 @@ const VideoSpace = ({ mySessionId, myUserName }) => {
   };
   return (
     <OpenViduWrapper>
+      {loadOV ? (
+        <Loading />
+      ) : (
+        <SessionsComponent>
+          {mainStreamManager !== undefined ? (
+            <MainVideo>
+              <UserVideoComponent streamManager={mainStreamManager} />
+            </MainVideo>
+          ) : null}
+          <VideoContainer>
+            {subscribers.map((sub) => console.log(sub))}
+            {subscribers.map((sub, i) => (
+              <div key={sub.id}>
+                <span>{sub.id}</span>
+                <UserVideoComponent key={sub.id} streamManager={sub} />
+              </div>
+            ))}
+          </VideoContainer>
+        </SessionsComponent>
+      )}
+    </OpenViduWrapper>
+  );
+};
+
+export default VideoSpace;
+/*
+
+ <OpenViduWrapper>
+      {loadOV ? <Loading /> : null}
       {session !== undefined ? (
         <SessionsComponent>
           {mainStreamManager !== undefined ? (
@@ -241,7 +272,4 @@ const VideoSpace = ({ mySessionId, myUserName }) => {
         </SessionsComponent>
       ) : null}
     </OpenViduWrapper>
-  );
-};
-
-export default VideoSpace;
+    */

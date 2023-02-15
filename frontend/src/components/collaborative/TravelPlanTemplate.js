@@ -6,7 +6,7 @@ import * as S from "./TravelPlanTemplate.style";
 import KakaoMap from "./KakaoMap";
 import QRCodeGenerator from "./QRCodeGenerator";
 
-const TravelPlanTemplate = ({ room, isShow }) => {
+const TravelPlanTemplate = ({ room, isShow, setLoadCollabo }) => {
   const [travelStart, setTravelStart] = useState("");
   const [travelStay, setTravelStay] = useState("");
   const [travelItems, setTravelItems] = useState([]);
@@ -19,15 +19,16 @@ const TravelPlanTemplate = ({ room, isShow }) => {
 
   useEffect(() => {
     const indexeddbProvider = new IndexeddbPersistence(room, doc);
+
     indexeddbProvider.whenSynced.then(() => {
       console.log("loaded data from indexed db");
     });
-
     const wsProvider = new WebsocketProvider(
       "wss://i8b109.p.ssafy.io:1233",
       room,
       doc
     );
+
     const travelObjType = doc.getMap("travelObj");
     const travelItemsType = doc.getMap("travelItems");
     const travelContentsType = doc.getMap("travelContent");
