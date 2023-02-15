@@ -21,6 +21,15 @@ const UserInfoUpdateMain = () => {
   const [pNumber, setPNumber] = useState("");
   const [email, setEmail] = useState("");
 
+  const [genderKor, setGenderKor] = useState("");
+  useEffect(() => {
+    if (gender === "M") {
+      setGenderKor("남성");
+    } else {
+      setGenderKor("여성");
+    }
+  }, [gender]);
+
   const accessToken = useSelector((state) => {
     return state.user.accessToken;
   });
@@ -149,28 +158,35 @@ const UserInfoUpdateMain = () => {
       <T.table>
         <T.tr>
           <T.td>
+            <label>ID</label>
+          </T.td>
+          <T.td>
+            <input type="text" value={id} disabled />
+          </T.td>
+        </T.tr>
+        <T.tr>
+          <T.td>
             <label>NAME</label>
           </T.td>
           <T.td>
-            <div>
-              <input
-                type="text"
-                required
-                value={name}
-                onChange={onChangeName}
-              />
-              {!nameErrorKorean && name && (
-                <S.CorrectInput>
-                  🟢&nbsp;올바른 입력입니다.
-                </S.CorrectInput>
-              )}
-              {nameErrorKorean && name && (
-                <S.InvalidInput>
-                  ❌&nbsp;이름은 한글로 1~5자까지
-                  입력가능합니다.
-                </S.InvalidInput>
-              )}
-            </div>
+            <input
+              type="text"
+              id="input"
+              required
+              value={name}
+              onChange={onChangeName}
+            />
+            {!nameErrorKorean && name && (
+              <S.CorrectInput>
+                🟢&nbsp;올바른 입력입니다.
+              </S.CorrectInput>
+            )}
+            {nameErrorKorean && name && (
+              <S.InvalidInput>
+                ❌&nbsp;이름은 한글로 1~5자까지
+                입력가능합니다.
+              </S.InvalidInput>
+            )}
           </T.td>
         </T.tr>
         <T.tr>
@@ -178,25 +194,24 @@ const UserInfoUpdateMain = () => {
             <label>NICKNAME</label>
           </T.td>
           <T.td>
-            <div>
-              <input
-                type="text"
-                required
-                value={nickName}
-                onChange={onChangeNickName}
-              />
-              {!nickNameError && nickName && (
-                <S.CorrectInput>
-                  🟢&nbsp;올바른 입력입니다.
-                </S.CorrectInput>
-              )}
-              {nickNameError && nickName && (
-                <S.InvalidInput>
-                  ❌&nbsp;닉네임은 한글,영어,숫자(최대10자)
-                  이루어져야합니다.
-                </S.InvalidInput>
-              )}
-            </div>
+            <input
+              type="text"
+              id="input"
+              required
+              value={nickName}
+              onChange={onChangeNickName}
+            />
+            {!nickNameError && nickName && (
+              <S.CorrectInput>
+                🟢&nbsp;올바른 입력입니다.
+              </S.CorrectInput>
+            )}
+            {nickNameError && nickName && (
+              <S.InvalidInput>
+                ❌&nbsp;닉네임은 한글,영어,숫자(최대10자)
+                이루어져야합니다.
+              </S.InvalidInput>
+            )}
           </T.td>
         </T.tr>
         <T.tr>
@@ -204,10 +219,26 @@ const UserInfoUpdateMain = () => {
             <label>GENDER</label>
           </T.td>
           <T.td>
+            <select
+              name="gender"
+              id="genderSelect"
+              value={gender}
+              onChange={(e) => {
+                setGender(
+                  e.target.selectedOptions[0].value
+                );
+              }}
+              required
+            >
+              <option value="">성별을 선택해주세요</option>
+              <option value="M">남성</option>
+              <option value="W">여성</option>
+            </select>
             <input
               type="text"
+              id="input"
               required
-              value={gender}
+              value={genderKor}
               onChange={(e) => {
                 setGender(e.target.value);
               }}
@@ -216,11 +247,12 @@ const UserInfoUpdateMain = () => {
         </T.tr>
         <T.tr>
           <T.td>
-            <label>BIRTHDAY</label>
+            <label id="label">BIRTHDAY</label>
           </T.td>
           <T.td>
             <input
               type="text"
+              id="input"
               required
               value={birthDay}
               onChange={(e) => {
@@ -231,12 +263,13 @@ const UserInfoUpdateMain = () => {
         </T.tr>
         <T.tr>
           <T.td>
-            <label>PHONE NUMBER</label>
+            <label id="label">PHONE NUMBER</label>
           </T.td>
           <T.td>
             <div>
               <input
                 type="text"
+                id="input"
                 required
                 value={pNumber}
                 onChange={onChangePNumber}
@@ -256,7 +289,7 @@ const UserInfoUpdateMain = () => {
         </T.tr>
         <T.tr>
           <T.td>
-            <label>EMAIL</label>
+            <label id="label">EMAIL</label>
           </T.td>
           <T.td>
             <input type="text" value={email} disabled />

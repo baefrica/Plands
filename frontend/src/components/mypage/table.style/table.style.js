@@ -8,45 +8,51 @@ export const table = styled.div`
 
 export const tr = styled.div`
   display: flex;
-  padding-top: 30px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+
+  #input {
+    color: black;
+  }
 `;
 
 export const td = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
   font-size: 25px;
-  position: relative;
   transition: all 0.5s ease-in-out;
   font-weight: bolder;
-  color: #03e9f4;
+  color: #141e30;
   padding-right: 5px;
-  padding-left: 10px;
   padding-bottom: 5px;
+  width: 320px;
+
+  label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   input {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     font-size: 20px;
-    font-weight: bolder;
     border: none;
-    width: 89%;
     padding: 20px 20px;
-    height: 15px;
     border-radius: 5px;
-    border-bottom: 2px solid #03e9f4;
+    border-bottom: 2px solid #141e30;
     overflow: hidden;
     transition: all 0.5s ease-in-out;
-    color: #03e9f4;
-
-    :focus {
-      outline: 0;
-      border: 2px solid #03e9f4;
-    }
+    color: #141e30;
 
     &:hover {
-      border: 2px solid #03e9f4;
+      border: 2px solid #141e30;
+    }
+
+    #input {
+      // color: yellow;
     }
   }
 `;

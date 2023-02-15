@@ -5,15 +5,12 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(#141e30, #243b55);
+  // background: linear-gradient(#141e30, #243b55);
   width: 100%;
   height: 500px;
 `;
 
 export const Form = styled.div`
-  background-color: ${colors.blackColor};
-  border-radius: 5px;
-  border: 3px solid ${colors.blackColor};
   width: 500px;
   height: 60px;
   padding: 50px;
@@ -25,8 +22,7 @@ export const Label = styled.div`
   position: relative;
   transition: all 0.5s ease-in-out;
   font-weight: bolder;
-  color: #03e9f4;
-  background-color: ${colors.blackColor};
+  color: #141e30;
   padding-right: 10px;
   padding-left: 10px;
 `;

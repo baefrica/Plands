@@ -6,18 +6,16 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(#141e30, #243b55);
   width: 100%;
 `;
 
 export const CorrectInput = styled.div`
   font-size: 17px;
   font-weight: bolder;
-  color: ${colors.greenColor};
+  color: green;
+  text-shadow: 2px 2px 2px ${colors.greenColor};
   text-align: left;
-  margin-left: 10px;
-  margin-top: 10px;
-  padding-bottom: 10px;
+  margin-left: 101x;
 `;
 
 export const InvalidInput = styled.div`
