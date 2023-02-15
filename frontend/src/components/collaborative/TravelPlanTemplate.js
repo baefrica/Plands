@@ -240,15 +240,16 @@ const TravelPlanTemplate = ({ room, isShow }) => {
             <S.CustomH1># 여행 출발지</S.CustomH1>
           </S.HWrapper>
 
+          {isShow && travelStart ? (
+            <S.CustomInputText
+              type="text"
+              value={travelStart}
+              onChange={handleTravelStartChange}
+              readOnly
+            />
+          ) : null}
           <S.CustomMap>
-            {isShow ? (
-              <S.CustomInputText
-                type="text"
-                value={travelStart}
-                onChange={handleTravelStartChange}
-                readOnly
-              />
-            ) : (
+            {!isShow && travelStart ? (
               <>
                 {travelStart}
                 <br />
@@ -256,7 +257,7 @@ const TravelPlanTemplate = ({ room, isShow }) => {
                   initialUrl={`https://map.naver.com/v5/search/${travelStart}`}
                 />
               </>
-            )}
+            ) : null}
 
             {isShow ? (
               <KakaoMap handleChange={handleTravelStartChange} />
@@ -270,14 +271,15 @@ const TravelPlanTemplate = ({ room, isShow }) => {
           </S.HWrapper>
 
           <S.CustomMap>
-            {isShow ? (
+            {isShow && travelStay ? (
               <S.CustomInputText
                 type="text"
                 value={travelStay}
                 onChange={handleTravelStayChange}
                 readOnly
               />
-            ) : (
+            ) : null}
+            {!isShow && travelStay ? (
               <>
                 {travelStay}
                 <br />
@@ -285,7 +287,7 @@ const TravelPlanTemplate = ({ room, isShow }) => {
                   initialUrl={`https://map.naver.com/v5/search/${travelStay}`}
                 />
               </>
-            )}
+            ) : null}
 
             {isShow ? <KakaoMap handleChange={handleTravelStayChange} /> : null}
           </S.CustomMap>
