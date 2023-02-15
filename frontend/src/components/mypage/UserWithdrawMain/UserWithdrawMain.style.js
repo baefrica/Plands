@@ -37,6 +37,7 @@ export const WithdrawBtn = styled.button`
   color: ${colors.blackColor};
   font-size: 20px;
   font-weight: bolder;
+  border: none;
 
   &:hover {
     background: #8a3d3f;

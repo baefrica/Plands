@@ -23,13 +23,14 @@ export const HeaderButtonDiv = styled.div`
   grid-column: 24;
   display: flex;
   align-items: center;
-  width: 210px;
+  width: 260px;
 `;
 
 export const LoginBtnStyle = styled.button`
-  padding: 10px 10px;
+  padding: 15px;
   border-radius: 5px;
   background: ${colors.pointColor};
+  width: 100px;
   margin-left: 5px;
   margin-right: 5px;
   color: ${colors.blackColor};
@@ -46,7 +47,7 @@ export const LoginBtnStyle = styled.button`
 `;
 
 export const RegistBtnStyle = styled.button`
-  padding: 10px 10px;
+  padding: 15px;
   border-radius: 5px;
   background: ${colors.blueColor};
   margin-left: 5px;
@@ -80,7 +81,7 @@ export const LoginMsg = styled.div`
 `;
 
 export const MyPageBtn = styled.button`
-  padding: 10px 10px;
+  padding: 15px;
   border-radius: 5px;
   background: ${colors.midGrayColor};
   margin-left: 5px;
@@ -97,7 +98,7 @@ export const MyPageBtn = styled.button`
 `;
 
 export const LogoutBtn = styled.button`
-  padding: 10px 10px;
+  padding: 15px;
   border-radius: 5px;
   background: ${colors.redColor};
   margin-left: 5px;

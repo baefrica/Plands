@@ -15,7 +15,7 @@ export const Form = styled.div`
   border-radius: 5px;
   border: 3px solid ${colors.blackColor};
   width: 500px;
-  padding: 50px;
+  padding: 100px 50px 100px 50px;
   margin-bottom: 5rem;
 `;
 
@@ -80,17 +80,17 @@ export const InvalidInput = styled.div`
 
 export const ButtonDiv = styled.div`
   display: flex;
-  width: 300px;
-  justify-content: space-around;
+  text-align: center;
+  justify-content: center;
+  margin-top: 50px;
 `;
 
 export const CancelBtn = styled.button`
-  padding: 10px 10px;
+  padding: 20px;
   border-radius: 5px;
   width: 90px;
   background: ${colors.redColor};
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-right: 25px;
   color: ${colors.blackColor};
   font-size: 20px;
   font-weight: bolder;
@@ -103,11 +103,10 @@ export const CancelBtn = styled.button`
 `;
 
 export const ChangeBtn = styled.button`
-  padding: 10px 10px;
+  padding: 20px;
   border-radius: 5px;
   background: ${colors.blueColor};
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 25px;
   color: ${colors.blackColor};
   font-size: 20px;
   font-weight: bolder;
