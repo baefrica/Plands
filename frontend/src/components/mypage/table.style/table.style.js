@@ -50,9 +50,25 @@ export const td = styled.div`
     &:hover {
       border: 2px solid #141e30;
     }
+  }
 
-    #input {
-      // color: yellow;
+  select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 20px;
+    border: none;
+    padding: 20px;
+    border-radius: 5px;
+    border-bottom: 2px solid #141e30;
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+    color: #141e30;
+    width: 307px;
+
+    &:hover {
+      border: 2px solid #141e30;
     }
   }
 `;

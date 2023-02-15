@@ -110,6 +110,8 @@ const UserInfoUpdateMain = () => {
       return false;
     } else if (pNumberError) {
       return false;
+    } else if (gender === "") {
+      return false;
     } else {
       return true;
     }
@@ -234,15 +236,6 @@ const UserInfoUpdateMain = () => {
               <option value="M">남성</option>
               <option value="W">여성</option>
             </select>
-            <input
-              type="text"
-              id="input"
-              required
-              value={genderKor}
-              onChange={(e) => {
-                setGender(e.target.value);
-              }}
-            />
           </T.td>
         </T.tr>
         <T.tr>

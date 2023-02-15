@@ -28,10 +28,11 @@ export const InvalidInput = styled.div`
 
 export const ButtonDiv = styled.div`
   display: flex;
+  align-items: center;
   width: 300px;
   justify-content: space-around;
-  margin-top: 30px;
-  margin-bottom: 30px;
+
+  margin-bottom: 150px;
 `;
 
 export const UpdateBtn = styled.button`
@@ -43,8 +44,8 @@ export const UpdateBtn = styled.button`
   color: ${colors.blackColor};
   font-size: 20px;
   font-weight: bolder;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding 20px;
+  border: none;
 
   &:hover {
     background: #4a7296;
@@ -62,6 +63,8 @@ export const CancelBtn = styled.button`
   color: ${colors.blackColor};
   font-size: 20px;
   font-weight: bolder;
+  padding 20px;
+  border: none;
 
   &:hover {
     background: #8a3d3f;
