@@ -16,8 +16,8 @@ const App = () => {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" exact element={<MainPage />} />
         <Route element={<MainLayout />}>
+          <Route path="/" exact element={<MainPage />} />
           <Route path="/plans" exact element={<ManagePlanPage />} />
           <Route path="/about" exact element={<AboutPage />} />
           <Route path="/regist" exact element={<RegisterPage />} />
