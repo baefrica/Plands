@@ -13,6 +13,15 @@ const MyPageMain = () => {
   const [pNumber, setPNumber] = useState("");
   const [email, setEmail] = useState("");
 
+  const [genderKor, setGenderKor] = useState("");
+  useEffect(() => {
+    if (gender === "M") {
+      setGenderKor("남성");
+    } else {
+      setGenderKor("여성");
+    }
+  }, [gender]);
+
   const accessToken = useSelector((state) => {
     return state.user.accessToken;
   });
@@ -34,6 +43,14 @@ const MyPageMain = () => {
       <T.table>
         <T.tr>
           <T.td>
+            <label>ID</label>
+          </T.td>
+          <T.td>
+            <input type="text" value={id} disabled />
+          </T.td>
+        </T.tr>
+        <T.tr>
+          <T.td>
             <label>NAME</label>
           </T.td>
           <T.td>
@@ -53,7 +70,7 @@ const MyPageMain = () => {
             <label>GENDER</label>
           </T.td>
           <T.td>
-            <input type="text" value={gender} disabled />
+            <input type="text" value={genderKor} disabled />
           </T.td>
         </T.tr>
         <T.tr>

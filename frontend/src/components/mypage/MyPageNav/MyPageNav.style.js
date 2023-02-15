@@ -5,8 +5,7 @@ import { colors } from "styles/variables";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  background: linear-gradient(#141e30, #243b55);
-  border-right: 2px solid ${colors.pointColor};
+  border-right: 5px solid #243b55;
   outline: invert;
   padding-top: 3%;
   width: 400px;
@@ -21,12 +20,12 @@ export const NavContent = styled(NavLink)`
   font-weight: bolder;
   padding: 20px;
   width: 70%;
-  color: ${colors.whiteColor};
+  color: #141e30;
 
   :hover {
     font-size: 20px;
-    background-color: #03e9f4;
-    color: linear-gradient(#141e30, #243b55);
+    background-color: #243b55;
+    color: ${colors.whiteColor};
   }
 
   &:link {

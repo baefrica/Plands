@@ -6,7 +6,11 @@ import { IconContext } from "react-icons";
 const MyPageNav = () => {
   return (
     <Container>
-      <IconContext.Provider value={{ color: "white" }}>
+      <IconContext.Provider
+        value={{
+          color: "#141e30",
+        }}
+      >
         <NavContent to="/mypage">
           <FaIcons.FaUserAlt id="icon" />
           회원 정보 보기
