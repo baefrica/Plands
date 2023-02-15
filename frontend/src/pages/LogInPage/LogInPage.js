@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   LoginBlock,
@@ -10,15 +10,16 @@ import Header from "components/header/Header";
 import Nav from "components/nav/Nav";
 import { useDispatch } from "react-redux";
 import { LOGIN_TOKEN } from "store/slice/userSlice";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { login } from "utils/api/sessionApi";
 import { getMemberDetail } from "utils/api/memberApi";
 import Swal from "sweetalert2";
+import { joinPlan } from "utils/api/planApi";
 
 const LogInPage = () => {
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
-
+  const { uuid } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -31,7 +32,12 @@ const LogInPage = () => {
   };
 
   const onClickRegistBtn = (e) => {
-    navigate("/regist");
+    console.log(uuid);
+    if (uuid) {
+      navigate(`/regist/${uuid}`);
+    } else {
+      navigate(`/regist`);
+    }
   };
 
   const onClickLoginBtn = (e) => {
@@ -63,19 +69,20 @@ const LogInPage = () => {
             timer: 3000,
           });
 
-          const accessToken =
-            res.data["access-token"].value;
-          const refreshToken =
-            res.data["refresh-token"].value;
+          const accessToken = res.data["access-token"].value;
+          const refreshToken = res.data["refresh-token"].value;
 
-          dispatch(
-            LOGIN_TOKEN([accessToken, refreshToken])
-          );
-
-          // 멤버 정보 요청
-          getMemberDetail(accessToken).then((res) => {
-            navigate("/");
-          });
+          dispatch(LOGIN_TOKEN([accessToken, refreshToken]));
+          if (uuid) {
+            joinPlan(accessToken, uuid).then((res) => {
+              navigate("/plans");
+            });
+          } else {
+            // 멤버 정보 요청
+            getMemberDetail(accessToken).then((res) => {
+              navigate("/");
+            });
+          }
         })
         .catch(() => {
           Swal.fire({
@@ -125,32 +132,20 @@ const LogInPage = () => {
               />
             </LoginContentRow>
             <LoginContentRow>
-              <button
-                id="logIn-btn"
-                onClick={onClickLoginBtn}
-              >
+              <button id="logIn-btn" onClick={onClickLoginBtn}>
                 로그인
               </button>
             </LoginContentRow>
             <LoginContentRow>
               <div id="footer">
                 <p>아직 회원이 아니신가요?</p>
-                <button
-                  id="signUp-btn"
-                  onClick={onClickRegistBtn}
-                >
+                <button id="signUp-btn" onClick={onClickRegistBtn}>
                   회원가입
                 </button>
-                <button
-                  id="findId-btn"
-                  onClick={onClickFindIdBtn}
-                >
+                <button id="findId-btn" onClick={onClickFindIdBtn}>
                   아이디 찾기
                 </button>
-                <button
-                  id="findPw-btn"
-                  onClick={onClickFindPwBtn}
-                >
+                <button id="findPw-btn" onClick={onClickFindPwBtn}>
                   비밀번호 찾기
                 </button>
               </div>

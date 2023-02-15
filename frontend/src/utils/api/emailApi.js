@@ -30,3 +30,13 @@ export const findPassword = async (data) => {
 
   return response;
 };
+
+export const inviteUser = async (accessToken, data) => {
+  const response = await client.post(`/email/invite`, data, {
+    headers: {
+      "X-AUTH-TOKEN": accessToken,
+    },
+  });
+
+  return response;
+};
