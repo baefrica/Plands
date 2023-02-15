@@ -17,7 +17,6 @@ import SideNavMain from "components/SideNavForMain/SideNavMain";
 const MainPage = () => {
   return (
     <div>
-      <Header id="mainTop" />
       <Nav />
       <Carousel />
       <S.InfoWrapper>
