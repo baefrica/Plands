@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const PlanWrapper = styled.div`
   width: 250px;
@@ -41,4 +41,25 @@ export const PlanTitle = styled.div`
   align-items: center;
   justify-content: center;
   color: #ffffff;
+`;
+
+export const backgroundColor = keyframes`
+  0% {
+    background-color: yellow;
+  }
+  50% {
+    background-color: orange;
+  }
+  100% {
+    background-color: yellow;
+  }
+`;
+
+export const NewTag = styled.div`
+  color: black;
+  border-radius: 10px 10px 0 0;
+  animation-name: ${backgroundColor};
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 `;

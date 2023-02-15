@@ -4,14 +4,41 @@ import * as S from "./KakaoMap.style";
 
 const { kakao } = window;
 
-const KakaoMap = ({ handleChange }) => {
+const KakaoMap = ({
+  handleChange,
+  point,
+  travelName,
+  handleSetPoint,
+  objKeyword,
+}) => {
   const [info, setInfo] = useState();
-  const [markers, setMarkers] = useState([]);
+  const [markers, setMarkers] = useState([
+    {
+      position: {
+        lat: point.lat,
+        lng: point.lng,
+      },
+      content: point.content,
+    },
+  ]);
+  useEffect(() => {
+    setMarkers([
+      {
+        position: {
+          lat: point.lat,
+          lng: point.lng,
+        },
+        content: point.content,
+      },
+    ]);
+  }, [point]);
+  console.log(point);
   const [map, setMap] = useState();
   const [keyword, setKeyword] = useState("");
   const [searchWord, setSearchWord] = useState("");
   const [confirmPlace, setConfirmPlace] = useState("");
-
+  const [confirmLat, setConfirmLat] = useState(point.lat);
+  const [confirmLng, setConfirmLng] = useState(point.lng);
   function enterKey(e) {
     if (e.keyCode === 13) {
       // 엔터키가 눌렸을 때 실행할 내용
@@ -27,9 +54,25 @@ const KakaoMap = ({ handleChange }) => {
 
   const handleConfirmOnClick = (e) => {
     handleChange(confirmPlace);
+    handleSetPoint(objKeyword, {
+      lat: confirmLat,
+      lng: confirmLng,
+      content: confirmPlace,
+    });
+    setMarkers([
+      {
+        position: {
+          lat: confirmLat,
+          lng: confirmLng,
+        },
+        content: confirmPlace,
+      },
+    ]);
   };
+
   useEffect(() => {
     if (!map) return;
+
     const ps = new kakao.maps.services.Places();
 
     ps.keywordSearch(searchWord, (data, status, _pagination) => {
@@ -58,6 +101,7 @@ const KakaoMap = ({ handleChange }) => {
       }
     });
   }, [map, searchWord]);
+
   return (
     <>
       <S.HWrapper>
@@ -79,8 +123,8 @@ const KakaoMap = ({ handleChange }) => {
       </S.HWrapper>
       <Map // 로드뷰를 표시할 Container
         center={{
-          lat: 37.566826,
-          lng: 126.9786567,
+          lat: point.lat,
+          lng: point.lng,
         }}
         style={{
           width: "57%",
@@ -92,6 +136,7 @@ const KakaoMap = ({ handleChange }) => {
         level={3}
         onCreate={setMap}
       >
+        {console.log(markers)}
         {markers.map((marker) => (
           <MapMarker
             key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}`}
@@ -99,6 +144,8 @@ const KakaoMap = ({ handleChange }) => {
             onClick={() => {
               setInfo(marker);
               setConfirmPlace(marker.content);
+              setConfirmLat(marker.position.lat);
+              setConfirmLng(marker.position.lng);
               //marker.content => 지역명
               // marker.place.lat or marker.place.lng
             }}
@@ -111,6 +158,15 @@ const KakaoMap = ({ handleChange }) => {
       </Map>
     </>
   );
+};
+
+KakaoMap.defaultProps = {
+  point: {
+    lat: 37.566826,
+    lng: 126.9786567,
+    confirmPlace: "서울특별시청",
+  },
+  travelName: "서울특별시청",
 };
 
 export default KakaoMap;
