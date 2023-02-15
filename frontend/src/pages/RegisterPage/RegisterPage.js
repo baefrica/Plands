@@ -293,7 +293,6 @@ const RegisterPage = () => {
 
   return (
     <div>
-      <Header />
       <Nav />
       <Container>
         <RegistFormDiv method="POST">

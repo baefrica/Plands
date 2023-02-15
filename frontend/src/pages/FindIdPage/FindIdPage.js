@@ -45,7 +45,6 @@ const FindIdPage = () => {
 
   return (
     <div>
-      <Header />
       <Nav />
       <Container>
         <FindIdBlock>

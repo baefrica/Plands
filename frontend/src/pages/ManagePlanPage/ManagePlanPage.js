@@ -76,7 +76,6 @@ const ManagePlanPage = () => {
           setDescModalToggle={setDescModalToggle}
         />
       )}
-      <Header />
       <Nav />
       <S.ContentWrapper>
         <S.PlanListHeader>

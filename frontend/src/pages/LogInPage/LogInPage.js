@@ -105,7 +105,6 @@ const LogInPage = () => {
 
   return (
     <div>
-      <Header />
       <Nav />
       <Container>
         <LoginBlock>
