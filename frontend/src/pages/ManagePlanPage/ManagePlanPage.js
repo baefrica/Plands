@@ -39,10 +39,15 @@ const ManagePlanPage = () => {
         timer: 1000,
       }).then(() => navigate("/login"));
     } else {
-      getPlanList(accessToken, 0, 27).then((res) => {
-        const divided = chunk(res.data, 3);
-        setPlanList([...divided]);
-      });
+      getPlanList(accessToken, 0, 27)
+        .then((res) => {
+          console.log(res);
+          return res;
+        })
+        .then((res) => {
+          const divided = chunk(res.data, 3);
+          setPlanList([...divided]);
+        });
     }
   }, [accessToken, navigate, addModalToggle, descModalToggle]);
 

@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import * as Y from "yjs";
 import { WebsocketProvider } from "y-websocket";
 import { IndexeddbPersistence } from "y-indexeddb";
 import * as S from "./TravelPlanTemplate.style";
 import KakaoMap from "./KakaoMap";
-const TravelPlanTemplate = ({ room }) => {
+import QRCodeGenerator from "./QRCodeGenerator";
+
+const TravelPlanTemplate = ({ room, isShow }) => {
   const [travelStart, setTravelStart] = useState("");
   const [travelStay, setTravelStay] = useState("");
   const [travelItems, setTravelItems] = useState([]);
@@ -158,28 +160,42 @@ const TravelPlanTemplate = ({ room }) => {
       <S.TemplateContentWrapper>
         <S.TravelTitleWrapper>
           <S.HWrapper id="travelTitle">
-            <S.CustomH1># 여행 계획 제목</S.CustomH1>
+            {isShow ? <S.CustomH1># 여행 계획 제목</S.CustomH1> : null}
           </S.HWrapper>
-          <S.CustomInputText
-            type="text"
-            value={travelObj.travelTitle}
-            onChange={(event) => {
-              handleTravelObjChange("travelTitle", event.target.value);
-            }}
-          />
+          {isShow ? (
+            <S.CustomInputText
+              type="text"
+              value={travelObj.travelTitle}
+              onChange={(event) => {
+                handleTravelObjChange("travelTitle", event.target.value);
+              }}
+            />
+          ) : (
+            <h1>
+              <br />
+              {travelObj.travelTitle}
+            </h1>
+          )}
         </S.TravelTitleWrapper>
         <S.CustomHr />
         <S.TravelMembersWrapper>
           <S.HWrapper id="travelMembers">
             <S.CustomH1># 여행 인원</S.CustomH1>
           </S.HWrapper>
-          <S.CustomInputText
-            type="number"
-            value={travelObj.travelMembers}
-            onChange={(event) => {
-              handleTravelObjChange("travelMembers", event.target.value);
-            }}
-          />
+          {isShow ? (
+            <S.CustomInputText
+              type="number"
+              value={travelObj.travelMembers}
+              onChange={(event) => {
+                handleTravelObjChange("travelMembers", event.target.value);
+              }}
+            />
+          ) : (
+            <>
+              <br />
+              {travelObj.travelMembers} 명
+            </>
+          )}
         </S.TravelMembersWrapper>
         <S.CustomHr />
         <S.TravelDaysWrapper>
@@ -191,24 +207,32 @@ const TravelPlanTemplate = ({ room }) => {
           <S.HWrapper>
             <S.CustomH2>출발</S.CustomH2>
           </S.HWrapper>
-          <S.CustomInputText
-            type="date"
-            value={travelObj.startDate}
-            onChange={(event) => {
-              handleTravelObjChange("startDate", event.target.value);
-            }}
-          />
+          {isShow ? (
+            <S.CustomInputText
+              type="date"
+              value={travelObj.startDate}
+              onChange={(event) => {
+                handleTravelObjChange("startDate", event.target.value);
+              }}
+            />
+          ) : (
+            travelObj.startDate
+          )}
           <br />
           <S.HWrapper>
             <S.CustomH2> 복귀</S.CustomH2>
           </S.HWrapper>
-          <S.CustomInputText
-            type="date"
-            value={travelObj.endDate}
-            onChange={(event) => {
-              handleTravelObjChange("endDate", event.target.value);
-            }}
-          />
+          {isShow ? (
+            <S.CustomInputText
+              type="date"
+              value={travelObj.endDate}
+              onChange={(event) => {
+                handleTravelObjChange("endDate", event.target.value);
+              }}
+            />
+          ) : (
+            travelObj.endDate
+          )}
         </S.TravelDaysWrapper>
         <S.CustomHr />
         <S.TravelStartPointWrapper>
@@ -217,15 +241,26 @@ const TravelPlanTemplate = ({ room }) => {
           </S.HWrapper>
 
           <S.CustomMap>
-            {travelStart ? (
+            {isShow ? (
               <S.CustomInputText
                 type="text"
                 value={travelStart}
                 onChange={handleTravelStartChange}
                 readOnly
               />
+            ) : (
+              <>
+                {travelStart}
+                <br />
+                <QRCodeGenerator
+                  initialUrl={`https://map.naver.com/v5/search/${travelStart}`}
+                />
+              </>
+            )}
+
+            {isShow ? (
+              <KakaoMap handleChange={handleTravelStartChange} />
             ) : null}
-            <KakaoMap handleChange={handleTravelStartChange} />
           </S.CustomMap>
         </S.TravelStartPointWrapper>
         <S.CustomHr />
@@ -235,15 +270,24 @@ const TravelPlanTemplate = ({ room }) => {
           </S.HWrapper>
 
           <S.CustomMap>
-            {travelStay ? (
+            {isShow ? (
               <S.CustomInputText
                 type="text"
                 value={travelStay}
                 onChange={handleTravelStayChange}
                 readOnly
               />
-            ) : null}
-            <KakaoMap handleChange={handleTravelStayChange} />
+            ) : (
+              <>
+                {travelStay}
+                <br />
+                <QRCodeGenerator
+                  initialUrl={`https://map.naver.com/v5/search/${travelStay}`}
+                />
+              </>
+            )}
+
+            {isShow ? <KakaoMap handleChange={handleTravelStayChange} /> : null}
           </S.CustomMap>
         </S.TravelStayWrapper>
         <S.CustomHr />
@@ -251,15 +295,20 @@ const TravelPlanTemplate = ({ room }) => {
           <S.HWrapper id="travelContent">
             <S.CustomH1># 여행 컨텐츠</S.CustomH1>
 
-            <S.CustomAddListInput
-              type="text"
-              value={curContent}
-              onChange={handleCurContentOnChange}
-              onKeyUp={handleContentOnKeyUp}
-            />
-            <S.ListAddButton onClick={handleContentsConfirm}>
-              추가
-            </S.ListAddButton>
+            {isShow ? (
+              <>
+                <S.CustomAddListInput
+                  type="text"
+                  value={curContent}
+                  onChange={handleCurContentOnChange}
+                  onKeyUp={handleContentOnKeyUp}
+                />
+
+                <S.ListAddButton onClick={handleContentsConfirm}>
+                  추가
+                </S.ListAddButton>
+              </>
+            ) : null}
           </S.HWrapper>
 
           <S.CustomUl>
@@ -268,11 +317,13 @@ const TravelPlanTemplate = ({ room }) => {
               travelContents.map((item, index) => (
                 <S.ListItemWrapper key={index}>
                   <S.CustomList>{item}</S.CustomList>
-                  <S.CustomListDeleteButton
-                    onClick={() => handleContentDeleteOnClick(index)}
-                  >
-                    삭제
-                  </S.CustomListDeleteButton>
+                  {isShow ? (
+                    <S.CustomListDeleteButton
+                      onClick={() => handleContentDeleteOnClick(index)}
+                    >
+                      삭제
+                    </S.CustomListDeleteButton>
+                  ) : null}
                 </S.ListItemWrapper>
               ))}
           </S.CustomUl>
@@ -280,14 +331,19 @@ const TravelPlanTemplate = ({ room }) => {
         <S.TravelItemsWrapper>
           <S.HWrapper id="travelItems">
             <S.CustomH1># 여행 준비물</S.CustomH1>
-
-            <S.CustomAddListInput
-              type="text"
-              value={curItem}
-              onChange={handleCurItemOnChange}
-              onKeyUp={handleItemOnKeyUp}
-            />
-            <S.ListAddButton onClick={handleItemConfirm}>추가</S.ListAddButton>
+            {isShow ? (
+              <>
+                <S.CustomAddListInput
+                  type="text"
+                  value={curItem}
+                  onChange={handleCurItemOnChange}
+                  onKeyUp={handleItemOnKeyUp}
+                />
+                <S.ListAddButton onClick={handleItemConfirm}>
+                  추가
+                </S.ListAddButton>
+              </>
+            ) : null}
           </S.HWrapper>
 
           <S.CustomUl>
@@ -296,11 +352,13 @@ const TravelPlanTemplate = ({ room }) => {
               travelItems.map((item, index) => (
                 <S.ListItemWrapper key={index}>
                   <S.CustomList>{item}</S.CustomList>
-                  <S.CustomListDeleteButton
-                    onClick={() => handleItemDeleteOnClick(index)}
-                  >
-                    삭제
-                  </S.CustomListDeleteButton>
+                  {isShow ? (
+                    <S.CustomListDeleteButton
+                      onClick={() => handleItemDeleteOnClick(index)}
+                    >
+                      삭제
+                    </S.CustomListDeleteButton>
+                  ) : null}
                 </S.ListItemWrapper>
               ))}
           </S.CustomUl>
@@ -313,15 +371,19 @@ const TravelPlanTemplate = ({ room }) => {
               ￦ <S.BudgetConfirm>{travelObj.travelBudget}</S.BudgetConfirm> 원
             </S.BudgetConfirmWrapper>
           </S.HWrapper>
-          <S.CustomInputText
-            type="text"
-            value={budgetConfirm}
-            onChange={(event) => setBudgetConfirm(event.target.value)}
-            onKeyUp={handleBudgetOnKeyUp}
-          />
-          <S.ConfirmButton onClick={handleBudgetOnClick}>
-            예산 확정
-          </S.ConfirmButton>
+          {isShow ? (
+            <>
+              <S.CustomInputText
+                type="text"
+                value={budgetConfirm}
+                onChange={(event) => setBudgetConfirm(event.target.value)}
+                onKeyUp={handleBudgetOnKeyUp}
+              />
+              <S.ConfirmButton onClick={handleBudgetOnClick}>
+                예산 확정
+              </S.ConfirmButton>
+            </>
+          ) : null}
         </S.TravelBudgetWrapper>
       </S.TemplateContentWrapper>
     </S.TemplateWrapper>

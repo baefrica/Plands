@@ -1,5 +1,5 @@
 import TravelPlanTemplate from "components/collaborative/TravelPlanTemplate";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import VideoSpace from "components/collaborative/VideoSpace";
 import GoPlanHeader from "components/collaborative/GoPlanHeader";
 import * as S from "./GoPlanPage.style";
@@ -9,6 +9,8 @@ import SharePlanModal from "components/modal/SharePlanModal";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
 
 const GoPlanPage = () => {
   const accessToken = useSelector((state) => {
@@ -30,8 +32,36 @@ const GoPlanPage = () => {
     }
   });
 
+  const [isShow, setIsShow] = useState(true);
+  const printRef = useRef();
+
+  const generate = () => {
+    setIsShow(false);
+    setTimeout(async () => {
+      const element = printRef.current;
+
+      // CaptureHTML(element, "result", { proxy : "/html2canvas/proxy.json"});
+      const canvas = await html2canvas(element);
+      const data = canvas.toDataURL("image/png");
+
+      const pdf = new jsPDF({
+        unit: "mm",
+        format: "a1",
+      });
+      // const imgProperties = pdf.getImageProperties(data);
+      // const pdfWidth = pdf.internal.pageSize.getWidth();
+      // const pdfHeight = (imgProperties.height * pdfWidth) / imgProperties.width;
+
+      pdf.addImage(data, "PNG", 0, 0, 600, 850);
+      pdf.save("print.pdf");
+    }, 1);
+    setTimeout(() => {
+      setIsShow(true);
+    }, 2);
+  };
+
   return (
-    <div className="App">
+    <div>
       {shareModalToggle && (
         <SharePlanModal
           accessToken={accessToken}
@@ -44,11 +74,14 @@ const GoPlanPage = () => {
           <GoPlanHeader
             title={title}
             setShareModalToggle={setShareModalToggle}
+            listener={generate}
           />
           <VideoSpace mySessionId={uuid} myUserName={nickName} />
         </S.StickySpace>
         <S.ContentSpace>
-          <TravelPlanTemplate room={uuid} />
+          <S.PdfWrapper ref={printRef}>
+            <TravelPlanTemplate room={uuid} isShow={isShow} />
+          </S.PdfWrapper>
           <SideNav />
         </S.ContentSpace>
       </S.MainContent>

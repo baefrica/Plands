@@ -14,9 +14,12 @@ export const StickySpace = styled.div`
   top: 0;
   z-index: 100;
 `;
-
+export const PdfWrapper = styled.div`
+  width: 100%;
+`;
 export const ContentSpace = styled.div`
   display: flex;
+  width: 100%;
 `;
 
 export const TempSpace = styled.div`
