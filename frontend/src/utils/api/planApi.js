@@ -33,3 +33,12 @@ export const deletePlan = async (accessToken, uuid) => {
 };
 
 // 조인 api 이해가 아직 잘 안됨
+export const joinPlan = async (accessToken, uuid) => {
+  const response = await client.get(`plan/${uuid}`, {
+    headers: {
+      "X-AUTH-TOKEN": accessToken,
+    },
+  });
+
+  return response;
+};

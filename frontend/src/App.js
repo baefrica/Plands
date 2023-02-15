@@ -20,7 +20,9 @@ const App = () => {
         <Route path="/plans" exact element={<ManagePlanPage />} />
         <Route path="/about" exact element={<AboutPage />} />
         <Route path="/regist" exact element={<RegisterPage />} />
+        <Route path="/regist/:uuid" exact element={<RegisterPage />} />
         <Route path="/login" exact element={<LogInPage />} />
+        <Route path="/login/:uuid" exact element={<LogInPage />} />
         <Route path="/mypage" exact element={<MyPage />} />
         <Route path="/userinfo/update" exact element={<UserInfoUpdatePage />} />
         <Route path="/password/change" exact element={<PasswordChangePage />} />
@@ -36,6 +38,7 @@ const App = () => {
             </div>
           )}
         />
+        <Route path="/goplan/:uuid" exact element={<GoPlanPage />} />
         <Route
           path="/goplan/:uuid/:title/:nickName"
           exact

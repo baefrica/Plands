@@ -1,10 +1,5 @@
 import { useState } from "react";
-import {
-  isEmail,
-  isLength,
-  isAlphanumeric,
-  isNumeric,
-} from "validator";
+import { isEmail, isLength, isAlphanumeric, isNumeric } from "validator";
 import Header from "components/header/Header";
 import Nav from "components/nav/Nav";
 import {
@@ -21,12 +16,9 @@ import {
   RegistBtn,
   CancelBtn,
 } from "./RegisterPage.style";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { regist } from "utils/api/sessionApi";
-import {
-  emailSend,
-  verifyAuthNumber,
-} from "utils/api/emailApi";
+import { emailSend, verifyAuthNumber } from "utils/api/emailApi";
 import Swal from "sweetalert2";
 
 const RegisterPage = () => {
@@ -44,13 +36,10 @@ const RegisterPage = () => {
   // 입력값 에러 상태
   const [idErrorAlpha, setIdErrorAlpha] = useState(true);
   const [idErrorLength, setIdErrorLength] = useState(true);
-  const [pwdErrorSpecial, setPwdErrorSpecial] =
-    useState(true);
-  const [pwdErrorLength, setPwdErrorLength] =
-    useState(true);
+  const [pwdErrorSpecial, setPwdErrorSpecial] = useState(true);
+  const [pwdErrorLength, setPwdErrorLength] = useState(true);
   const [pwdValidError, setPwdValidError] = useState(true);
-  const [nameErrorKorean, setNameErrorKorean] =
-    useState(true);
+  const [nameErrorKorean, setNameErrorKorean] = useState(true);
   const [nicknameError, setNicknameError] = useState(true);
   const [pNumberError, setPNumberError] = useState(true);
   const [emailError, setEmailError] = useState(true);
@@ -60,6 +49,7 @@ const RegisterPage = () => {
   const [emailInput, setEmailInput] = useState(false);
   const [eauthNum, setEauthNum] = useState("");
 
+  const { uuid } = useParams();
   const navigate = useNavigate();
 
   // Validation 영역
@@ -135,8 +125,7 @@ const RegisterPage = () => {
   // 닉네임 검사
   const onChangeNickname = (e) => {
     const cur = e.target.value;
-    const nicknameReg =
-      /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{1,10}$/;
+    const nicknameReg = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{1,10}$/;
 
     if (!nicknameReg.test(cur)) {
       setNicknameError(true);
@@ -288,9 +277,13 @@ const RegisterPage = () => {
         birthDay: birthDay,
         pnumber: pNumber,
         email: email,
+      }).then((res) => {
+        if (uuid) {
+          navigate(`/login/${uuid}`);
+        } else {
+          navigate("/login");
+        }
       });
-
-      navigate("/login");
     }
   };
 
@@ -315,20 +308,16 @@ const RegisterPage = () => {
               onChange={onChangeId}
             />
             {!idErrorLength && !idErrorAlpha && id && (
-              <CorrectInput>
-                🟢&nbsp;올바른 입력입니다.
-              </CorrectInput>
+              <CorrectInput>🟢&nbsp;올바른 입력입니다.</CorrectInput>
             )}
             {idErrorLength && id && (
               <InvalidInput>
-                ❌&nbsp;아이디는 8자 이상 16자 이하로
-                되어있어야 합니다.
+                ❌&nbsp;아이디는 8자 이상 16자 이하로 되어있어야 합니다.
               </InvalidInput>
             )}
             {idErrorAlpha && id && (
               <InvalidInput>
-                ❌&nbsp;영문자 및 숫자로만 이루어져야
-                합니다.
+                ❌&nbsp;영문자 및 숫자로만 이루어져야 합니다.
               </InvalidInput>
             )}
           </RegistInputDiv>
@@ -342,20 +331,17 @@ const RegisterPage = () => {
               onChange={onChangePwd}
             />
             {!pwdErrorLength && !pwdErrorSpecial && pwd && (
-              <CorrectInput>
-                🟢&nbsp;올바른 입력입니다.
-              </CorrectInput>
+              <CorrectInput>🟢&nbsp;올바른 입력입니다.</CorrectInput>
             )}
             {pwdErrorLength && pwd && (
               <InvalidInput>
-                ❌&nbsp;비밀번호는 8자 이상 16자 이하으로
-                구성되어야 합니다.
+                ❌&nbsp;비밀번호는 8자 이상 16자 이하으로 구성되어야 합니다.
               </InvalidInput>
             )}
             {pwdErrorSpecial && pwd && (
               <InvalidInput>
-                ❌&nbsp;하나 이상의 문자, 하나의 숫자 및
-                하나의 특수 문자를 포함해야합니다.
+                ❌&nbsp;하나 이상의 문자, 하나의 숫자 및 하나의 특수 문자를
+                포함해야합니다.
               </InvalidInput>
             )}
           </RegistInputDiv>
@@ -369,14 +355,11 @@ const RegisterPage = () => {
               onChange={onChangePwdValid}
             />
             {!pwdValidError && pwdValid && (
-              <CorrectInput>
-                🟢&nbsp;비밀번호가 일치합니다.
-              </CorrectInput>
+              <CorrectInput>🟢&nbsp;비밀번호가 일치합니다.</CorrectInput>
             )}
             {pwdValidError && pwdValid && (
               <InvalidInput>
-                ❌&nbsp;비밀번호와 일치하지 않습니다.
-                확인해주세요
+                ❌&nbsp;비밀번호와 일치하지 않습니다. 확인해주세요
               </InvalidInput>
             )}
           </RegistInputDiv>
@@ -390,14 +373,11 @@ const RegisterPage = () => {
               onChange={onChangeName}
             />
             {!nameErrorKorean && name && (
-              <CorrectInput>
-                🟢&nbsp;올바른 입력입니다.
-              </CorrectInput>
+              <CorrectInput>🟢&nbsp;올바른 입력입니다.</CorrectInput>
             )}
             {nameErrorKorean && name && (
               <InvalidInput>
-                ❌&nbsp;이름은 한글로 1~5자까지
-                입력가능합니다.
+                ❌&nbsp;이름은 한글로 1~5자까지 입력가능합니다.
               </InvalidInput>
             )}
           </RegistInputDiv>
@@ -411,14 +391,11 @@ const RegisterPage = () => {
               onChange={onChangeNickname}
             />
             {!nicknameError && nickname && (
-              <CorrectInput>
-                🟢&nbsp;올바른 입력입니다.
-              </CorrectInput>
+              <CorrectInput>🟢&nbsp;올바른 입력입니다.</CorrectInput>
             )}
             {nicknameError && nickname && (
               <InvalidInput>
-                ❌&nbsp;닉네임은 한글,영어,숫자(최대10자)
-                이루어져야합니다.
+                ❌&nbsp;닉네임은 한글,영어,숫자(최대10자) 이루어져야합니다.
               </InvalidInput>
             )}
           </RegistInputDiv>
@@ -428,9 +405,7 @@ const RegisterPage = () => {
               name="gender"
               id="genderSelect"
               onChange={(e) => {
-                setGender(
-                  e.target.selectedOptions[0].value
-                );
+                setGender(e.target.selectedOptions[0].value);
               }}
               required
             >
@@ -459,14 +434,10 @@ const RegisterPage = () => {
               onChange={onChangePNumber}
             />
             {!pNumberError && pNumber && (
-              <CorrectInput>
-                🟢&nbsp;올바른 입력입니다.
-              </CorrectInput>
+              <CorrectInput>🟢&nbsp;올바른 입력입니다.</CorrectInput>
             )}
             {pNumberError && pNumber && (
-              <InvalidInput>
-                ❌&nbsp; 번호 숫자만 입력해주세요.
-              </InvalidInput>
+              <InvalidInput>❌&nbsp; 번호 숫자만 입력해주세요.</InvalidInput>
             )}
           </RegistInputDiv>
           <RegistInputDiv>
@@ -491,9 +462,7 @@ const RegisterPage = () => {
               />
             )}
             {!emailError && email && (
-              <CorrectInput>
-                🟢&nbsp;올바른 입력입니다.
-              </CorrectInput>
+              <CorrectInput>🟢&nbsp;올바른 입력입니다.</CorrectInput>
             )}
             {emailError && email && (
               <InvalidInput>
@@ -508,36 +477,23 @@ const RegisterPage = () => {
                     placeholder="인증번호를 입력해주세요"
                     onChange={onChangeEauthNum}
                   />
-                  <ConfirmBtn
-                    id="confirmBtn"
-                    onClick={onHandleEauthSuccess}
-                  >
+                  <ConfirmBtn id="confirmBtn" onClick={onHandleEauthSuccess}>
                     인증 확인
                   </ConfirmBtn>
-                  <ResendBtn
-                    id="reEauthBtn"
-                    onClick={onClickReEauthBtn}
-                  >
+                  <ResendBtn id="reEauthBtn" onClick={onClickReEauthBtn}>
                     이메일 재입력
                   </ResendBtn>
                 </>
               ) : (
-                <SendBtn
-                  id="sendBtn"
-                  onClick={onClickEmailSendBtn}
-                >
+                <SendBtn id="sendBtn" onClick={onClickEmailSendBtn}>
                   인증하기
                 </SendBtn>
               )}
             </EmailConfirm>
           </RegistInputDiv>
           <RegistBtnDiv>
-            <RegistBtn onClick={onClickRegistBtn}>
-              회원가입
-            </RegistBtn>
-            <CancelBtn onClick={onClickCancelBtn}>
-              취소
-            </CancelBtn>
+            <RegistBtn onClick={onClickRegistBtn}>회원가입</RegistBtn>
+            <CancelBtn onClick={onClickCancelBtn}>취소</CancelBtn>
           </RegistBtnDiv>
         </RegistFormDiv>
       </Container>
