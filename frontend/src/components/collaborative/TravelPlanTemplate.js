@@ -33,6 +33,7 @@ const TravelPlanTemplate = ({ room, isShow }) => {
     const travelContentsType = doc.getMap("travelContent");
     const travelStayType = doc.getArray("travelStay");
     const travelStartType = doc.getArray("travelStart");
+
     travelObjType.observe((event) => {
       setTravelObj(travelObjType.toJSON());
     });
@@ -80,6 +81,7 @@ const TravelPlanTemplate = ({ room, isShow }) => {
   };
 
   const handleTravelObjChange = (key, value) => {
+    console.log(value);
     setTravelObj({ ...travelObj, [key]: value });
     const travelObjType = doc.getMap("travelObj");
     travelObjType.set(key, value);
@@ -105,6 +107,12 @@ const TravelPlanTemplate = ({ room, isShow }) => {
     const travelItemsType = doc.getMap("travelItems");
     travelItemsType.set("items", [...newArr]);
   };
+
+  // const handleStartPointChange = (point) => {
+  //   setStartPoint({ ...point });
+  //   const travelStartPointType = doc.getMap("startPoint");
+  //   travelStartPointType.set("startPoint", point);
+  // };
 
   const handleCurContentOnChange = (event) => {
     setCurContent(event.target.value);
@@ -257,7 +265,13 @@ const TravelPlanTemplate = ({ room, isShow }) => {
             ) : null}
 
             {isShow ? (
-              <KakaoMap handleChange={handleTravelStartChange} />
+              <KakaoMap
+                handleChange={handleTravelStartChange}
+                point={travelObj.startPoint}
+                travelName={travelStart}
+                handleSetPoint={handleTravelObjChange}
+                objKeyword="startPoint"
+              />
             ) : null}
           </S.CustomMap>
         </S.TravelStartPointWrapper>
@@ -286,7 +300,15 @@ const TravelPlanTemplate = ({ room, isShow }) => {
               </>
             ) : null}
 
-            {isShow ? <KakaoMap handleChange={handleTravelStayChange} /> : null}
+            {isShow ? (
+              <KakaoMap
+                handleChange={handleTravelStayChange}
+                point={travelObj.stayPoint}
+                travelName={travelStay}
+                handleSetPoint={handleTravelObjChange}
+                objKeyword="stayPoint"
+              />
+            ) : null}
           </S.CustomMap>
         </S.TravelStayWrapper>
         <S.CustomHr />

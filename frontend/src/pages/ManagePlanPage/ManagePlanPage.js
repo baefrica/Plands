@@ -95,6 +95,7 @@ const ManagePlanPage = () => {
                 <PlanCard
                   uuid={item.code}
                   title={item.title}
+                  createdAt={item.registDate}
                   setDescModalToggle={setDescModalToggle}
                   setSelectedPlan={setSelectedPlan}
                 />
