@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
+import Loading from "components/loading/Loading";
 
 const GoPlanPage = () => {
   const accessToken = useSelector((state) => {
@@ -18,7 +19,11 @@ const GoPlanPage = () => {
   });
   const { uuid, title, nickName } = useParams();
   const [shareModalToggle, setShareModalToggle] = useState(false);
+
+  const [loadCollabo, setLoadCollabo] = useState(true);
   const navigate = useNavigate();
+  const [isShow, setIsShow] = useState(true);
+  const printRef = useRef();
 
   useEffect(() => {
     if (!accessToken) {
@@ -31,9 +36,6 @@ const GoPlanPage = () => {
       }).then(() => navigate(`/login/${uuid}`));
     }
   });
-
-  const [isShow, setIsShow] = useState(true);
-  const printRef = useRef();
 
   const generate = () => {
     setIsShow(false);
@@ -58,29 +60,31 @@ const GoPlanPage = () => {
 
   return (
     <div>
-      {shareModalToggle && (
-        <SharePlanModal
-          accessToken={accessToken}
-          setShareModalToggle={setShareModalToggle}
-          uuid={uuid}
-        />
-      )}
-      <S.MainContent>
-        <S.StickySpace>
-          <GoPlanHeader
-            title={title}
+      <>
+        {shareModalToggle && (
+          <SharePlanModal
+            accessToken={accessToken}
             setShareModalToggle={setShareModalToggle}
-            listener={generate}
+            uuid={uuid}
           />
-          <VideoSpace mySessionId={uuid} myUserName={nickName} />
-        </S.StickySpace>
-        <S.ContentSpace>
-          <S.PdfWrapper ref={printRef}>
-            <TravelPlanTemplate room={uuid} isShow={isShow} />
-          </S.PdfWrapper>
-          <SideNav />
-        </S.ContentSpace>
-      </S.MainContent>
+        )}
+        <S.MainContent>
+          <S.StickySpace>
+            <GoPlanHeader
+              title={title}
+              setShareModalToggle={setShareModalToggle}
+              listener={generate}
+            />
+            <VideoSpace mySessionId={uuid} myUserName={nickName} />
+          </S.StickySpace>
+          <S.ContentSpace>
+            <S.PdfWrapper ref={printRef}>
+              <TravelPlanTemplate room={uuid} isShow={isShow} />
+            </S.PdfWrapper>
+            <SideNav />
+          </S.ContentSpace>
+        </S.MainContent>
+      </>
     </div>
   );
 };
