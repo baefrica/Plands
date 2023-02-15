@@ -1,13 +1,3 @@
-import {
-  Container,
-  Form,
-  Label,
-  CorrectInput,
-  InvalidInput,
-  ButtonDiv,
-  UpdateBtn,
-  CancelBtn,
-} from "./UserInfoUpdateMain.style";
 import { isNumeric } from "validator";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -17,6 +7,8 @@ import {
   modifyMember,
 } from "utils/api/memberApi";
 import Swal from "sweetalert2";
+import * as T from "../table.style/table.style";
+import * as S from "./UserInfoUpdateMain.style";
 
 const UserInfoUpdateMain = () => {
   const navigate = useNavigate();
@@ -153,113 +145,133 @@ const UserInfoUpdateMain = () => {
   };
 
   return (
-    <Container>
-      <Form>
-        <Label>
-          <label>아이디</label>
-          <input type="text" value={id} disabled />
-        </Label>
-        <Label>
-          <label>이름</label>
-          <div>
+    <S.Container>
+      <T.table>
+        <T.tr>
+          <T.td>
+            <label>NAME</label>
+          </T.td>
+          <T.td>
+            <div>
+              <input
+                type="text"
+                required
+                value={name}
+                onChange={onChangeName}
+              />
+              {!nameErrorKorean && name && (
+                <S.CorrectInput>
+                  🟢&nbsp;올바른 입력입니다.
+                </S.CorrectInput>
+              )}
+              {nameErrorKorean && name && (
+                <S.InvalidInput>
+                  ❌&nbsp;이름은 한글로 1~5자까지
+                  입력가능합니다.
+                </S.InvalidInput>
+              )}
+            </div>
+          </T.td>
+        </T.tr>
+        <T.tr>
+          <T.td>
+            <label>NICKNAME</label>
+          </T.td>
+          <T.td>
+            <div>
+              <input
+                type="text"
+                required
+                value={nickName}
+                onChange={onChangeNickName}
+              />
+              {!nickNameError && nickName && (
+                <S.CorrectInput>
+                  🟢&nbsp;올바른 입력입니다.
+                </S.CorrectInput>
+              )}
+              {nickNameError && nickName && (
+                <S.InvalidInput>
+                  ❌&nbsp;닉네임은 한글,영어,숫자(최대10자)
+                  이루어져야합니다.
+                </S.InvalidInput>
+              )}
+            </div>
+          </T.td>
+        </T.tr>
+        <T.tr>
+          <T.td>
+            <label>GENDER</label>
+          </T.td>
+          <T.td>
             <input
               type="text"
               required
-              value={name}
-              onChange={onChangeName}
+              value={gender}
+              onChange={(e) => {
+                setGender(e.target.value);
+              }}
             />
-            {!nameErrorKorean && name && (
-              <CorrectInput>
-                🟢&nbsp;올바른 입력입니다.
-              </CorrectInput>
-            )}
-            {nameErrorKorean && name && (
-              <InvalidInput>
-                ❌&nbsp;이름은 한글로 1~5자까지
-                입력가능합니다.
-              </InvalidInput>
-            )}
-          </div>
-        </Label>
-        <Label>
-          <label>닉네임</label>
-          <div>
+          </T.td>
+        </T.tr>
+        <T.tr>
+          <T.td>
+            <label>BIRTHDAY</label>
+          </T.td>
+          <T.td>
             <input
               type="text"
               required
-              value={nickName}
-              onChange={onChangeNickName}
+              value={birthDay}
+              onChange={(e) => {
+                setBirthDay(e.target.value);
+              }}
             />
-            {!nickNameError && nickName && (
-              <CorrectInput>
-                🟢&nbsp;올바른 입력입니다.
-              </CorrectInput>
-            )}
-            {nickNameError && nickName && (
-              <InvalidInput>
-                ❌&nbsp;닉네임은 한글,영어,숫자(최대10자)
-                이루어져야합니다.
-              </InvalidInput>
-            )}
-          </div>
-        </Label>
-        <Label>
-          <label>성별</label>
-          <input
-            type="text"
-            required
-            value={gender}
-            onChange={(e) => {
-              setGender(e.target.value);
-            }}
-          />
-        </Label>
-        <Label>
-          <label>생년월일</label>
-          <input
-            type="text"
-            required
-            value={birthDay}
-            onChange={(e) => {
-              setBirthDay(e.target.value);
-            }}
-          />
-        </Label>
-        <Label>
-          <label>전화번호</label>
-          <div>
-            <input
-              type="text"
-              required
-              value={pNumber}
-              onChange={onChangePNumber}
-            />
-            {!pNumberError && pNumber && (
-              <CorrectInput>
-                🟢&nbsp;올바른 입력입니다.
-              </CorrectInput>
-            )}
-            {pNumberError && pNumber && (
-              <InvalidInput>
-                ❌&nbsp; 번호 숫자만 입력해주세요.
-              </InvalidInput>
-            )}
-          </div>
-        </Label>
-        <Label>
-          <label>이메일</label>
-          <input type="text" value={email} disabled />
-        </Label>
-        <ButtonDiv>
-          <UpdateBtn onClick={onClickUpdateBtn}>
-            수정 완료
-          </UpdateBtn>
-          <CancelBtn onClick={onClickCancelBtn}>
-            취소
-          </CancelBtn>
-        </ButtonDiv>
-      </Form>
-    </Container>
+          </T.td>
+        </T.tr>
+        <T.tr>
+          <T.td>
+            <label>PHONE NUMBER</label>
+          </T.td>
+          <T.td>
+            <div>
+              <input
+                type="text"
+                required
+                value={pNumber}
+                onChange={onChangePNumber}
+              />
+              {!pNumberError && pNumber && (
+                <S.CorrectInput>
+                  🟢&nbsp;올바른 입력입니다.
+                </S.CorrectInput>
+              )}
+              {pNumberError && pNumber && (
+                <S.InvalidInput>
+                  ❌&nbsp; 번호 숫자만 입력해주세요.
+                </S.InvalidInput>
+              )}
+            </div>
+          </T.td>
+        </T.tr>
+        <T.tr>
+          <T.td>
+            <label>EMAIL</label>
+          </T.td>
+          <T.td>
+            <input type="text" value={email} disabled />
+          </T.td>
+        </T.tr>
+      </T.table>
+      <S.ButtonDiv>
+        <S.UpdateBtn onClick={onClickUpdateBtn}>
+          수정 완료
+        </S.UpdateBtn>
+        <S.CancelBtn onClick={onClickCancelBtn}>
+          취소
+        </S.CancelBtn>
+      </S.ButtonDiv>
+    </S.Container>
   );
 };
 

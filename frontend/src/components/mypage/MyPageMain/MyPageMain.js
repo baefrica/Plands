@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Container, Form, Label } from "./MyPageMain.style";
+import * as T from "../table.style/table.style";
+import * as S from "./MyPageMain.style";
 import { useSelector } from "react-redux";
 import { getMemberDetail } from "utils/api/memberApi";
 
@@ -29,38 +30,58 @@ const MyPageMain = () => {
   }, [accessToken]);
 
   return (
-    <Container>
-      <Form>
-        <Label>
-          <label>아이디</label>
-          <input type="text" value={id} disabled />
-        </Label>
-        <Label>
-          <label>이름</label>
-          <input type="text" value={name} disabled />
-        </Label>
-        <Label>
-          <label>닉네임</label>
-          <input type="text" value={nickName} disabled />
-        </Label>
-        <Label>
-          <label>성별</label>
-          <input type="text" value={gender} disabled />
-        </Label>
-        <Label>
-          <label>생년월일</label>
-          <input type="text" value={birthDay} disabled />
-        </Label>
-        <Label>
-          <label>전화번호</label>
-          <input type="text" value={pNumber} disabled />
-        </Label>
-        <Label>
-          <label>이메일</label>
-          <input type="text" value={email} disabled />
-        </Label>
-      </Form>
-    </Container>
+    <S.Container>
+      <T.table>
+        <T.tr>
+          <T.td>
+            <label>NAME</label>
+          </T.td>
+          <T.td>
+            <input type="text" value={name} disabled />
+          </T.td>
+        </T.tr>
+        <T.tr>
+          <T.td>
+            <label>NICKNAME</label>
+          </T.td>
+          <T.td>
+            <input type="text" value={nickName} disabled />
+          </T.td>
+        </T.tr>
+        <T.tr>
+          <T.td>
+            <label>GENDER</label>
+          </T.td>
+          <T.td>
+            <input type="text" value={gender} disabled />
+          </T.td>
+        </T.tr>
+        <T.tr>
+          <T.td>
+            <label>BIRTHDAY</label>
+          </T.td>
+          <T.td>
+            <input type="text" value={birthDay} disabled />
+          </T.td>
+        </T.tr>
+        <T.tr>
+          <T.td>
+            <label>PHONE NUMBER</label>
+          </T.td>
+          <T.td>
+            <input type="text" value={pNumber} disabled />
+          </T.td>
+        </T.tr>
+        <T.tr>
+          <T.td>
+            <label>EMAIL</label>
+          </T.td>
+          <T.td>
+            <input type="text" value={email} disabled />
+          </T.td>
+        </T.tr>
+      </T.table>
+    </S.Container>
   );
 };
 

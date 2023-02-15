@@ -3,57 +3,63 @@ import { colors } from "styles/variables";
 
 export const Container = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  width: 85%;
-  background: ${colors.midGrayColor};
+  align-items: center;
+  background: linear-gradient(#141e30, #243b55);
+  width: 100%;
+  padding-top: 80px;
 `;
 
 export const Form = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 60%;
   background-color: ${colors.blackColor};
-  border-radius: 25px;
-  border: 5px solid ${colors.blackColor};
-  margin-top: 10%;
-  margin-bottom: 10%;
-  padding-top: 5%;
-  padding-bottom: 5%;
+  border-radius: 5px;
+  border: 3px solid ${colors.blackColor};
+  width: 500px;
+  padding: 50px;
+  margin-bottom: 5rem;
 `;
 
 export const Label = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
+  font-size: 17px;
+  display: inline-block;
+  position: relative;
+  transition: all 0.5s ease-in-out;
+  font-weight: bolder;
+  color: ${colors.pointColor};
+  background-color: ${colors.blackColor};
+  padding-right: 5px;
+  padding-left: 10px;
+  padding-bottom: 15px;
 
   label {
-    font-size: 25px;
-    font-weight: bold;
-    line-height: 80px;
-    color: ${colors.pointColor};
-    margin-right: 30px;
-
-    :hover {
-      font-size: 30px;
-    }
+    margin-bottom: 15px;
   }
 
   input {
-    text-align: center;
-    font-size: 20px;
-    color: ${colors.pointColor};
-    background: ${colors.heavyGrayColor};
-    border: 3px solid ${colors.pointColor};
-    border: 0;
-    border-radius: 15px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: bolder;
+    border: none;
+    width: 89%;
+    padding: 20px 20px;
+    height: 15px;
+    border-radius: 5px;
+    background-color: ${colors.blackColor};
+    border-bottom: 2px solid ${colors.pointColor};
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+    color: ${colors.whiteColor};
+    margin-bottom: 15px;
+    margin-top: 15px;
 
-    :hover {
-      border: 3px solid ${colors.pointColor};
+    :focus {
+      outline: 0;
+      border: 2px solid ${colors.pointColor};
+    }
+
+    &:hover {
+      border: 2px solid ${colors.pointColor};
     }
   }
 `;
@@ -63,7 +69,6 @@ export const CorrectInput = styled.div`
   color: ${colors.greenColor};
   text-align: left;
   margin-left: 10px;
-  margin-top: 10px;
   padding-bottom: 10px;
 `;
 
@@ -81,59 +86,39 @@ export const ButtonDiv = styled.div`
 `;
 
 export const CancelBtn = styled.button`
-  background-color: ${colors.whiteColor};
-  width: 40%;
-  text-align: center;
-  padding: 10px;
-  color: ${colors.black};
+  padding: 10px 10px;
+  border-radius: 5px;
+  width: 90px;
+  background: ${colors.redColor};
+  margin-left: 5px;
+  margin-right: 5px;
+  color: ${colors.blackColor};
   font-size: 20px;
   font-weight: bolder;
-  margin: 5px;
-  outline: invert;
-  border: 5px solid ${colors.redColor};
-  border-radius: 5px;
-
-  &:link {
-    transition: 0.5s;
-    text-decoration: none;
-  }
 
   &:hover {
-    background: ${colors.redColor};
+    background: #8a3d3f;
+    color: ${colors.redColor};
     cursor: pointer;
-  }
-
-  &.active {
-    font-weight: bold;
-    position: relative;
   }
 `;
 
 export const ChangeBtn = styled.button`
-  background-color: ${colors.whiteColor};
-  width: 40%;
-  text-align: center;
-  padding: 10px;
+  padding: 10px 10px;
+  border-radius: 5px;
+  background: ${colors.blueColor};
+  margin-left: 5px;
+  margin-right: 5px;
   color: ${colors.blackColor};
   font-size: 20px;
   font-weight: bolder;
-  margin: 5px;
-  outline: invert;
-  border: 5px solid ${colors.blueColor};
-  border-radius: 5px;
-
-  &:link {
-    transition: 0.5s;
-    text-decoration: none;
-  }
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 90px;
 
   &:hover {
-    background: ${colors.blueColor};
+    background: #4a7296;
+    color: ${colors.blueColor};
     cursor: pointer;
-  }
-
-  &.active {
-    font-weight: bold;
-    position: relative;
   }
 `;

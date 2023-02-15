@@ -1,68 +1,18 @@
-import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { colors } from "styles/variables";
 
 export const Container = styled.div`
   display: flex;
-  justify-content: center;
-  width: 85%;
-  background: ${colors.midGrayColor};
-`;
-
-export const Form = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  width: 60%;
-  background-color: ${colors.blackColor};
-  border-radius: 25px;
-  border: 5px solid ${colors.blackColor};
-  margin-top: 10%;
-  margin-bottom: 10%;
-  padding-top: 5%;
-  padding-bottom: 5%;
-`;
-
-export const Label = styled.div`
-  display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
-  padding-top: 15px;
-  padding-bottom: 15px;
-
-  label {
-    font-size: 25px;
-    font-weight: bold;
-    line-height: 80px;
-    color: ${colors.pointColor};
-    margin-right: 30px;
-
-    :hover {
-      font-size: 30px;
-    }
-  }
-
-  input {
-    text-align: center;
-    font-size: 20px;
-    color: ${colors.pointColor};
-    background: ${colors.heavyGrayColor};
-    border: 3px solid ${colors.pointColor};
-    border: 0;
-    border-radius: 15px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-
-    :hover {
-      border: 3px solid ${colors.pointColor};
-    }
-  }
+  background: linear-gradient(#141e30, #243b55);
+  width: 100%;
 `;
 
 export const CorrectInput = styled.div`
-  font-weight: bold;
+  font-size: 17px;
+  font-weight: bolder;
   color: ${colors.greenColor};
   text-align: left;
   margin-left: 10px;
@@ -71,7 +21,8 @@ export const CorrectInput = styled.div`
 `;
 
 export const InvalidInput = styled.div`
-  font-weight: bold;
+  font-size: 17px;
+  font-weight: bolder;
   color: ${colors.redColor};
   text-align: left;
   margin-left: 10px;
@@ -86,59 +37,37 @@ export const ButtonDiv = styled.div`
 `;
 
 export const UpdateBtn = styled.button`
-  background-color: ${colors.whiteColor};
-  width: 40%;
-  text-align: center;
-  padding: 10px;
+  padding: 10px 10px;
+  border-radius: 5px;
+  background: ${colors.blueColor};
+  margin-left: 5px;
+  margin-right: 5px;
   color: ${colors.blackColor};
   font-size: 20px;
   font-weight: bolder;
-  margin: 5px;
-  outline: invert;
-  border: 5px solid ${colors.blueColor};
-  border-radius: 5px;
-
-  &:link {
-    transition: 0.5s;
-    text-decoration: none;
-  }
+  padding-left: 10px;
+  padding-right: 10px;
 
   &:hover {
-    background: ${colors.blueColor};
+    background: #4a7296;
+    color: ${colors.blueColor};
     cursor: pointer;
-  }
-
-  &.active {
-    font-weight: bold;
-    position: relative;
   }
 `;
 
 export const CancelBtn = styled.button`
-  background-color: ${colors.whiteColor};
-  width: 40%;
-  text-align: center;
-  padding: 10px;
-  color: ${colors.black};
+  padding: 10px 10px;
+  border-radius: 5px;
+  background: ${colors.redColor};
+  margin-left: 5px;
+  margin-right: 5px;
+  color: ${colors.blackColor};
   font-size: 20px;
   font-weight: bolder;
-  margin: 5px;
-  outline: invert;
-  border: 5px solid ${colors.redColor};
-  border-radius: 5px;
-
-  &:link {
-    transition: 0.5s;
-    text-decoration: none;
-  }
 
   &:hover {
-    background: ${colors.redColor};
+    background: #8a3d3f;
+    color: ${colors.redColor};
     cursor: pointer;
-  }
-
-  &.active {
-    font-weight: bold;
-    position: relative;
   }
 `;
