@@ -35,7 +35,7 @@ const GoPlanPage = () => {
         timer: 3000,
       }).then(() => navigate(`/login/${uuid}`));
     }
-  });
+  }, [accessToken, navigate, uuid]);
 
   const generate = () => {
     setIsShow(false);
@@ -68,22 +68,24 @@ const GoPlanPage = () => {
             uuid={uuid}
           />
         )}
-        <S.MainContent>
-          <S.StickySpace>
-            <GoPlanHeader
-              title={title}
-              setShareModalToggle={setShareModalToggle}
-              listener={generate}
-            />
-            <VideoSpace mySessionId={uuid} myUserName={nickName} />
-          </S.StickySpace>
-          <S.ContentSpace>
-            <S.PdfWrapper ref={printRef}>
-              <TravelPlanTemplate room={uuid} isShow={isShow} />
-            </S.PdfWrapper>
-            <SideNav />
-          </S.ContentSpace>
-        </S.MainContent>
+        {accessToken ? (
+          <S.MainContent>
+            <S.StickySpace>
+              <GoPlanHeader
+                title={title}
+                setShareModalToggle={setShareModalToggle}
+                listener={generate}
+              />
+              <VideoSpace mySessionId={uuid} myUserName={nickName} />
+            </S.StickySpace>
+            <S.ContentSpace>
+              <S.PdfWrapper ref={printRef}>
+                <TravelPlanTemplate room={uuid} isShow={isShow} />
+              </S.PdfWrapper>
+              <SideNav />
+            </S.ContentSpace>
+          </S.MainContent>
+        ) : null}
       </>
     </div>
   );

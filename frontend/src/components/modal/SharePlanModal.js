@@ -30,7 +30,6 @@ const SharePlanModal = ({ accessToken, setShareModalToggle, uuid }) => {
           text: "다시 시도해주세요!",
           icon: "error",
           confirmButtonText: "확인",
-          timer: 3000,
         })
       );
   };
