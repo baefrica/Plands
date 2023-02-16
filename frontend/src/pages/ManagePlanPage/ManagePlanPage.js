@@ -103,43 +103,47 @@ const ManagePlanPage = () => {
           setDescModalToggle={setDescModalToggle}
         />
       )}
-      <Nav />
-      <S.ContentWrapper>
-        <S.PlanListHeader>
-          <S.PlanAddButton onClick={handleAddPlanButton}>
-            여행계획 추가하기
-          </S.PlanAddButton>
-        </S.PlanListHeader>
-        <S.PlanListWrapper>
-          {planList.map((items) => (
-            <S.ItemWrapper>
-              {items.map((item) => (
-                <PlanCard
-                  key={item.code}
-                  uuid={item.code}
-                  title={item.title}
-                  createdAt={item.registDate}
-                  setDescModalToggle={setDescModalToggle}
-                  setSelectedPlan={setSelectedPlan}
-                />
+      {accessToken ? (
+        <>
+          <Nav />
+          <S.ContentWrapper>
+            <S.PlanListHeader>
+              <S.PlanAddButton onClick={handleAddPlanButton}>
+                여행계획 추가하기
+              </S.PlanAddButton>
+            </S.PlanListHeader>
+            <S.PlanListWrapper>
+              {planList.map((items) => (
+                <S.ItemWrapper>
+                  {items.map((item) => (
+                    <PlanCard
+                      key={item.code}
+                      uuid={item.code}
+                      title={item.title}
+                      createdAt={item.registDate}
+                      setDescModalToggle={setDescModalToggle}
+                      setSelectedPlan={setSelectedPlan}
+                    />
+                  ))}
+                </S.ItemWrapper>
               ))}
-            </S.ItemWrapper>
-          ))}
-        </S.PlanListWrapper>
-        <S.PlanListFooter>
-          <S.PageBtnsWrapper>
-            {pageBtns.map((element) => (
-              <S.PageBtn
-                key={element}
-                style={element === offset ? activePageButtonStyle : {}}
-                onClick={(e) => setOffset(element)}
-              >
-                {element}
-              </S.PageBtn>
-            ))}
-          </S.PageBtnsWrapper>
-        </S.PlanListFooter>
-      </S.ContentWrapper>
+            </S.PlanListWrapper>
+            <S.PlanListFooter>
+              <S.PageBtnsWrapper>
+                {pageBtns.map((element) => (
+                  <S.PageBtn
+                    key={element}
+                    style={element === offset ? activePageButtonStyle : {}}
+                    onClick={(e) => setOffset(element)}
+                  >
+                    {element}
+                  </S.PageBtn>
+                ))}
+              </S.PageBtnsWrapper>
+            </S.PlanListFooter>
+          </S.ContentWrapper>
+        </>
+      ) : null}
     </>
   );
 };

@@ -8,7 +8,7 @@ const GoPlanHeader = ({ setShareModalToggle, listener }) => {
   return (
     <>
       <S.HeaderWrapper>
-        <Link to="/">
+        <Link to="/plans">
           <S.QuitButton>나가기</S.QuitButton>
         </Link>
         <S.ShareButton onClick={handleShareOnClick}>링크 공유</S.ShareButton>
