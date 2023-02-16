@@ -52,3 +52,22 @@ export const getPageCount = async (accessToken) => {
 
   return response;
 };
+
+export const exitPlan = async (accessToken, uuid) => {
+  const response = await client.post(`plan/exit`, uuid, {
+    headers: {
+      "X-AUTH-TOKEN": accessToken,
+    },
+  });
+
+  return response;
+};
+
+export const checkAuth = async (accessToken, uuid) => {
+  const response = await client.get(`plan/auth?code=${uuid}`, {
+    headers: {
+      "X-AUTH-TOKEN": accessToken,
+    },
+  });
+  return response;
+};
