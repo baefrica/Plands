@@ -15,7 +15,7 @@ export const PlanListWrapper = styled.div`
 export const ItemWrapper = styled.div`
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: center;
   margin-bottom: 50px;
 `;
 
