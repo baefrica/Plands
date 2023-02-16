@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import styled, { keyframes } from "styled-components";
 
 export const PlanWrapper = styled.div`
@@ -43,7 +42,6 @@ export const PlanTitle = styled.div`
   justify-content: center;
   color: #ffffff;
 `;
-<<<<<<< HEAD
 
 export const backgroundColor = keyframes`
   0% {
@@ -65,5 +63,3 @@ export const NewTag = styled.div`
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 `;
-=======
->>>>>>> 57b61a95181248a06208e8334d7cd8172cb6f051

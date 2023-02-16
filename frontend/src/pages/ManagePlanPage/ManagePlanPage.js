@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { useEffect, useState } from "react";
 import Header from "../../components/header/Header";
 import Nav from "../../components/nav/Nav";
@@ -148,4 +147,5 @@ const ManagePlanPage = () => {
     </>
   );
 };
+
 export default ManagePlanPage;

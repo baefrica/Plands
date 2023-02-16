@@ -1,5 +1,4 @@
 * {
-<<<<<<< HEAD
   font-family: "Pretendard Variable", Pretendard, -apple-system,
     BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
     "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
@@ -12,16 +11,9 @@
 @font-face {
 	font-family: "googleGugi";
 	src: url(./assets/font/Gugi/Gugi-Regular.ttf);
-=======
-  font-family: "Noto Sans";
->>>>>>> 57b61a95181248a06208e8334d7cd8172cb6f051
 }
 html,
 body {
   padding: 0;
   margin: 0;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 57b61a95181248a06208e8334d7cd8172cb6f051

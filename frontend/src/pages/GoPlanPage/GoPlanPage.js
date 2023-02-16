@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import TravelPlanTemplate from "components/collaborative/TravelPlanTemplate";
 import { useEffect, useState, useRef } from "react";
 import VideoSpace from "components/collaborative/VideoSpace";
@@ -91,4 +90,5 @@ const GoPlanPage = () => {
     </div>
   );
 };
+
 export default GoPlanPage;

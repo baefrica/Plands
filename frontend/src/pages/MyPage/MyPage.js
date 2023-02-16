@@ -5,16 +5,9 @@ import MyPageNav from "../../components/mypage/MyPageNav/MyPageNav";
 import MyPageMain from "../../components/mypage/MyPageMain/MyPageMain";
 import { NavAndMain } from "./MyPage.style";
 
-<<<<<<< HEAD
 const MyPage = () => {
   return (
     <div>
-=======
-function MyPage() {
-  return (
-    <div>
-      <Header />
->>>>>>> 57b61a95181248a06208e8334d7cd8172cb6f051
       <Nav />
       <MyPageTitle />
       <NavAndMain>
@@ -23,10 +16,6 @@ function MyPage() {
       </NavAndMain>
     </div>
   );
-<<<<<<< HEAD
 };
-=======
-}
->>>>>>> 57b61a95181248a06208e8334d7cd8172cb6f051
 
 export default MyPage;

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import * as S from "./Nav.style";
 
 const Nav = () => {
@@ -10,18 +9,5 @@ const Nav = () => {
     </S.BlackNav>
   );
 };
-=======
-import { NavStyle, BlackNav } from "./Nav.style";
-
-function Nav() {
-  return (
-    <BlackNav>
-      <NavStyle to="/">홈</NavStyle>
-      <NavStyle to="/plans">여행계획관리</NavStyle>
-      <NavStyle to="/about">소개</NavStyle>
-    </BlackNav>
-  );
-}
->>>>>>> 57b61a95181248a06208e8334d7cd8172cb6f051
 
 export default Nav;

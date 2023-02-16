@@ -1,5 +1,4 @@
 import logo from "assets/images/logo_white.png";
-<<<<<<< HEAD
 import { useDispatch, useSelector } from "react-redux";
 import * as S from "./Header.style";
 import React from "react";
