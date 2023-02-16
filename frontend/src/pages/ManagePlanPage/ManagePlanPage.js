@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import PlanCard from "components/plancard/PlanCard";
 import * as S from "./ManagePlanPage.style";
 import { useNavigate } from "react-router-dom";
-import { getPlanList, createPlan } from "utils/api/planApi";
+import { getPlanList, getPageCount } from "utils/api/planApi";
 import Swal from "sweetalert2";
 import AddPlanModal from "components/modal/AddPlanModal";
 import { chunk } from "utils/util/chunk";
@@ -21,13 +21,37 @@ const ManagePlanPage = () => {
   const [descModalToggle, setDescModalToggle] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState({});
   const [nickName, setNickName] = useState("");
+  const [offset, setOffset] = useState(0);
+  const [pageNum, setPageNum] = useState(0);
+  const [pageBtns, setPageBtns] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     getMemberDetail(accessToken).then((res) => {
       setNickName(res.data.nickname);
     });
-  }, []);
+  }, [accessToken]);
+
+  const makePagination = (pageNum) => {
+    const temp = [];
+    for (let i = 0; i < pageNum; i++) {
+      temp.push(i + 1);
+    }
+    setPageBtns(temp);
+    console.log(temp);
+  };
+  const activePageButtonStyle = {
+    backgroundColor: "#ffffff",
+    color: "#000000",
+  };
+  useEffect(() => {
+    getPageCount(accessToken)
+      .then((res) => {
+        console.log(res.data);
+        setPageNum(res.data - 1); // 페이지 개수 설정
+      })
+      .then(makePagination(pageNum));
+  }, [accessToken, pageNum, pageBtns.length, planList]);
 
   useEffect(() => {
     if (!accessToken) {
@@ -39,9 +63,8 @@ const ManagePlanPage = () => {
         timer: 1000,
       }).then(() => navigate("/login"));
     } else {
-      getPlanList(accessToken, 0, 27)
+      getPlanList(accessToken, offset, 6)
         .then((res) => {
-          console.log(res);
           return res;
         })
         .then((res) => {
@@ -49,7 +72,7 @@ const ManagePlanPage = () => {
           setPlanList([...divided]);
         });
     }
-  }, [accessToken, navigate, addModalToggle, descModalToggle]);
+  }, [accessToken, offset, navigate, addModalToggle, descModalToggle]);
 
   const handleAddPlanButton = () => {
     // 모달창 띄우고 해당 모달창에서 입력받은 제목으로 생성
@@ -57,13 +80,13 @@ const ManagePlanPage = () => {
     setAddModalToggle(!addModalToggle);
   };
 
-  const handleDescPlanButton = (event) => {
-    // 모달창 띄우고 해당 모달창에서 입력받은 제목으로 생성
-    // createPlan()
-    console.log(event.target);
-    setSelectedPlan({});
-    setDescModalToggle(!descModalToggle);
-  };
+  // const handleDescPlanButton = (event) => {
+  //   // 모달창 띄우고 해당 모달창에서 입력받은 제목으로 생성
+  //   // createPlan()
+  //   console.log(event.target);
+  //   setSelectedPlan({});
+  //   setDescModalToggle(!descModalToggle);
+  // };
   return (
     <>
       {addModalToggle && (
@@ -93,6 +116,7 @@ const ManagePlanPage = () => {
             <S.ItemWrapper>
               {items.map((item) => (
                 <PlanCard
+                  key={item.code}
                   uuid={item.code}
                   title={item.title}
                   createdAt={item.registDate}
@@ -103,7 +127,19 @@ const ManagePlanPage = () => {
             </S.ItemWrapper>
           ))}
         </S.PlanListWrapper>
-        <S.PlanListFooter></S.PlanListFooter>
+        <S.PlanListFooter>
+          <S.PageBtnsWrapper>
+            {pageBtns.map((element) => (
+              <S.PageBtn
+                key={element}
+                style={element === offset ? activePageButtonStyle : {}}
+                onClick={(e) => setOffset(element)}
+              >
+                {element}
+              </S.PageBtn>
+            ))}
+          </S.PageBtnsWrapper>
+        </S.PlanListFooter>
       </S.ContentWrapper>
     </>
   );
