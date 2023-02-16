@@ -10,7 +10,7 @@ const SharePlanModal = ({ accessToken, setShareModalToggle, uuid }) => {
   const handleInviteOnClick = (event) => {
     inviteUser(accessToken, {
       email: email,
-      link: `http://localhost:3000/goplan/${uuid}`,
+      link: `https://i8b109.p.ssafy.io/goplan/${uuid}`,
     })
       .then((res) => {
         if (res.status === 200) {
