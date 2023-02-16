@@ -46,7 +46,7 @@ const ManagePlanPage = () => {
   useEffect(() => {
     getPageCount(accessToken)
       .then((res) => {
-        setPageNum(res.data - 1); // 페이지 개수 설정
+        setPageNum(res.data); // 페이지 개수 설정
       })
       .then(makePagination(pageNum));
   }, [accessToken, pageNum, pageBtns.length, planList]);
@@ -133,7 +133,7 @@ const ManagePlanPage = () => {
                   <S.PageBtn
                     key={element}
                     style={element === offset ? activePageButtonStyle : {}}
-                    onClick={(e) => setOffset(element)}
+                    onClick={(e) => setOffset(element - 1)}
                   >
                     {element}
                   </S.PageBtn>
