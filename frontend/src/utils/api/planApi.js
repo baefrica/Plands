@@ -42,3 +42,13 @@ export const joinPlan = async (accessToken, uuid) => {
 
   return response;
 };
+
+export const getPageCount = async (accessToken) => {
+  const response = await client.get(`plan/count`, {
+    headers: {
+      "X-AUTH-TOKEN": accessToken,
+    },
+  });
+
+  return response;
+};

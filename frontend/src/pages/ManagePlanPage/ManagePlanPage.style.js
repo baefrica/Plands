@@ -31,11 +31,17 @@ export const PlanListHeader = styled.div`
 export const PlanListFooter = styled.div`
   width: 100%;
   height: 100px;
-  border: 3px solid black;
+  border-top: 3px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   position: fixed;
   bottom: 0;
 `;
-
+export const PageBtnsWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 export const PlanAddButton = styled.button`
   position: absolute;
   right: 0;
@@ -52,5 +58,25 @@ export const PlanAddButton = styled.button`
   &:hover {
     cursor: pointer;
     background-color: #d83737;
+  }
+`;
+
+export const PageBtn = styled.div`
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  text-align: center;
+  line-height: 2;
+  margin-right: 10px;
+  margin-left: 10px;
+  border-radius: 5px;
+  background-color: #243b55;
+  color: white;
+  border: 3px solid #243b55;
+
+  &:hover {
+    cursor: pointer;
+    background-color: white;
+    color: black;
   }
 `;
