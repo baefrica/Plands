@@ -33,29 +33,31 @@ const DescPlanModal = ({
       showCancelButton: true,
       confirmButtonText: "퇴장",
       cancelButtonText: "취소",
-    }).then(() => {
-      exitPlan(accessToken, uuid)
-        .then((res) => {
-          if (res.status === 200) {
+    }).then((res) => {
+      if (res.isConfirmed) {
+        exitPlan(accessToken, uuid)
+          .then((res) => {
+            if (res.status === 200) {
+              Swal.fire({
+                title: "여행 계획에서 퇴장하셨습니다",
+                icon: "success",
+                confirmButtonText: "확인",
+                timer: 3000,
+              }).then((res) => {
+                setDescModalToggle(false);
+                navigate(`/plans`);
+              });
+            }
+          })
+          .catch((error) => {
             Swal.fire({
-              title: "여행 계획에서 퇴장하셨습니다",
-              icon: "success",
+              title: "퇴장도중 에러가 발생했습니다.",
+              icon: "error",
               confirmButtonText: "확인",
               timer: 3000,
-            }).then((res) => {
-              setDescModalToggle(false);
-              navigate(`/plans`);
             });
-          }
-        })
-        .catch((error) => {
-          Swal.fire({
-            title: "퇴장도중 에러가 발생했습니다.",
-            icon: "error",
-            confirmButtonText: "확인",
-            timer: 3000,
           });
-        });
+      }
     });
   };
 
@@ -66,29 +68,31 @@ const DescPlanModal = ({
       showCancelButton: true,
       confirmButtonText: "삭제",
       cancelButtonText: "취소",
-    }).then(() => {
-      deletePlan(accessToken, uuid)
-        .then((res) => {
-          if (res.status === 200) {
+    }).then((res) => {
+      if (res.isConfirmed) {
+        deletePlan(accessToken, uuid)
+          .then((res) => {
+            if (res.status === 200) {
+              Swal.fire({
+                title: "여행 계획이 삭제되었습니다",
+                icon: "success",
+                confirmButtonText: "확인",
+                timer: 3000,
+              }).then(() => {
+                setDescModalToggle(false);
+                navigate(`/plans`);
+              });
+            }
+          })
+          .catch(() => {
             Swal.fire({
-              title: "여행 계획이 삭제되었습니다",
-              icon: "success",
+              title: "삭제도중 에러가 발생했습니다.",
+              icon: "error",
               confirmButtonText: "확인",
               timer: 3000,
-            }).then((res) => {
-              setDescModalToggle(false);
-              navigate(`/plans`);
             });
-          }
-        })
-        .catch((error) => {
-          Swal.fire({
-            title: "삭제도중 에러가 발생했습니다.",
-            icon: "error",
-            confirmButtonText: "확인",
-            timer: 3000,
           });
-        });
+      }
     });
   };
 
