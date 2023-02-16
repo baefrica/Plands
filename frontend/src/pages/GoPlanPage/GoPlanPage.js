@@ -91,10 +91,4 @@ const GoPlanPage = () => {
     </div>
   );
 };
-=======
-function GoPlanPage() {
-  return <div>동시편집 페이지</div>;
-}
->>>>>>> 57b61a95181248a06208e8334d7cd8172cb6f051
-
 export default GoPlanPage;

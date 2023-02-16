@@ -12,20 +12,6 @@ export const PlanWrapper = styled.div`
     cursor: pointer;
     background: linear-gradient(#141e30, #335c8a);
   }
-=======
-import styled from "styled-components";
-
-export const PlanWrapper = styled.div`
-  width: 350px;
-  height: 300px;
-  border-radius: 15px;
-  background: linear-gradient(
-    180deg,
-    #fcfcfc 71.87%,
-    rgba(0, 0, 0, 0.6) 79.17%
-  );
-  box-shadow: 5px 5px 4px 2px rgba(0, 0, 0, 0.25);
->>>>>>> 57b61a95181248a06208e8334d7cd8172cb6f051
 `;
 
 export const PlanCardHeader = styled.div`

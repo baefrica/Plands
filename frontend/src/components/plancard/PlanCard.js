@@ -39,25 +39,6 @@ function PlanCard({
       </S.PlanCardBody>
       <S.PlanCardFooter></S.PlanCardFooter>
     </S.PlanWrapper>
-=======
-import {
-  PlanWrapper,
-  PlanCardHeader,
-  PlanCardBody,
-  PlanCardFooter,
-  PlanTitle,
-} from "./PlanCard.style";
-
-function PlanCard() {
-  return (
-    <PlanWrapper>
-      <PlanCardHeader></PlanCardHeader>
-      <PlanCardBody></PlanCardBody>
-      <PlanCardFooter>
-        <PlanTitle>우주 여행</PlanTitle>
-      </PlanCardFooter>
-    </PlanWrapper>
->>>>>>> 57b61a95181248a06208e8334d7cd8172cb6f051
   );
 }
 
