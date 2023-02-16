@@ -1,10 +1,9 @@
 import logo from "assets/images/logo_white.png";
 import { useDispatch, useSelector } from "react-redux";
 import * as S from "./Header.style";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { LOG_OUT } from "store/slice/userSlice";
-import { getMemberDetail } from "utils/api/memberApi";
 import { logout } from "utils/api/sessionApi";
 import Swal from "sweetalert2";
 
@@ -12,16 +11,13 @@ const Header = () => {
   const accessToken = useSelector((state) => {
     return state.user.accessToken;
   });
-  const [nickName, setNickName] = useState("");
+  const headerNickName = useSelector((state) => {
+    return state.user.nickName;
+  });
 
-  useEffect(() => {
-    if (accessToken !== null) {
-      // 멤버 정보 요청
-      getMemberDetail(accessToken).then((res) => {
-        setNickName(res.data.nickname);
-      });
-    }
-  }, [accessToken]);
+  // useEffect(() => {
+  //   const headerNickName = nickName;
+  // }, [nickName]);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -65,13 +61,22 @@ const Header = () => {
       </S.LogoLink>
       {accessToken !== null ? (
         <S.Loginned>
-          <S.LoginMsg>{nickName}님 환영합니다</S.LoginMsg>
-          <S.MyPageBtn onClick={onClickMyPageBtn}>마이 페이지</S.MyPageBtn>
-          <S.LogoutBtn onClick={onClickLogOutBtn}>로그아웃</S.LogoutBtn>
+          <S.LoginMsg>
+            LET's PLAN!!
+            <span>{headerNickName}</span>님
+          </S.LoginMsg>
+          <S.MyPageBtn onClick={onClickMyPageBtn}>
+            마이 페이지
+          </S.MyPageBtn>
+          <S.LogoutBtn onClick={onClickLogOutBtn}>
+            로그아웃
+          </S.LogoutBtn>
         </S.Loginned>
       ) : (
         <S.HeaderButtonDiv>
-          <S.LoginBtnStyle onClick={onClickLoginBtn}>로그인</S.LoginBtnStyle>
+          <S.LoginBtnStyle onClick={onClickLoginBtn}>
+            로그인
+          </S.LoginBtnStyle>
           <S.RegistBtnStyle onClick={onClickRegistnBtn}>
             회원가입
           </S.RegistBtnStyle>

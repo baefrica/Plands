@@ -4,6 +4,7 @@ const initialState = {
   accessToken: null,
   accessTime: null,
   refreshToken: null,
+  nickName: null,
 };
 
 export const userSlice = createSlice({
@@ -25,9 +26,17 @@ export const userSlice = createSlice({
       state.accessToken = null;
       state.refreshToken = null;
     },
+
+    USER_NICKNAME: (state, action) => {
+      state.nickName = action.payload;
+    },
   },
 });
 
-export const { LOGIN_TOKEN, LOG_OUT, WITH_DRAW } =
-  userSlice.actions;
+export const {
+  LOGIN_TOKEN,
+  LOG_OUT,
+  WITH_DRAW,
+  USER_NICKNAME,
+} = userSlice.actions;
 export default userSlice;

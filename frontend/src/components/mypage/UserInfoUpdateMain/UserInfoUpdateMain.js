@@ -1,5 +1,5 @@
 import { isNumeric } from "validator";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -9,9 +9,11 @@ import {
 import Swal from "sweetalert2";
 import * as T from "../table.style/table.style";
 import * as S from "./UserInfoUpdateMain.style";
+import { USER_NICKNAME } from "store/slice/userSlice";
 
 const UserInfoUpdateMain = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [id, setId] = useState("");
   const [name, setName] = useState("");
@@ -21,14 +23,14 @@ const UserInfoUpdateMain = () => {
   const [pNumber, setPNumber] = useState("");
   const [email, setEmail] = useState("");
 
-  const [genderKor, setGenderKor] = useState("");
-  useEffect(() => {
-    if (gender === "M") {
-      setGenderKor("남성");
-    } else {
-      setGenderKor("여성");
-    }
-  }, [gender]);
+  // const [genderKor, setGenderKor] = useState("");
+  // useEffect(() => {
+  //   if (gender === "M") {
+  //     setGenderKor("남성");
+  //   } else {
+  //     setGenderKor("여성");
+  //   }
+  // }, [gender]);
 
   const accessToken = useSelector((state) => {
     return state.user.accessToken;
@@ -142,6 +144,8 @@ const UserInfoUpdateMain = () => {
             confirmButtonText: "확인",
             timer: 3000,
           });
+
+          dispatch(USER_NICKNAME(nickName));
 
           navigate("/mypage");
         })

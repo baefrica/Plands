@@ -8,6 +8,12 @@ export const HeaderDiv = styled.div`
   grid-gap: 1em;
   border-bottom: 2px solid ${colors.pointColor};
   background: ${colors.blackColor};
+
+  span {
+    color: ${colors.pointColor};
+    margin-left: 20px;
+    margin-right: 8px;
+  }
 `;
 
 export const LogoLink = styled(NavLink)`
@@ -75,8 +81,8 @@ export const LoginMsg = styled.div`
   display: flex;
   align-items: center;
   font-weight: bolder;
-  font-size: 25px;
-  color: ${colors.pointColor};
+  font-size: 18px;
+  color: ${colors.whiteColor};
   margin-right: 20px;
 `;
 
