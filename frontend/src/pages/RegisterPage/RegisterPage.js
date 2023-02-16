@@ -86,9 +86,9 @@ const RegisterPage = () => {
   };
 
   const onHandleIdDoubleCheck = () => {
-    if (id.length === 0) {
+    if (id.length === 0 || idErrorLength) {
       Swal.fire({
-        title: "빈 문자열입니다.",
+        title: "아이디를 확인해주세요.",
         icon: "error",
         confirmButtonText: "확인",
         timer: 3000,
@@ -243,9 +243,20 @@ const RegisterPage = () => {
   };
 
   const onClickEmailSendBtn = () => {
-    if (email.length === 0) {
+    // if (email.length === 0) {
+    //   Swal.fire({
+    //     title: "빈 문자열입니다.",
+    //     icon: "error",
+    //     confirmButtonText: "확인",
+    //     timer: 3000,
+    //   });
+
+    //   return;
+    // }
+
+    if (email.length === 0 || emailError) {
       Swal.fire({
-        title: "빈 문자열입니다.",
+        title: "이메일 주소를 확인해주세요.",
         icon: "error",
         confirmButtonText: "확인",
         timer: 3000,
