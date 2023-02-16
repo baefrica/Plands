@@ -1,4 +1,3 @@
-import Header from "../../components/header/Header";
 import Nav from "../../components/nav/Nav";
 import Carousel from "components/main/carousel/Carousel";
 import * as S from "./MainPage.style";
