@@ -63,8 +63,8 @@ const RegisterPage = () => {
   const [eauthSuccess, setEauthSuccess] = useState(false);
   const [emailInput, setEmailInput] = useState(false);
   const [eauthNum, setEauthNum] = useState("");
-  const [isEmailDoubleCheck, setIsEmailDoubleCheck] =
-    useState(false);
+  // const [isEmailDoubleCheck, setIsEmailDoubleCheck] =
+  //   useState(false);
 
   const { uuid } = useParams();
   const navigate = useNavigate();
@@ -81,10 +81,21 @@ const RegisterPage = () => {
     if (!isLength(cur, { min: 8, max: 16 })) {
       setIdErrorLength(true);
     } else setIdErrorLength(false);
+
     setId(cur);
   };
 
-  const onHandleIdDoubleCheck = (e) => {
+  const onHandleIdDoubleCheck = () => {
+    if (id.length === 0) {
+      Swal.fire({
+        title: "빈 문자열입니다.",
+        icon: "error",
+        confirmButtonText: "확인",
+        timer: 3000,
+      });
+
+      return;
+    }
     checkId(id)
       .then((res) => {
         Swal.fire({
@@ -227,22 +238,56 @@ const RegisterPage = () => {
     else if (pNumberError) return false;
     else if (emailError) return false;
     else if (!eauthSuccess) return false;
-    else if (!isEmailDoubleCheck) return false;
+    // else if (!isEmailDoubleCheck) return false;
     else return true;
   };
 
   const onClickEmailSendBtn = () => {
+    if (email.length === 0) {
+      Swal.fire({
+        title: "빈 문자열입니다.",
+        icon: "error",
+        confirmButtonText: "확인",
+        timer: 3000,
+      });
+
+      return;
+    }
+
     checkEmail(email)
       .then((res) => {
-        console.log("여기 안들어오나?");
         Swal.fire({
           title: "사용 가능한 이메일입니다.",
           icon: "success",
           confirmButtonText: "확인",
           timer: 3000,
-        });
+        })
+          // .then(() => setIsEmailDoubleCheck(true))
+          .then(() => {
+            if (!emailError) {
+              // 이메일 인증번호 발송 요청
+              emailSend(email)
+                .then((res) => {
+                  Swal.fire({
+                    title: "인증번호를 발송했습니다.",
+                    icon: "success",
+                    confirmButtonText: "확인",
+                    timer: 3000,
+                  });
 
-        setIsEmailDoubleCheck(true);
+                  setEauthBtn(true);
+                  setEmailInput(true);
+                })
+                .catch((err) => {
+                  Swal.fire({
+                    title: "이메일 주소를 확인해주세요.",
+                    icon: "error",
+                    confirmButtonText: "확인",
+                    timer: 3000,
+                  });
+                });
+            }
+          });
       })
       .catch((err) => {
         if (err.response.status === 409) {
@@ -254,30 +299,6 @@ const RegisterPage = () => {
           });
         }
       });
-
-    if (isEmailDoubleCheck && !emailError) {
-      // 이메일 인증번호 발송 요청
-      emailSend(email)
-        .then((res) => {
-          Swal.fire({
-            title: "인증번호를 발송했습니다.",
-            icon: "success",
-            confirmButtonText: "확인",
-            timer: 3000,
-          });
-
-          setEauthBtn(true);
-          setEmailInput(true);
-        })
-        .catch((err) => {
-          Swal.fire({
-            title: "이메일 주소를 확인해주세요.",
-            icon: "error",
-            confirmButtonText: "확인",
-            timer: 3000,
-          });
-        });
-    }
   };
 
   const onHandleEauthSuccess = () => {
@@ -307,17 +328,16 @@ const RegisterPage = () => {
   };
 
   const onClickReEauthBtn = () => {
-    setEmailInput("");
-    setIsEmailDoubleCheck(false);
+    // setIsEmailDoubleCheck(false);
     setEmailInput(false);
     setEauthBtn(false);
+    setEauthNum("");
   };
 
   const onClickRegistBtn = (e) => {
     if (!validation()) {
       Swal.fire({
         title: "회원가입 조건에 맞게 입력하세요.",
-        text: "아이디나 이메일을 중복 확인해주세요.",
         icon: "error",
         confirmButtonText: "확인",
         timer: 3000,
@@ -369,7 +389,7 @@ const RegisterPage = () => {
               value={id}
               onChange={onChangeId}
             />
-            {!idErrorLength && !idErrorAlpha && id && (
+            {!idErrorLength && !idErrorAlpha && (
               <CorrectInput>
                 🟢&nbsp;올바른 입력입니다.
               </CorrectInput>
