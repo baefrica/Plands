@@ -85,3 +85,17 @@ export const CancelButton = styled.button`
     background-color: #875d55;
   }
 `;
+
+export const ExitButton = styled.button`
+  width: 20%;
+  border-radius: 5px;
+  background-color: ${colors.redColor};
+  font-size: 17px;
+  font-weight: bolder;
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #875d55;
+  }
+`;

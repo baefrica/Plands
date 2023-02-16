@@ -24,6 +24,7 @@ const ManagePlanPage = () => {
   const [offset, setOffset] = useState(0);
   const [pageNum, setPageNum] = useState(0);
   const [pageBtns, setPageBtns] = useState([]);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,7 +39,6 @@ const ManagePlanPage = () => {
       temp.push(i + 1);
     }
     setPageBtns(temp);
-    console.log(temp);
   };
   const activePageButtonStyle = {
     backgroundColor: "#ffffff",
@@ -47,7 +47,6 @@ const ManagePlanPage = () => {
   useEffect(() => {
     getPageCount(accessToken)
       .then((res) => {
-        console.log(res.data);
         setPageNum(res.data - 1); // 페이지 개수 설정
       })
       .then(makePagination(pageNum));
