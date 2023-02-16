@@ -64,3 +64,26 @@ export const modifyPassword = async (accessToken, data) => {
 
   return response;
 };
+
+export const checkId = async (id) => {
+  const response = await client.get(`/member/id?id=${id}`, {
+    headers: {
+      "Content-Type": "text/plain",
+    },
+  });
+
+  return response;
+};
+
+export const checkEmail = async (email) => {
+  const response = await client.get(
+    `/member/email?email=${email}`,
+    {
+      headers: {
+        "Content-Type": "text/plain",
+      },
+    }
+  );
+
+  return response;
+};

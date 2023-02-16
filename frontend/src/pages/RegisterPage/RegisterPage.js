@@ -1,6 +1,10 @@
 import { useState } from "react";
-import { isEmail, isLength, isAlphanumeric, isNumeric } from "validator";
-import Header from "components/header/Header";
+import {
+  isEmail,
+  isLength,
+  isAlphanumeric,
+  isNumeric,
+} from "validator";
 import Nav from "components/nav/Nav";
 import {
   Container,
@@ -18,8 +22,12 @@ import {
 } from "./RegisterPage.style";
 import { useNavigate, useParams } from "react-router-dom";
 import { regist } from "utils/api/sessionApi";
-import { emailSend, verifyAuthNumber } from "utils/api/emailApi";
+import {
+  emailSend,
+  verifyAuthNumber,
+} from "utils/api/emailApi";
 import Swal from "sweetalert2";
+import { checkId, checkEmail } from "utils/api/memberApi";
 
 const RegisterPage = () => {
   // 사용자 입력값
@@ -36,18 +44,27 @@ const RegisterPage = () => {
   // 입력값 에러 상태
   const [idErrorAlpha, setIdErrorAlpha] = useState(true);
   const [idErrorLength, setIdErrorLength] = useState(true);
-  const [pwdErrorSpecial, setPwdErrorSpecial] = useState(true);
-  const [pwdErrorLength, setPwdErrorLength] = useState(true);
+  const [pwdErrorSpecial, setPwdErrorSpecial] =
+    useState(true);
+  const [pwdErrorLength, setPwdErrorLength] =
+    useState(true);
   const [pwdValidError, setPwdValidError] = useState(true);
-  const [nameErrorKorean, setNameErrorKorean] = useState(true);
+  const [nameErrorKorean, setNameErrorKorean] =
+    useState(true);
   const [nicknameError, setNicknameError] = useState(true);
   const [pNumberError, setPNumberError] = useState(true);
   const [emailError, setEmailError] = useState(true);
 
+  // 아이디 중복 확인
+  const [isIdCheck, setIsIdCheck] = useState(false);
+
+  // 이메일 인증 관련
   const [eauthBtn, setEauthBtn] = useState(false);
   const [eauthSuccess, setEauthSuccess] = useState(false);
   const [emailInput, setEmailInput] = useState(false);
   const [eauthNum, setEauthNum] = useState("");
+  const [isEmailDoubleCheck, setIsEmailDoubleCheck] =
+    useState(false);
 
   const { uuid } = useParams();
   const navigate = useNavigate();
@@ -65,6 +82,30 @@ const RegisterPage = () => {
       setIdErrorLength(true);
     } else setIdErrorLength(false);
     setId(cur);
+  };
+
+  const onHandleIdDoubleCheck = (e) => {
+    checkId(id)
+      .then((res) => {
+        Swal.fire({
+          title: "사용 가능한 아이디입니다.",
+          icon: "success",
+          confirmButtonText: "확인",
+          timer: 3000,
+        });
+
+        setIsIdCheck(true);
+      })
+      .catch((err) => {
+        if (err.response.status === 409) {
+          Swal.fire({
+            title: "중복된 아이디입니다.",
+            icon: "error",
+            confirmButtonText: "확인",
+            timer: 3000,
+          });
+        }
+      });
   };
 
   // pwd 검사
@@ -125,7 +166,8 @@ const RegisterPage = () => {
   // 닉네임 검사
   const onChangeNickname = (e) => {
     const cur = e.target.value;
-    const nicknameReg = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{1,10}$/;
+    const nicknameReg =
+      /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{1,10}$/;
 
     if (!nicknameReg.test(cur)) {
       setNicknameError(true);
@@ -135,14 +177,6 @@ const RegisterPage = () => {
 
     setNickname(cur);
   };
-
-  // const onChangeGender = (e) => {
-  //   if (e.target.value === "male") {
-  //     setGender("M");
-  //   } else {
-  //     setGender("W");
-  //   }
-  // };
 
   // 생년월일 검사
   const onChangeBirthDay = (e) => {
@@ -184,6 +218,7 @@ const RegisterPage = () => {
   const validation = () => {
     if (idErrorAlpha) return false;
     else if (idErrorLength) return false;
+    else if (!isIdCheck) return false;
     else if (pwdErrorSpecial) return false;
     else if (pwdErrorLength) return false;
     else if (pwdValidError) return false;
@@ -192,11 +227,35 @@ const RegisterPage = () => {
     else if (pNumberError) return false;
     else if (emailError) return false;
     else if (!eauthSuccess) return false;
+    else if (!isEmailDoubleCheck) return false;
     else return true;
   };
 
   const onClickEmailSendBtn = () => {
-    if (!emailError) {
+    checkEmail(email)
+      .then((res) => {
+        console.log("여기 안들어오나?");
+        Swal.fire({
+          title: "사용 가능한 이메일입니다.",
+          icon: "success",
+          confirmButtonText: "확인",
+          timer: 3000,
+        });
+
+        setIsEmailDoubleCheck(true);
+      })
+      .catch((err) => {
+        if (err.response.status === 409) {
+          Swal.fire({
+            title: "중복된 이메일입니다.",
+            icon: "error",
+            confirmButtonText: "확인",
+            timer: 3000,
+          });
+        }
+      });
+
+    if (isEmailDoubleCheck && !emailError) {
       // 이메일 인증번호 발송 요청
       emailSend(email)
         .then((res) => {
@@ -211,7 +270,12 @@ const RegisterPage = () => {
           setEmailInput(true);
         })
         .catch((err) => {
-          // console.log(err);
+          Swal.fire({
+            title: "이메일 주소를 확인해주세요.",
+            icon: "error",
+            confirmButtonText: "확인",
+            timer: 3000,
+          });
         });
     }
   };
@@ -244,6 +308,7 @@ const RegisterPage = () => {
 
   const onClickReEauthBtn = () => {
     setEmailInput("");
+    setIsEmailDoubleCheck(false);
     setEmailInput(false);
     setEauthBtn(false);
   };
@@ -257,8 +322,6 @@ const RegisterPage = () => {
         confirmButtonText: "확인",
         timer: 3000,
       });
-
-      return;
     } else {
       Swal.fire({
         title: "회원가입이 완료되었습니다.",
@@ -307,18 +370,28 @@ const RegisterPage = () => {
               onChange={onChangeId}
             />
             {!idErrorLength && !idErrorAlpha && id && (
-              <CorrectInput>🟢&nbsp;올바른 입력입니다.</CorrectInput>
+              <CorrectInput>
+                🟢&nbsp;올바른 입력입니다.
+              </CorrectInput>
             )}
             {idErrorLength && id && (
               <InvalidInput>
-                ❌&nbsp;아이디는 8자 이상 16자 이하로 되어있어야 합니다.
+                ❌&nbsp;아이디는 8자 이상 16자 이하로
+                되어있어야 합니다.
               </InvalidInput>
             )}
             {idErrorAlpha && id && (
               <InvalidInput>
-                ❌&nbsp;영문자 및 숫자로만 이루어져야 합니다.
+                ❌&nbsp;영문자 및 숫자로만 이루어져야
+                합니다.
               </InvalidInput>
             )}
+            <ConfirmBtn
+              id="confirmBtn"
+              onClick={onHandleIdDoubleCheck}
+            >
+              중복 확인
+            </ConfirmBtn>
           </RegistInputDiv>
           <RegistInputDiv>
             <span>비밀번호</span>
@@ -330,17 +403,20 @@ const RegisterPage = () => {
               onChange={onChangePwd}
             />
             {!pwdErrorLength && !pwdErrorSpecial && pwd && (
-              <CorrectInput>🟢&nbsp;올바른 입력입니다.</CorrectInput>
+              <CorrectInput>
+                🟢&nbsp;올바른 입력입니다.
+              </CorrectInput>
             )}
             {pwdErrorLength && pwd && (
               <InvalidInput>
-                ❌&nbsp;비밀번호는 8자 이상 16자 이하으로 구성되어야 합니다.
+                ❌&nbsp;비밀번호는 8자 이상 16자 이하으로
+                구성되어야 합니다.
               </InvalidInput>
             )}
             {pwdErrorSpecial && pwd && (
               <InvalidInput>
-                ❌&nbsp;하나 이상의 문자, 하나의 숫자 및 하나의 특수 문자를
-                포함해야합니다.
+                ❌&nbsp;하나 이상의 문자, 하나의 숫자 및
+                하나의 특수 문자를 포함해야합니다.
               </InvalidInput>
             )}
           </RegistInputDiv>
@@ -354,11 +430,14 @@ const RegisterPage = () => {
               onChange={onChangePwdValid}
             />
             {!pwdValidError && pwdValid && (
-              <CorrectInput>🟢&nbsp;비밀번호가 일치합니다.</CorrectInput>
+              <CorrectInput>
+                🟢&nbsp;비밀번호가 일치합니다.
+              </CorrectInput>
             )}
             {pwdValidError && pwdValid && (
               <InvalidInput>
-                ❌&nbsp;비밀번호와 일치하지 않습니다. 확인해주세요
+                ❌&nbsp;비밀번호와 일치하지 않습니다.
+                확인해주세요
               </InvalidInput>
             )}
           </RegistInputDiv>
@@ -372,11 +451,14 @@ const RegisterPage = () => {
               onChange={onChangeName}
             />
             {!nameErrorKorean && name && (
-              <CorrectInput>🟢&nbsp;올바른 입력입니다.</CorrectInput>
+              <CorrectInput>
+                🟢&nbsp;올바른 입력입니다.
+              </CorrectInput>
             )}
             {nameErrorKorean && name && (
               <InvalidInput>
-                ❌&nbsp;이름은 한글로 1~5자까지 입력가능합니다.
+                ❌&nbsp;이름은 한글로 1~5자까지
+                입력가능합니다.
               </InvalidInput>
             )}
           </RegistInputDiv>
@@ -390,11 +472,14 @@ const RegisterPage = () => {
               onChange={onChangeNickname}
             />
             {!nicknameError && nickname && (
-              <CorrectInput>🟢&nbsp;올바른 입력입니다.</CorrectInput>
+              <CorrectInput>
+                🟢&nbsp;올바른 입력입니다.
+              </CorrectInput>
             )}
             {nicknameError && nickname && (
               <InvalidInput>
-                ❌&nbsp;닉네임은 한글,영어,숫자(최대10자) 이루어져야합니다.
+                ❌&nbsp;닉네임은 한글,영어,숫자(최대10자)
+                이루어져야합니다.
               </InvalidInput>
             )}
           </RegistInputDiv>
@@ -404,7 +489,9 @@ const RegisterPage = () => {
               name="gender"
               id="genderSelect"
               onChange={(e) => {
-                setGender(e.target.selectedOptions[0].value);
+                setGender(
+                  e.target.selectedOptions[0].value
+                );
               }}
               required
             >
@@ -433,10 +520,14 @@ const RegisterPage = () => {
               onChange={onChangePNumber}
             />
             {!pNumberError && pNumber && (
-              <CorrectInput>🟢&nbsp;올바른 입력입니다.</CorrectInput>
+              <CorrectInput>
+                🟢&nbsp;올바른 입력입니다.
+              </CorrectInput>
             )}
             {pNumberError && pNumber && (
-              <InvalidInput>❌&nbsp; 번호 숫자만 입력해주세요.</InvalidInput>
+              <InvalidInput>
+                ❌&nbsp; 번호 숫자만 입력해주세요.
+              </InvalidInput>
             )}
           </RegistInputDiv>
           <RegistInputDiv>
@@ -461,7 +552,9 @@ const RegisterPage = () => {
               />
             )}
             {!emailError && email && (
-              <CorrectInput>🟢&nbsp;올바른 입력입니다.</CorrectInput>
+              <CorrectInput>
+                🟢&nbsp;올바른 입력입니다.
+              </CorrectInput>
             )}
             {emailError && email && (
               <InvalidInput>
@@ -476,23 +569,36 @@ const RegisterPage = () => {
                     placeholder="인증번호를 입력해주세요"
                     onChange={onChangeEauthNum}
                   />
-                  <ConfirmBtn id="confirmBtn" onClick={onHandleEauthSuccess}>
+                  <ConfirmBtn
+                    id="confirmBtn"
+                    onClick={onHandleEauthSuccess}
+                  >
                     인증 확인
                   </ConfirmBtn>
-                  <ResendBtn id="reEauthBtn" onClick={onClickReEauthBtn}>
+                  <ResendBtn
+                    id="reEauthBtn"
+                    onClick={onClickReEauthBtn}
+                  >
                     이메일 재입력
                   </ResendBtn>
                 </>
               ) : (
-                <SendBtn id="sendBtn" onClick={onClickEmailSendBtn}>
+                <SendBtn
+                  id="sendBtn"
+                  onClick={onClickEmailSendBtn}
+                >
                   인증하기
                 </SendBtn>
               )}
             </EmailConfirm>
           </RegistInputDiv>
           <RegistBtnDiv>
-            <RegistBtn onClick={onClickRegistBtn}>회원가입</RegistBtn>
-            <CancelBtn onClick={onClickCancelBtn}>취소</CancelBtn>
+            <RegistBtn onClick={onClickRegistBtn}>
+              회원가입
+            </RegistBtn>
+            <CancelBtn onClick={onClickCancelBtn}>
+              취소
+            </CancelBtn>
           </RegistBtnDiv>
         </RegistFormDiv>
       </Container>
