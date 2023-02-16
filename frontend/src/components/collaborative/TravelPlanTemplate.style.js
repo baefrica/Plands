@@ -175,4 +175,19 @@ export const ConfirmButton = styled.button`
 export const PdfTitle = styled.div`
   font-size: 70px;
   font-weight: bolder;
+  font-family: googleGugi;
+`;
+
+export const FontSingleDay = styled.div`
+  font-size: 35px;
+  font-family: googleSingleDay;
+`;
+
+export const Fontgugi = styled.div`
+  font-size: 35px;
+  font-family: googleGugi;
+`;
+
+export const TitleImg = styled.div`
+  opacity: 50%;
 `;

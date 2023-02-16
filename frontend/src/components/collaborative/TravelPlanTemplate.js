@@ -5,6 +5,8 @@ import { IndexeddbPersistence } from "y-indexeddb";
 import * as S from "./TravelPlanTemplate.style";
 import KakaoMap from "./KakaoMap";
 import QRCodeGenerator from "./QRCodeGenerator";
+import disImage from "assets/images/distance.png";
+import tripImage from "assets/images/trip.png";
 
 const TravelPlanTemplate = ({ room, isShow, setLoadCollabo }) => {
   const [travelStart, setTravelStart] = useState("");
@@ -180,7 +182,13 @@ const TravelPlanTemplate = ({ room, isShow, setLoadCollabo }) => {
               }}
             />
           ) : (
-            <S.PdfTitle> {travelObj.travelTitle}</S.PdfTitle>
+            <S.PdfTitle> 
+              {travelObj.travelTitle} 
+              <S.TitleImg>
+                <img src={tripImage} alt="trip" />
+                <img src={disImage} alt="move" />
+              </S.TitleImg>
+            </S.PdfTitle>
           )}
         </S.TravelTitleWrapper>
         <S.CustomHr />
@@ -197,10 +205,10 @@ const TravelPlanTemplate = ({ room, isShow, setLoadCollabo }) => {
               }}
             />
           ) : (
-            <>
+            <S.FontSingleDay>
               <br />
               {travelObj.travelMembers} 명
-            </>
+            </S.FontSingleDay>
           )}
         </S.TravelMembersWrapper>
         <S.CustomHr />
@@ -222,7 +230,9 @@ const TravelPlanTemplate = ({ room, isShow, setLoadCollabo }) => {
               }}
             />
           ) : (
-            travelObj.startDate
+            <S.Fontgugi>
+              {travelObj.startDate}
+            </S.Fontgugi>  
           )}
           <br />
           <S.HWrapper>
@@ -237,7 +247,9 @@ const TravelPlanTemplate = ({ room, isShow, setLoadCollabo }) => {
               }}
             />
           ) : (
-            travelObj.endDate
+            <S.Fontgugi>
+              {travelObj.endDate}
+            </S.Fontgugi>  
           )}
         </S.TravelDaysWrapper>
         <S.CustomHr />
@@ -256,13 +268,14 @@ const TravelPlanTemplate = ({ room, isShow, setLoadCollabo }) => {
           ) : null}
           <S.CustomMap>
             {!isShow && travelStart ? (
-              <>
-                {travelStart}
-                <br />
-                <QRCodeGenerator
-                  initialUrl={`https://map.naver.com/v5/search/${travelStart}`}
-                />
-              </>
+              <S.FontSingleDay>
+              {travelStart}
+              <br />
+              <br />
+              <QRCodeGenerator
+                initialUrl={`https://map.naver.com/v5/search/${travelStart}`}
+              />                
+            </S.FontSingleDay>
             ) : null}
 
             {isShow ? (
@@ -292,13 +305,14 @@ const TravelPlanTemplate = ({ room, isShow, setLoadCollabo }) => {
               />
             ) : null}
             {!isShow && travelStay ? (
-              <>
-                {travelStay}
-                <br />
-                <QRCodeGenerator
-                  initialUrl={`https://map.naver.com/v5/search/${travelStay}`}
-                />
-              </>
+              <S.FontSingleDay>
+              {travelStay}
+              <br />
+              <br />
+              <QRCodeGenerator
+                initialUrl={`https://map.naver.com/v5/search/${travelStay}`}
+              />
+            </S.FontSingleDay>
             ) : null}
 
             {isShow ? (
