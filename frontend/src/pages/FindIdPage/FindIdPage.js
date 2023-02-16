@@ -6,7 +6,6 @@ import {
   Content,
   ContentRow,
 } from "./FindIdPage.style";
-import Header from "components/header/Header";
 import Nav from "components/nav/Nav";
 import { useNavigate } from "react-router-dom";
 import { findId } from "utils/api/memberApi";

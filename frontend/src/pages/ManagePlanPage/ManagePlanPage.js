@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import Header from "../../components/header/Header";
 import Nav from "../../components/nav/Nav";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import PlanCard from "components/plancard/PlanCard";
 import * as S from "./ManagePlanPage.style";
 import { useNavigate } from "react-router-dom";
