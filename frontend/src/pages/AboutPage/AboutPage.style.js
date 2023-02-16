@@ -44,6 +44,7 @@ export const InfoDetail = styled.td`
   align-items: center;
   font-size: 20px;
   border-radius: 5px;
-  width: 300px;
+  width: 340px;
   color: #141e30;
+  padding-left: 20px;
 `;
