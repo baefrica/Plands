@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useEffect, useState } from "react";
 import Header from "../../components/header/Header";
 import Nav from "../../components/nav/Nav";
@@ -148,4 +149,20 @@ const ManagePlanPage = () => {
   );
 };
 
+=======
+import Header from "../../components/header/Header";
+import Nav from "../../components/nav/Nav";
+import AddPlanBtn from "components/plancard/AddPlanBtn";
+import PlanCard from "components/plancard/PlanCard";
+function ManagePlanPage() {
+  return (
+    <div>
+      <Header />
+      <Nav />
+      <PlanCard />
+      <AddPlanBtn />
+    </div>
+  );
+}
+>>>>>>> 57b61a95181248a06208e8334d7cd8172cb6f051
 export default ManagePlanPage;

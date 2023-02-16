@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useEffect, useState } from "react";
 import * as T from "../table.style/table.style";
 import * as S from "./MyPageMain.style";
@@ -101,5 +102,49 @@ const MyPageMain = () => {
     </S.Container>
   );
 };
+=======
+import { Container, Form, Label } from "./MyPageMain.style";
+
+function MyPageMain() {
+  return (
+    <Container>
+      <Form>
+        <Label>
+          <label>아이디</label>
+          <input type="text" value="plands" disabled />
+        </Label>
+        <Label>
+          <label>이름</label>
+          <input type="text" value="손흥민" disabled />
+        </Label>
+        <Label>
+          <label>닉네임</label>
+          <input type="text" value="플랜즈" disabled />
+        </Label>
+        <Label>
+          <label>성별</label>
+          <input type="text" value="남" disabled />
+        </Label>
+        <Label>
+          <label>생년월일</label>
+          <input type="text" value="960320" disabled />
+        </Label>
+        <Label>
+          <label>전화번호</label>
+          <input type="text" value="01073297703" disabled />
+        </Label>
+        <Label>
+          <label>이메일</label>
+          <input
+            type="text"
+            value="scbsoccer@naver.com"
+            disabled
+          />
+        </Label>
+      </Form>
+    </Container>
+  );
+}
+>>>>>>> 57b61a95181248a06208e8334d7cd8172cb6f051
 
 export default MyPageMain;
