@@ -6,7 +6,8 @@ export const PlanWrapper = styled.div`
   border-radius: 15px;
   background: linear-gradient(#141e30, #243b55);
   box-shadow: 5px 5px 4px 2px rgba(0, 0, 0, 0.25);
-
+  margin-left: 50px;
+  margin-right: 50px;
   &:hover {
     cursor: pointer;
     background: linear-gradient(#141e30, #335c8a);

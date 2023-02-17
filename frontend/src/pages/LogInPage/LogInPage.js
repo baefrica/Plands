@@ -8,10 +8,7 @@ import {
 } from "./LogInPage.style";
 import Nav from "components/nav/Nav";
 import { useDispatch } from "react-redux";
-import {
-  LOGIN_TOKEN,
-  USER_NICKNAME,
-} from "store/slice/userSlice";
+import { LOGIN_TOKEN, USER_NICKNAME } from "store/slice/userSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import { login } from "utils/api/sessionApi";
 import { getMemberDetail } from "utils/api/memberApi";
@@ -72,16 +69,17 @@ const LogInPage = () => {
             timer: 3000,
           });
 
-          const accessToken =
-            res.data["access-token"].value;
-          const refreshToken =
-            res.data["refresh-token"].value;
+          const accessToken = res.data["access-token"].value;
+          const refreshToken = res.data["refresh-token"].value;
 
-          dispatch(
-            LOGIN_TOKEN([accessToken, refreshToken])
-          );
+          dispatch(LOGIN_TOKEN([accessToken, refreshToken]));
 
           if (uuid) {
+            getMemberDetail(accessToken).then((res) => {
+              console.log(res);
+              dispatch(USER_NICKNAME(res.data.nickname));
+              navigate("/");
+            });
             joinPlan(accessToken, uuid).then((res) => {
               navigate("/plans");
             });
@@ -140,32 +138,20 @@ const LogInPage = () => {
               />
             </LoginContentRow>
             <LoginContentRow>
-              <button
-                id="logIn-btn"
-                onClick={onClickLoginBtn}
-              >
+              <button id="logIn-btn" onClick={onClickLoginBtn}>
                 로그인
               </button>
             </LoginContentRow>
             <LoginContentRow>
               <div id="footer">
                 <p>아직 회원이 아니신가요?</p>
-                <button
-                  id="signUp-btn"
-                  onClick={onClickRegistBtn}
-                >
+                <button id="signUp-btn" onClick={onClickRegistBtn}>
                   회원가입
                 </button>
-                <button
-                  id="findId-btn"
-                  onClick={onClickFindIdBtn}
-                >
+                <button id="findId-btn" onClick={onClickFindIdBtn}>
                   아이디 찾기
                 </button>
-                <button
-                  id="findPw-btn"
-                  onClick={onClickFindPwBtn}
-                >
+                <button id="findPw-btn" onClick={onClickFindPwBtn}>
                   비밀번호 찾기
                 </button>
               </div>

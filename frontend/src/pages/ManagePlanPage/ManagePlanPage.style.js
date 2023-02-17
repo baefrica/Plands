@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ContentWrapper = styled.div`
   width: 100%;
-  height: 900px;
+  height: 700px;
 `;
 export const PlanListWrapper = styled.div`
   margin: auto;
@@ -15,7 +15,7 @@ export const PlanListWrapper = styled.div`
 export const ItemWrapper = styled.div`
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: center;
   margin-bottom: 50px;
 `;
 

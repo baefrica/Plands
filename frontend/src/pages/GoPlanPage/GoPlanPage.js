@@ -11,7 +11,6 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
-import Loading from "components/loading/Loading";
 
 const GoPlanPage = () => {
   const accessToken = useSelector((state) => {
@@ -20,7 +19,6 @@ const GoPlanPage = () => {
   const { uuid, title, nickName } = useParams();
   const [shareModalToggle, setShareModalToggle] = useState(false);
 
-  const [loadCollabo, setLoadCollabo] = useState(true);
   const navigate = useNavigate();
   const [isShow, setIsShow] = useState(true);
   const printRef = useRef();

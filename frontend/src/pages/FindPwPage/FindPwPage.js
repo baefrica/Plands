@@ -6,7 +6,6 @@ import {
   Content,
   ContentRow,
 } from "./FindPwPage.style";
-import Header from "components/header/Header";
 import Nav from "components/nav/Nav";
 import { useNavigate } from "react-router-dom";
 import { findPassword } from "utils/api/emailApi";
