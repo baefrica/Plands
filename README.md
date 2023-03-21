@@ -1,6 +1,14 @@
 # Project : Plans(Plan with Friends)
 
 ## Team : 백구의 Blo9
+
+
+<span align="center">
+
+![](./temp2.PNG)
+
+</span>
+
 ---
 
 ## System Architecture
