@@ -39,20 +39,6 @@
 
 ---
 
-## 역할
-
-|  이름  |   역할   |                                       시스템                                       |
-| :----: | :------: | :--------------------------------------------------------------------------------: |
-| 김성한 | Frontend | Frontend, WebRTC 서버 구축, 동시편집 서버 구축, 시스템 아키텍처 설계 및 구축, 배포 |
-| 배성찬 | Frontend |                      Frontend, WebRTC, 컴포넌트 설계, 디자인                       |
-| 이상학 | Backend  |                           Backend, 동시편집, 백엔드 설정                           |
-| 김경민 | Backend  |                               Backend, CI/CD, Docker                               |
-| 김소진 | Backend  |                         Backend, WebRTC, 동시편집, Docker                          |
-
-<br />
-
----
-
 ## 프로젝트 구현
 
 ### `OpenVidu`
@@ -143,5 +129,13 @@ npm run start
 ![](./images/member.PNG)
 
 </span>
+
+|  이름  |   역할   |                                       시스템                                       | Github                                          |
+| :----: | :------: | :--------------------------------------------------------------------------------: | ----------------------------------------------- |
+| 김성한 | Frontend | Frontend, WebRTC 서버 구축, 동시편집 서버 구축, 시스템 아키텍처 설계 및 구축, 배포 | [성한's Github](https://github.com/s-ggul)      |
+| 배성찬 | Frontend |                      Frontend, WebRTC, 컴포넌트 설계, 디자인                       | [성찬's Github](https://github.com/baefrica)    |
+| 이상학 | Backend  |                           Backend, 동시편집, 백엔드 설정                           | [상학's Github](https://github.com/dltkdgkr123) |
+| 김경민 | Backend  |                               Backend, CI/CD, Docker                               | [경민's Github](https://github.com/gmkim716)    |
+| 김소진 | Backend  |                         Backend, WebRTC, 동시편집, Docker                          | [소진's Github](https://github.com/Oliverslife) |
 
 ---
