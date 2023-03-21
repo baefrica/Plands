@@ -1,6 +1,8 @@
 ## Team : 백구의 Blo9
 ![](./temp2.PNG){: width="100%" height="100"}
 
+<img src="/temp2.PNG" width="300" height="300">
+
 <span align="center">
 
 ![](./temp2.PNG){: width="100%" height="100"}
