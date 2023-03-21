@@ -1,10 +1,8 @@
+<img src="./images/temp2.PNG" width="100%" height="auto" />
 
+## Team : 백구의 Blo9
 
-<img src="/temp2.PNG" width="100%" height="auto" />
-
-# Team : 백구의 Blo9
-
-## System Architecture
+### System Architecture & Tech Stack
 
 <span align="center">
 
@@ -13,18 +11,41 @@
 </span>
 
 <br />
+<div>
+<h4>Frontend</h4>
+<img src="https://img.shields.io/badge/HTML-E34F26?style=flat-square&logo=HTML&logoColor=white"/>
+<img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=CSS3&logoColor=white"/>
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=white"/>
+<img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/>
+<img src="https://img.shields.io/badge/Redux-764ABC?style=flat-square&logo=Redux&logoColor=white"/>
+</div>
+
+<div>
+<h4>Backend</h4>
+<img src="https://img.shields.io/badge/Java-007396?style=flat-square&logo=Java&logoColor=white"/>
+<img src="https://img.shields.io/badge/Spring-003300?style=flat-square&logo=Spring&logoColor=lightgreen"/>
+  <img src="https://img.shields.io/badge/Mysql-007396?style=flat-square&logo=MySql&logoColor=white"/>
+</div>
+
+<div>
+<h4>Cloud</h4>
+<img src="https://img.shields.io/badge/NGINX-009639?style=flat-square&logo=NGINX&logoColor=white"/>
+<img src="https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=Linux&logoColor=white"/>
+<img src="https://img.shields.io/badge/Ubuntu-E95420?style=flat-square&logo=Ubuntu&logoColor=white"/>
+<img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=Docker&logoColor=white"/>
+</div>
 
 ---
 
 ## 역할
 
-|  이름  |   역할   |             시스템              |
-| :----: | :------: | :-----------------------------: |
-| 김성한 | Frontend |  Frontend, WebRTC 서버 구축, 동시편집 서버 구축, 시스템 아키텍처 설계 및 구축, 배포  |
-| 배성찬 | Frontend |  Frontend, WebRTC, 컴포넌트 설계, 디자인  |
-| 이상학 | Backend  | Backend, 동시편집, 백엔드 설정 |
-| 김경민 | Backend  |     Backend, CI/CD, Docker     |
-| 김소진 | Backend  |   Backend, WebRTC, 동시편집, Docker     |
+|  이름  |   역할   |                                       시스템                                       |
+| :----: | :------: | :--------------------------------------------------------------------------------: |
+| 김성한 | Frontend | Frontend, WebRTC 서버 구축, 동시편집 서버 구축, 시스템 아키텍처 설계 및 구축, 배포 |
+| 배성찬 | Frontend |                      Frontend, WebRTC, 컴포넌트 설계, 디자인                       |
+| 이상학 | Backend  |                           Backend, 동시편집, 백엔드 설정                           |
+| 김경민 | Backend  |                               Backend, CI/CD, Docker                               |
+| 김소진 | Backend  |                         Backend, WebRTC, 동시편집, Docker                          |
 
 <br />
 
@@ -76,11 +97,11 @@ HOST=localhost PORT=1234 YPERSISTENCE=./dbDir node ./node_modules/y-websocket/bi
 
 ### Frontend
 
-- 메인 페이지 
+- 메인 페이지
 - 유저 관리(로그인, 마이페이지, 회원정보 수정, 회원가입)
 - 사용자별 여행계획 리스트 페이지
 - 여행계획 작성 세션 페이지 (WebRTC + CRDT)
-- 여행계획 템플릿 PDF 변환 
+- 여행계획 템플릿 PDF 변환
 
 ```sh
 # npm dependency 추가
@@ -93,8 +114,6 @@ npm run build
 npm run start
 ```
 
-<br />
-
 ---
 
 ### Backend
@@ -103,6 +122,24 @@ npm run start
 
 ```
 
-<br />
+---
+
+### 구현 화면
+
+<span align="center">
+
+![](./images/mainfeat.png)
+
+</span>
+
+---
+
+### 팀원 소개
+
+<span align="center">
+
+![](./images/member.png)
+
+</span>
 
 ---
