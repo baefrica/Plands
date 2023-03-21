@@ -30,15 +30,27 @@
 
 ---
 
-## 진행 사항
+## 프로젝트 구현
 
 ### `OpenVidu`
 
-- OpenVidu를 사용한 리액트 컴포넌트 작업(클래스 컴포넌트)
-- EC2상에 Openvidu를 적재하고 REST API 호출 통신
+- Kurento 미디어 서버를 지원하며 이러한 미디어 서버 연결 및 WebRTC 전반에 걸친 API를 제공하는 오픈소스
+- 해당 프로젝트의 경우 다수의 사용자가 접근하여 계획을 세우는 애플리케이션이기 때문에 미디어서버가 필요
+- 미디어 서버가 없는 경우 브라우저 스펙에서의 WebRTC 성능으로는 최대 4 명 까지 원할하게 사용할 수 있었기에 미디어 서버가 필요했고 이러한 니즈에 맞추어 Openvidu 를 사용
+- `Openvidu`는 `MCU` 형태의 WebRTC 구조를 지원하기에 다수의 사용자(테스트 결과 최대 11명)가 화상채팅에 접속하더라도 원활하게 사용가능
 
-```sh
+#### 서버 배포시 Openvidu(25버전)
+
+- 다운로드
+
+```shell script
 curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_latest.sh | bash
+```
+
+- Openvidu 프로젝트 다운 후 서버 배포
+
+```shell script
+./openvidu start
 ```
 
 <br />
@@ -47,11 +59,16 @@ curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_latest.
 
 ### `Y.js 동시편집`
 
-- 로컬에서 React 컴포넌트로 동시편집 및 개별 템플릿을 이용한 테스트 성공
+- 다수의 사용자가 여행 계획 템플릿을 작성하는 서비스 특성상 동시편집 기능 필요
+- 동시편집 데이터 타입인 CRDT(Conflict-Free-Replicated Data Types)를 구현한 구현체인 `Y.js` 오픈소스를 사용
+
+#### Y-websocket 서버 배포
 
 ```sh
 HOST=localhost PORT=1234 YPERSISTENCE=./dbDir node ./node_modules/y-websocket/bin/server.js
 ```
+
+- Y-websocket 서버 배포 후 frontend 영역에서의 indexedDB와 서버측에서의 영구적인 데이터 관리를 위해 LevelDB를 사용
 
 <br />
 
@@ -59,9 +76,11 @@ HOST=localhost PORT=1234 YPERSISTENCE=./dbDir node ./node_modules/y-websocket/bi
 
 ### Frontend
 
-- 회원 관리 UI
-- 계획 관리 UI
-- 동시 편집 & 화상 채팅 UI
+- 메인 페이지 
+- 유저 관리(로그인, 마이페이지, 회원정보 수정, 회원가입)
+- 사용자별 여행계획 리스트 페이지
+- 여행계획 작성 세션 페이지 (WebRTC + CRDT)
+- 여행계획 템플릿 PDF 변환 
 
 ```sh
 # npm dependency 추가
@@ -79,10 +98,6 @@ npm run start
 ---
 
 ### Backend
-
-- 회원관리 및 여행계획 관리에대한 REST API
-- SpringSecurity 및 Redis를 이용한 캐싱
-- EC2 서버 배포 위해 Dockerfile
 
 ```sh
 
