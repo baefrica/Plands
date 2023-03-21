@@ -3,7 +3,7 @@
 
 <span align="center">
 
-![](./temp2.PNG){: width="100%"}
+![](./temp2.PNG){width="100%"}
 
 </span>
 
