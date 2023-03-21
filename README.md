@@ -140,7 +140,7 @@ npm run start
 
 <span align="center">
 
-![](./images/member.png)
+![](./images/member.PNG)
 
 </span>
 
