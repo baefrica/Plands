@@ -1,4 +1,4 @@
-# Project : Plans(Plan with Friends)
+<img src="./temp2.PNG width="100%" />
 
 ## Team : 백구의 Blo9
 
