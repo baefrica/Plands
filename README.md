@@ -112,7 +112,7 @@ npm run start
 
 ---
 
-### 구현 화면
+### Main Feature 데모 화면
 
 <span align="center">
 
