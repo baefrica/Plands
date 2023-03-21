@@ -1,14 +1,8 @@
+
+
+<img src="/temp2.PNG" width="100%" height="auto" />
+
 ## Team : 백구의 Blo9
-![](./temp2.PNG){: width="100%" height="100"}
-
-<img src="/temp2.PNG" width="100%" height="auto">
-
-<span align="center">
-
-![](./temp2.PNG){: width="100%" height="100"}
-
-</span>
-
 ---
 
 ## System Architecture
