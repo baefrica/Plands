@@ -1,5 +1,7 @@
 <img src="./images/temp2.PNG" width="100%" height="auto" />
 
+---
+
 ## Team : 백구의 Blo9
 
 ### System Architecture & Tech Stack
