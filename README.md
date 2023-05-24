@@ -91,6 +91,8 @@ HOST=localhost PORT=1234 YPERSISTENCE=./dbDir node ./node_modules/y-websocket/bi
 - 여행계획 작성 세션 페이지 (WebRTC + CRDT)
 - 여행계획 템플릿 PDF 변환
 
+#### 실행 방법
+
 ```sh
 # npm dependency 추가
 npm install
@@ -105,9 +107,45 @@ npm run start
 ---
 
 ### Backend
+- 유저와 팀(계획 참여자)별 CRUD
+- Redis를 이용한 JWT 토큰 운용
+- SMTP, BCryptPasswordEncoder를 이용한 비밀번호 암호화/재발급
+- Spring Security를 이용한 권한 처리
 
-```sh
+#### 실행 방법
+```
+# build.gradle 이동 => gradle build 클릭
 
+# gradle bootRun or BaekguApplication.java 이동 후 Run
+```
+
+트리 구조
+```
+└─main
+    ├─java
+    │  └─com
+    │      └─ssafy
+    │          ├─api
+    │          │  ├─controller
+    │          │  └─service
+    │          └─common
+    │              ├─aop
+    │              ├─config
+    │              │  ├─etc
+    │              │  └─filter
+    │              ├─db
+    │              │  ├─dto
+    │              │  │  ├─request
+    │              │  │  └─response
+    │              │  ├─entity
+    │              │  └─repository
+    │              │      └─support
+    │              ├─exception
+    │              └─util
+    │                  ├─common
+    │                  ├─encoder
+    │                  └─etc
+    └─resources
 ```
 
 ---
